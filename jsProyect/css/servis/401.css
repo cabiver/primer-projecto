@@ -1,0 +1,21 @@
+
+*{
+    font-family: sans-serif;
+}
+body{
+    background-color: var(--principal-gris);
+}
+.flexContainer{
+    margin-top:60px;
+    display: flex;
+    justify-content: center;
+}
+.contenedor{
+    border-radius: 12px;
+    max-width: 500px;
+    min-width: fit-content;
+    padding: 20px;
+    width: 50%;
+    text-align: center;
+ background-color: var(--gris-super-claro);   
+}

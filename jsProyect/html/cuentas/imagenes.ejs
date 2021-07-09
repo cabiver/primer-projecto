@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>agregar</title>
+    <link rel="stylesheet" href="jsProyect/css/imagenes.css">
+    <link rel="stylesheet" href="jsProyect/css/ceneter.css">
+    <!-- BOOTSTRAP 4 -->
+</head>
+<body>
+
+    <div class="container">
+        <form id="formImg" ><!--  action="/imagenes" method="POST" enctype="multipart/form-data"-->>
+            <input id="file" type="file" name="image">
+            <input type="text" name="description">
+
+            <button>
+                Save
+            </button>
+        </form>
+    </div>
+    <div class="container cente">
+        <form id="formImg"enctype="multipart/form-data"><!-- action="/imagenes" method="POST" -->
+            <input id="imgFile" type="file" name="image" style="display:none">
+            
+            <label for="imgFile" class="buttonLable cente">sube una imagen</label>
+            <img id="imag" src="" alt="" class="precentacion image">
+            <p>agrega una description</p>
+            <input class="desc" type="text" name="description">
+
+            <button>
+                Save
+            </button>
+        </form>
+        
+    </div> 
+    <div id = "full">
+        <img id="aqui" src="" alt="">
+    </div>
+    <script src="/jsProyect/scripts/imagenes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>

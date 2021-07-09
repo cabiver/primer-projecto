@@ -1,0 +1,14 @@
+.cente{
+    display: block;
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
+}
+
+.rigth{
+    display: block;
+    margin-left: auto;
+    width:fit-content;
+    height: inherit;
+}
+

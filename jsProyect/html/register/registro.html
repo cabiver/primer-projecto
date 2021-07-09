@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <link rel="stylesheet" href="css/servis/normalize.css">
+    <link rel="stylesheet" href="css/servis/center.css">
+    <link rel="stylesheet" href="css/register/style_register.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+    
+    <div class="borde">
+        <div  class="formulari cente_from">
+            
+            <form action="" method="POST">
+                <div class="form_border">
+                    <div class="titule cente negrillas">Registrate</div>
+                <label class="cente negrillas" for="usuari" >name usuari: </label>
+                <input class="cente aspect" type="text" id="usuari" placeholder="usuari123">
+                <label class="cente negrillas" for="password" >password: </label>
+                <div class="cente mar">
+                    <input class="aspect pass" type="password" id="password" placeholder="password">
+                    <img id="see" class="eye" src="images/eyeball-icon-png-eye-icon-1.png" alt="">
+                </div>
+                
+                <input id="send" class="cente send" type="submit" value="register">
+                <input id="sign" class="cente send" type="button" value="sign">
+                <label id= "resultado" class="negrillas"></label>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/register/js_register.js"></script>
+    <script src="scripts/servis/see.js"></script>
+</body>
+</html>

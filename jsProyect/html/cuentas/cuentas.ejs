@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/cuentas/animaciones/animacionesCuentas.css">
+    
+
+    <link rel="stylesheet" href="css/servis/variables.css">
+    <link rel="stylesheet" href="css/servis/center.css">
+    <link rel="stylesheet" href="css/servis/normalize.css">
+    <link rel="stylesheet" href="css/servis/flexbox.css">
+    <link rel="stylesheet" href="css/cuentas/cuentas-css.css">
+    <link rel="stylesheet" href="css/cuentas/imagenes.css">
+    <link rel="stylesheet" href="css/cuentas/userController.css">
+    <link rel="stylesheet" href="css/cuentas/navegacion.css">
+    <link rel="stylesheet" href="css/cuentas/ventanaDePost.css">
+    <link rel="stylesheet" href="css/cuentas/buscador.css">
+    <link rel="stylesheet" href="css/cuentas/vistaDePost.css">
+    <link rel="stylesheet" href="css/cuentas/portadaUsuario.css">
+    <link rel="stylesheet" href="css/cuentas/ResponsiveAllCuentas.css">
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="scripts/cuentas/funciones/funcionXusuario.js"></script>
+    <script src="scripts/cuentas/XparaUsuario.js"></script>
+
+
+</head>
+
+
+<header id="Header">
+
+    <body>
+        <div id="gridChangeBackground" style="display:none">
+            <div id="closeChangeBackground"> <img src="images/Transparent_X.png" alt=""> </div>
+
+            <div class="divChangeBackground">
+                <form id="fromChangeBackground" action="">
+                    <input id="backgroundFile" type="file" style="display: none" name="image">
+                    <label for="">cambia de fondo aqui</label>
+                    <label class="buttonLable" for="backgroundFile">subir</label>
+                    <img id="renderBackground" src="" alt="">
+                    <button>enviar fondo</button>
+                    <label id="respuestaBackground"></label>
+                </form>
+            </div>
+
+        </div>
+
+        <div id="cabecera" class="cabecera">
+            <div>
+                <div id="iconoDeLaPagina" class="separadorDeCabecera">
+                    <img class="icono" src="images/camille-300x300.png" alt="">
+                </div>
+            </div>
+            <div class="divBarraDeBusqueda">
+                <form id="barraDeBusqueda" class="separadorDeCabecera" >
+                    <input id="escrituraParaBuscar" autocomplete="off" name="usuarios" class="inputs-text-sin-mamadas div-dentro-de-barra-de-busqueda" action="" type="text">
+                    <button id="button-lupa" class="fit-height">
+                        <img id="lupa" class="icono-lupa" src="/lupa" style="height:0;">
+                    </button>
+                  
+    
+                </form>
+                <div style="display:flex; justify-content:center">
+                    <div id="divRecomiendaciones" class="divRecomiendaciones"></div>
+                </div>
+                
+            </div>
+
+                
+            <div class="separadorDeCabecera" id="perfil">
+                <div class="responsiveIconos iconPerfil">
+                    <img class="iconoPrincipal"  src="<%= icon %>">
+                </div>
+                
+                <div class="nombre">
+                    <%= name %>
+                </div>
+            </div>
+
+            
+        </div>
+
+        <div id="barra-de-navegacion" class="Flex-navegador-user" style="display:none">
+            <button id="ir-a-mi-sitio" class="p-de-navegador">Ir a mi sitio web</button>
+            <button id="cerrarSesion" class="p-de-navegador">cerrar Sesion</button>
+        </div>
+
+</header>
+
+
+<div id="border-para-posts" class="postPaginas" style="display:none">
+        <div id="contenido-del-post">
+
+        </div>
+        <div id="comentarios-del-post">
+
+        </div>
+</div>
+
+<div class="containerUser">
+    <div class="difuminado-background background-height">
+        <%- backgroundDifuminado %>
+    </div>
+    <div id="separatorWidth">
+
+        <div id="divBorderCamara">
+
+            <div class="divBorderCamara">
+
+                <div id="plusCamaraDiv" class="plus-camara-div">
+                    <img  src="images/mas.png" alt="">
+                </div>
+                <div class="camara-background feedCamara">
+                    <img class="imagen-de-camara" id="changeBackground" src="images/camera-png.webp" alt="">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div id="background-height" class="background background-height">
+
+        <div id="div-image-background" class="div-image-background">
+
+            <%- extencion %>
+
+
+        </div>
+
+
+    </div>
+
+    <div id="divBorderCamaraIcono" class="divBorderCamaraIcono">
+        <div class="plus-camara-div">
+            <img src="images/mas.png" alt="">
+        </div>
+        <div class="camara-background-icono feedCamara">
+            <img class="imagen-de-camara" id="changeBackground" src="images/camera-png.webp" alt="">
+        </div>
+    </div>
+
+    <div id="FLEXperfilUser" class="FLEXperfilUser">
+        <div class="FLEXBOX ALIGN-ITEMS boxUser">
+
+            <div id="imageIcono" class="iconPerfil responsiveIconos">
+
+                <img class="iconoPrincipal" src="<%= perfil %>" alt="">
+            </div>
+            <div class="perfilName">
+                <%= user %>
+            </div>
+        </div>
+
+    </div>
+    <form class="superponer text-claro" action="" style="display:none" id="changeIcon">
+        <div class="flexCenter">
+            <input id="iconImag" name="image" type="file" style="display: none">
+            <label class="text-change-icon " for="">quieres cambiar el icono de tu perfil?</label>
+            <label for="iconImag" class="buttonLable">icono aqui</label>
+            <img id="renderIcono" src="" alt="">
+            <label id="resultIcono" class="resultIcono" for=""></label>
+            <button class="enviarIcon ">enviar icono</button>
+        </div>
+
+    </form>
+
+</div>
+
+<div id="full" class="bak">
+
+    <div class="FLEXBOX JUSTIFY-CONTENT">
+
+        <div class="container">
+            <form id="formImg" enctype="multipart/form-data">
+                <!-- action="/imagenes" method="POST" -->
+                <input id="imgFile" type="file" name="image" style="display:none">
+    
+    
+                <label for="imgFile" class="buttonLable ">sube una imagen</label>
+                <div id="loadImg">
+                    <div id="barra-de-carga"></div>
+                    <video id="loadVideo" class="render-de-video pc" src=""style="width:0;"></video>
+                    <img id="imag" src="" alt="" class="render-de-imagen precentacion image pc">
+                </div>
+                <video id="loadVideoMobile" class="render-de-video" src=""></video>
+                <img id="imagMobile" src="" alt="" class="render-de-imagen image mobile">
+    
+                <p class="INLINE-BLOC">agrega una description</p>
+                <input id="desc" class="desc inputs-text-sin-mamadas" autocomplete="off" type="text" name="description">
+                <button class="sendbutton">
+                    Save
+                </button>
+            </form>
+    
+        </div>
+    
+    
+    
+    </div>
+    
+
+
+    <div id="marco" class="marco">
+    
+    
+    
+    </div>
+    <div class="FLEXBOX JUSTIFY-CONTENT">
+        <div id="ventana-acabo-las-fotos" style="display:none" class="div-para-marco FLEXBOX ALIGN-ITEMS">
+            <p class=" fuente">ya no hay mas fotos?</p>
+        </div>
+    </div>
+    
+    <div id="load" style="height: 15px"></div>
+</div>
+
+
+<script src="scripts/cuentas/responsive-cuentas.js"></script>
+<script src="scripts/cuentas/cuentas.js"></script>
+<script src="scripts/cuentas/usuariocontroller.js"></script>
+<script src="scripts/cuentas/responsive-usercuentas.js"></script>
+
+
+
+
+</body>
+
+</html>

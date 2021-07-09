@@ -1,0 +1,42 @@
+#imageIcono:hover{
+
+    filter: sepia(30%);
+    
+}
+
+#changeIcon{
+    max-width: fit-content;
+    padding: 12px;
+    
+    border: 4px none var(--colorComstrante-normal-oscuro);
+    border-style: none dashed dashed none; 
+    border-radius: 4px;
+    background-color: var(--colorPrincipal-normal-oscuro-opacity);
+
+}
+
+
+
+#renderIcono{
+    max-width:120px;
+    max-height: 250px;
+    object-fit: cover;
+}
+.divBorderCamaraIcono{
+    position:absolute;
+    z-index: 10;
+    height: fit-content;
+    width:fit-content;
+}
+.mobile{
+    display: none;
+}
+.camara-background-icono{
+    border:3px solid var(--blanco-poca-opacidad);
+    border-radius:50%;
+    overflow: hidden;
+    width: fit-content;
+    height: fit-content;
+    background-color: var(--gris-super-claro-opacity);
+    padding: 5px;
+}

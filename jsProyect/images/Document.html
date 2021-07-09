@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)http://localhost:3000/camille -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./Document_files/variables.css">
+    <link rel="stylesheet" href="./Document_files/center.css">
+    <link rel="stylesheet" href="./Document_files/normalize.css">
+    <link rel="stylesheet" href="./Document_files/flexbox.css">
+    <link rel="stylesheet" href="./Document_files/cuentas-css.css">
+    <link rel="stylesheet" href="./Document_files/imagenes.css">
+    <link rel="stylesheet" href="./Document_files/userController.css">
+    <link rel="stylesheet" href="./Document_files/navegacion.css">
+    <link rel="stylesheet" href="./Document_files/ventanaDePost.css">
+    <link rel="stylesheet" href="./Document_files/buscador.css">
+    <link rel="stylesheet" href="./Document_files/vistaDePost.css">
+    <link rel="stylesheet" href="./Document_files/portadaUsuario.css">
+    <link rel="stylesheet" href="./Document_files/ResponsiveAllCuentas.css">
+    
+    
+    <script src="./Document_files/axios.min.js.descarga"></script>
+    <script src="./Document_files/funcionXusuario.js.descarga"></script>
+    <script src="./Document_files/XparaUsuario.js.descarga"></script>
+
+
+</head>
+
+
+<body><header id="Header">
+
+    
+        <div id="gridChangeBackground" style="display:none">
+            <div id="closeChangeBackground"> <img src="./Document_files/Transparent_X.png" alt=""> </div>
+
+            <div class="divChangeBackground">
+                <form id="fromChangeBackground" action="http://localhost:3000/camille">
+                    <input id="backgroundFile" type="file" style="display: none" name="image">
+                    <label for="">cambia de fondo aqui</label>
+                    <label class="buttonLable" for="backgroundFile">subir</label>
+                    <img id="renderBackground" src="http://localhost:3000/camille" alt="">
+                    <button>enviar fondo</button>
+                    <label id="respuestaBackground"></label>
+                </form>
+            </div>
+
+        </div>
+
+        <div id="cabecera" class="cabecera">
+            <div>
+                <div id="iconoDeLaPagina" class="separadorDeCabecera">
+                    <img class="icono" src="./Document_files/camille-300x300.png" alt="">
+                </div>
+            </div>
+            <div class="divBarraDeBusqueda">
+                <form id="barraDeBusqueda" class="separadorDeCabecera">
+                    <input id="escrituraParaBuscar" autocomplete="off" name="usuarios" class="inputs-text-sin-mamadas div-dentro-de-barra-de-busqueda" action="" type="text">
+                    <button id="button-lupa" class="fit-height" style="width: 36.4px; height: 30px; left: 396px;">
+                        <img id="lupa" class="icono-lupa" src="./Document_files/lupa" style="height: 100%;">
+                    </button>
+                  
+    
+                </form>
+                <div style="display:flex; justify-content:center">
+                    <div id="divRecomiendaciones" class="divRecomiendaciones" style="width: 360px;"></div>
+                </div>
+                
+            </div>
+
+                
+            <div class="separadorDeCabecera" id="perfil">
+                <div class="responsiveIconos iconPerfil" style="width: 42px;">
+                    <img class="iconoPrincipal" src="./Document_files/0323f6b2-6b32-44e9-ac31-7980c41d3d5c47d35b0fc93809fdf99055bdcd380e37.jpg">
+                </div>
+                
+                <div class="nombre">
+                    camille
+                </div>
+            </div>
+
+            
+        </div>
+
+        <div id="barra-de-navegacion" class="Flex-navegador-user" style="display:none">
+            <button id="ir-a-mi-sitio" class="p-de-navegador">Ir a mi sitio web</button>
+            <button id="cerrarSesion" class="p-de-navegador">cerrar Sesion</button>
+        </div>
+
+</header>
+
+
+<div id="border-para-posts" class="postPaginas" style="display: none; min-height: 505px; height: 516px;">
+        <div id="contenido-del-post">
+
+        </div>
+        <div id="comentarios-del-post">
+
+        </div>
+</div>
+
+<div class="containerUser">
+    <div class="difuminado-background background-height">
+        <img class="imageDifumida" src="./Document_files/4c287b08-c01f-4264-8982-0f4d4a7d98aey2matecom - YOASOBI群青Official Music Video_1080p.jpg" alt="">
+    </div>
+    <div id="separatorWidth" style="top: 209px; right: 77.5px;">
+
+        <div id="divBorderCamara">
+
+            <div class="divBorderCamara">
+
+                <div id="plusCamaraDiv" class="plus-camara-div">
+                    <img src="./Document_files/mas.png" alt="">
+                </div>
+                <div class="camara-background feedCamara">
+                    <img class="imagen-de-camara" id="changeBackground" src="./Document_files/camera-png.webp" alt="">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div id="background-height" class="background background-height" style="margin-top: 58px;">
+
+        <div id="div-image-background" class="div-image-background">
+
+            <video id="background" class="background-content-responsive-video" src=" /backgrounds/4c287b08-c01f-4264-8982-0f4d4a7d98aey2mate.com - YOASOBI群青Official Music Video_1080p.mp4 " controls=""></video>
+
+
+        </div>
+
+
+    </div>
+
+    <div id="divBorderCamaraIcono" class="divBorderCamaraIcono" style="left: 44.6667px;">
+        <div class="plus-camara-div">
+            <img src="./Document_files/mas.png" alt="">
+        </div>
+        <div class="camara-background-icono feedCamara">
+            <img class="imagen-de-camara" id="changeBackground" src="./Document_files/camera-png.webp" alt="">
+        </div>
+    </div>
+
+    <div id="FLEXperfilUser" class="FLEXperfilUser">
+        <div class="FLEXBOX ALIGN-ITEMS boxUser">
+
+            <div id="imageIcono" class="iconPerfil responsiveIconos" style="width: 56px;">
+
+                <img class="iconoPrincipal" src="./Document_files/0323f6b2-6b32-44e9-ac31-7980c41d3d5c47d35b0fc93809fdf99055bdcd380e37.jpg" alt="">
+            </div>
+            <div class="perfilName">
+                camille
+            </div>
+        </div>
+
+    </div>
+    <form class="superponer text-claro" action="http://localhost:3000/camille" style="display: block; height:0; overflow:hidden;" id="changeIcon">
+        <div class="flexCenter">
+            <input id="iconImag" name="image" type="file" style="display: none">
+            <label class="text-change-icon " for="">quieres cambiar el icono de tu perfil?</label>
+            <label for="iconImag" class="buttonLable">icono aqui</label>
+            <img id="renderIcono" src="http://localhost:3000/camille" alt="">
+            <label id="resultIcono" class="resultIcono" for=""></label>
+            <button class="enviarIcon ">enviar icono</button>
+        </div>
+
+    </form>
+
+</div>
+<div class="FLEXBOX JUSTIFY-CONTENT">
+
+    <div class="container">
+        <form id="formImg" enctype="multipart/form-data">
+            <!-- action="/imagenes" method="POST" -->
+            <input id="imgFile" type="file" name="image" style="display:none">
+
+
+            <label for="imgFile" class="buttonLable ">sube una imagen</label>
+            <div id="loadImg">
+
+                <video id="loadVideo" class="render-de-video pc" src=""></video>
+                <img id="imag" src="http://localhost:3000/camille" alt="" class="render-de-imagen precentacion image pc">
+            </div>
+            <video id="loadVideoMobile" class="render-de-video" src=""></video>
+            <img id="imagMobile" src="http://localhost:3000/camille" alt="" class="render-de-imagen image mobile">
+
+            <p class="INLINE-BLOC">agrega una description</p>
+            <input id="desc" class="desc inputs-text-sin-mamadas" type="text" name="description">
+            <button class="sendbutton">
+                Save
+            </button>
+        </form>
+
+    </div>
+
+
+
+</div>
+
+<div id="full" class="bak">
+    <div id="marco" class="marco">
+    <div class="div-para-marco"><div class="flex-para-contenido"><p class="fecha-post">jueves julio 01 2021</p><div class="flexGrow"></div><img class="deleteX deleteListener" referen="temp/13d69b8b-3a51-4df7-a692-ac871749fc3fmapachehermososlogo.jpg" src="./Document_files/Transparent_X.png"></div><div class="mar"><p class=" fuente"> </p><img src="./Document_files/13d69b8b-3a51-4df7-a692-ac871749fc3fmapachehermososlogo.jpg" class=" precentacion"></div></div><div class="div-para-marco"><div class="flex-para-contenido"><p class="fecha-post">jueves julio 01 2021</p><div class="flexGrow"></div><img class="deleteX deleteListener" referen="temp/cacf136e-17e3-495b-a5df-e9ca6ce86945162837022.jpg" src="./Document_files/Transparent_X.png"></div><div class="mar"><p class=" fuente"> </p><img src="./Document_files/cacf136e-17e3-495b-a5df-e9ca6ce86945162837022.jpg" class=" precentacion"></div></div><div class="div-para-marco"><div class="flex-para-contenido"><p class="fecha-post">domingo Junio 27 2021</p><div class="flexGrow"></div><img class="deleteX deleteListener" referen="temp/72b41071-45bd-435b-9ac3-79a99b1447b0Canción del Otomatone (MissaSinfonia) ( 480 X 854 ).mp4" src="./Document_files/Transparent_X.png"></div><div class="mar"><p class=" fuente"> </p><video controls="" src="temp/72b41071-45bd-435b-9ac3-79a99b1447b0Canción del Otomatone (MissaSinfonia) ( 480 X 854 ).mp4" class=" precentacion"></video></div></div></div>
+
+    <div id="ventana-acabo-las-fotos" style="display:none" class="div-para-marco FLEXBOX ALIGN-ITEMS cente">
+        <p class=" fuente">ya no hay fotos?</p>
+    </div>
+    <div id="load" style="height: 15px"></div>
+</div>
+
+
+<script src="./Document_files/responsive-cuentas.js.descarga"></script>
+<script src="./Document_files/cuentas.js.descarga"></script>
+<script src="./Document_files/usuariocontroller.js.descarga"></script>
+<script src="./Document_files/responsive-usercuentas.js.descarga"></script>
+
+
+
+
+
+
+</body></html>

@@ -1,0 +1,38 @@
+
+*{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+body{
+    background-color: #555;
+}
+.contenedor{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.separador{
+    font-size: 20px;
+    margin-top: 120px;
+    background-color: #aaa;
+    padding: 6px;
+    min-width: fit-content;
+    width: 60%;
+    text-align: center;
+    min-height: fit-content;
+    border-radius: 5px;
+    
+}
+.knucles{
+    height: 300px;
+    width: 300px;
+}
+@media screen and (max-width:500px){
+    .knucles{
+        height: 200px;
+        width: 200px;
+    }   
+    .separador{
+        font-size: 12px;
+    }
+}
