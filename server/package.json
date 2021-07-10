@@ -27,7 +27,7 @@
     "nodemon": "^2.0.7"
   },
   "scripts": {
-    "dev": "npx demon index.js",
+    "start": "npx nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
