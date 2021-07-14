@@ -55,18 +55,31 @@
 .image{
     object-fit: cover;
 }
+
 .render-de-video{
     object-fit: cover;
     width:100%;
     height:0;
     max-height: 350px;
 }
+
+.render-de-video-mobile{
+    object-fit: cover;
+    width:100%;
+    height:0;
+    max-height: 350px;
+}
+
 #loadVideoMobile{
     display:none;
 }
 .render-de-imagen{
     object-fit: cover;
     max-width: 70%;
+}
+.render-de-image-mobile{
+    object-fit: cover;
+    max-width: 100%;
 }
 .desc{
 padding:5px;

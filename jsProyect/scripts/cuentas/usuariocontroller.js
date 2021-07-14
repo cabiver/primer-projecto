@@ -44,12 +44,11 @@ async function ocultarMostrar(){
 }
 
 divBorderCamaraIcono.addEventListener("click",e=>{
-    ocultarMostrar()
+    ocultarMostrar();
 })
 
 imageIcono.addEventListener("click",e=>{
-   ocultarMostrar()
-    
+   ocultarMostrar();
 })
 
 
@@ -68,16 +67,12 @@ window.addEventListener("keydown",e=>{
     }
 
 })
-//const containerCamara = document.getElementById("divBorderCamara");
 closeChangeBackground.addEventListener("click",e=>{
     imagenDeBackground = false;
-    //console.log("porque no funciona?")
     cabecera.style.display = "";
     gridChangeBackground.style.display="none";
 });
 fromChangeBackground.addEventListener("submit",e=>{
-    //console.log("dentro del form")
-    
     e.preventDefault();
     if(canChangeBackground){
         canChangeBackground = false;
@@ -101,7 +96,6 @@ fromChangeBackground.addEventListener("submit",e=>{
 });
 
 fromChangeBackground.addEventListener("change",e=>{
-    //console.log("dentro del form")
     const formdata = new FormData(fromChangeBackground);
     const image = URL.createObjectURL(formdata.get("image"));
     renderBackground.setAttribute('src',image);
@@ -115,14 +109,10 @@ divBorderCamara.addEventListener( "click",e=>{
     gridChangeBackground.style.display="";
 });
 const renderImage = ()=>{
-    //console.log(file)
-    //console.log(file.name)
     let extencion = file.name.split(".");
     let renderPc =document.getElementById("loadVideo");
     let reader = new FileReader;
     reader.readAsArrayBuffer(file);
-    //console.log(extencion.length);
-    //console.log(extencion);
     if(extencion[(extencion.length-1)] == "mp4"||extencion[(extencion.length-1)] == "mkv"){
         document.getElementById("loadVideo").style.height = "fit-content";
         document.getElementById("loadVideoMobile").style.height = "fit-content";
@@ -140,55 +130,52 @@ const renderImage = ()=>{
         })
         reader.addEventListener("load",e=>{
             
-            let videofinalizado = new Blob([new Uint8Array(e.currentTarget.result)],{type: "video/mp4"})
+            let videofinalizado = new Blob([new Uint8Array(e.currentTarget.result)],{type: "video/mp4"});
             let url = URL.createObjectURL(videofinalizado);
             barraDeCarga.style.backgroundColor='transparent';
-            renderPc.style.width="100%"
-            renderPc.setAttribute("src",url)
-            document.getElementById("loadVideoMobile").setAttribute("src",url)
-
-        })
+            renderPc.style.width="100%";
+            renderPc.setAttribute("src",url);
+            document.getElementById("loadVideoMobile").setAttribute("src",url);
+        });
     }else{
-        renderPc.setAttribute("src","")
-        document.getElementById("loadVideoMobile").setAttribute("src","")
+        renderPc.setAttribute("src","");
+        document.getElementById("loadVideoMobile").setAttribute("src","");
         renderPc.style.height = "0";
         renderPc.style.width = "0";
         document.getElementById("loadVideoMobile").style.height = "0";
 
         const image = URL.createObjectURL(file);
         img.setAttribute('src',image);
-        document.getElementById("imagMobile").setAttribute('src',image)
+        document.getElementById("imagMobile").setAttribute('src',image);
     
     }
 }
 
 const changecolor = (obj, color, border)=>{
-    //console.log(obj)
     obj.style.color = color;
-    //console.log(obj.style)
     obj.style.borderColor = border;
 }
 function validar(){
     let validar = true;
     let formdata = new FormData(form);
     if(!file){
-        console.log("entre donde no debi")
+        console.log("entre donde no debi");
         file =formdata.get('image');
     }
     
     const text = formdata.get('description');
     if(file.size ==0){
-        console.log("no hay foto")
+        console.log("no hay foto");
         validar = false;
         return validar;
     }
     if(text.length >=150){
-        console.log("hay mucho texto")
+        console.log("hay mucho texto");
         validar = false;
         return validar;
     }
     if(text ===""){
-        console.log("no hay texto")
+        console.log("no hay texto");
         validar = true;
     }
     
@@ -204,8 +191,8 @@ loadImg.addEventListener("dragleave",(e)=>{
 });
 const render = (imageToRender)=>{
     if(!imageToRender){
-    loadImg.innerHTML = "la igamen que ingreso es invalida"
-        return
+        loadImg.innerHTML = "la igamen que ingreso es invalida";
+        return;
     }
     file = imageToRender;
     renderImage();
@@ -213,9 +200,7 @@ const render = (imageToRender)=>{
 loadImg.addEventListener("drop",(e)=>{
     e.preventDefault();
     render(e.dataTransfer.files[0]);
-    //render(e.dataTransfer.files[0]);
     changecolor(e.srcElement ,"","");
-      //  console.log(e);
 });
 changeIcon.addEventListener('change',e=>{
     const formdata = new FormData(changeIcon);
@@ -246,17 +231,10 @@ changeIcon.addEventListener('submit',e=>{
 });
 form.addEventListener('submit',e=>{
     e.preventDefault();
-    //const objvalidar=validar()
     if(validar()){
 
         const formdata = new FormData(form);
-        /*
-        if(!file){
-            file =formd.get('image');
-        }
-*/
         formdata.delete("image");
-        //console.log(formdata);
         formdata.append("image", file);
         
         
@@ -271,9 +249,3 @@ form.addEventListener('submit',e=>{
     }
               
 });
-
-
-
-
-
-
