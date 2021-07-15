@@ -5,11 +5,11 @@
     min-height: 60px;
     padding: 3vh 6px;
     width: 80%;
-    background-image: linear-gradient(to top,var(--colorcomstrante-mas-oscuro), var(--colorComstrante-normal-oscuro));
-    
+    background-image: linear-gradient(to bottom left, var(--black-trancition), var(--black));
+    color:var(--blanco-no-tan-brilloso);
     margin:25px 0 25px 0;
     border-radius:12px;
-    box-shadow: 3px 3px 6px 1px var(--colorPrincipal-claro-opaco);
+    box-shadow: 10px 5px 5px black;    
 }
 .mar{
     display: flex;
@@ -19,7 +19,7 @@
 }
 .precentacion{
     display: block;
-    border-radius: 12px;
+    padding:6px 0 6px 0;
     max-height:550px;
     max-width: 70%;
 }

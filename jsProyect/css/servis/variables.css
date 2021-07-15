@@ -4,10 +4,17 @@
     --gris-super-claro-rgba: 153, 153, 153;
     --colorSegudario-oscuro-rgba:112,34,34;
     --colorPrincipal-claro-rgba: 242, 73,73;
+    --blanco:255,255,255;
     
+    --black:#000;
+    --black-trancition:#111;
+
+    --color-acompañante-al-negro:#555;
+    --colo-acompañante-2:#666;
 
     --blanco-con-opacidad:#fff3;
     --blanco-poca-opacidad:#fffc;
+    --blanco-no-tan-brilloso:#ddd;
     --principal-gris: rgba(var(--gris-principal-rbga));
     --dark-claro:rgba(var(--dark-rgba), .4);
     --gris-claro: rgba(var(--dark-rgba), .4);

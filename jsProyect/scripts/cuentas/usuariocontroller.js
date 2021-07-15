@@ -151,10 +151,14 @@ const renderImage = ()=>{
     }
 }
 
-const changecolor = (obj, color, border)=>{
-    obj.style.color = color;
-    obj.style.borderColor = border;
+const changecolorAdd = (obj, clase)=>{
+    obj.classList.add(`${clase}`);
+    console.log(obj.classList.contains(`${clase}`))
 }
+const changecolorSubtract = (obj, clase)=>{
+    obj.classList.remove(`${clase}`);
+}
+
 function validar(){
     let validar = true;
     let formdata = new FormData(form);
@@ -183,11 +187,10 @@ function validar(){
 }
 loadImg.addEventListener("dragover",(e)=>{
     e.preventDefault();
-    changecolor(e.srcElement ,"#fff","#00f");
-    //console.log(e);
+    changecolorAdd(e.srcElement ,"objetoEncima");
 });
 loadImg.addEventListener("dragleave",(e)=>{
-    changecolor(e.srcElement ,"","");
+    changecolorSubtract(e.srcElement ,"objetoEncima");
 });
 const render = (imageToRender)=>{
     if(!imageToRender){
@@ -200,7 +203,7 @@ const render = (imageToRender)=>{
 loadImg.addEventListener("drop",(e)=>{
     e.preventDefault();
     render(e.dataTransfer.files[0]);
-    changecolor(e.srcElement ,"","");
+    changecolorSubtract(e.srcElement ,"objetoEncima");
 });
 changeIcon.addEventListener('change',e=>{
     const formdata = new FormData(changeIcon);
