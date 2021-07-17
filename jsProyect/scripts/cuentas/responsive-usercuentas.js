@@ -2,21 +2,18 @@
 
 
 window.addEventListener("load",e=>{
-
     divBorderCamaraIcono.style.left = (imageIcono.clientWidth-(divBorderCamaraIcono.clientWidth/3))+"px";
     containerCamara.style.top =(backgroundHeight.clientHeight +cabecera.clientHeight - divBorderCamara.clientHeight -62)+"px"
     containerCamara.style.right = (((document.body.offsetWidth-background.clientWidth) /2)+12) + "px";
-    
 })
 
-
+console.log(background.clientWidth)
 imageIcono.addEventListener("loadeddata",e=>{
     divBorderCamaraIcono.style.left = (imageIcono.clientWidth-(divBorderCamaraIcono.clientWidth/3))+"px";
 
 })
 background.addEventListener("loadeddata",e=>{
     containerCamara.style.right = (((document.body.offsetWidth-background.clientWidth) /2)+12) + "px"; + "px";
-    
 })
 
 window.addEventListener("resize",e=>{

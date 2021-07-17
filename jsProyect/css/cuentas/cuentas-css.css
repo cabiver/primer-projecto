@@ -21,7 +21,6 @@ body{
     align-items: center;
 }
 #closeChangeBackground img{
-    background-color:var(--blanco-con-opacidad);
     border-radius:50%;
     min-width: 12px;
     min-height:12px;
@@ -56,6 +55,7 @@ body{
     margin-bottom: 3px;
 }
 header{
+    height: 7vh;
     position: fixed;
     width: 100%;
     top: 0;
@@ -63,9 +63,9 @@ header{
 }
 .cabecera{
     display: flex;
-    height: 9vh;
-    background-image: linear-gradient(to right, var(--colorPrincipal-claro) , var(--colorSegundario-oscuro));
     padding: 6px 0 6px 0;
+    height: 100%;
+    background-image: linear-gradient(to right, var(--colorPrincipal-claro) , var(--colorSegundario-oscuro));
     opacity: 0.87;
 
 }
@@ -151,7 +151,7 @@ header{
 
 #perfil{
     padding: 2px 6px 2px 14px;
-    height: 100%;
+    height: -webkit-fill-available;
     border-radius: 30px;
     display: flex;
     justify-content:center;

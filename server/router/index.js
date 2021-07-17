@@ -412,24 +412,26 @@ router.post('/background/:id',async (req , res)=>{
    
    arrayBackground= nombreimagen.split(".");
    let nombreSinExtencion="";
-   for (var i = 0; i < arrayBackground.length-1; i++) {
-    nombreSinExtencion = nombreSinExtencion+arrayBackground[i];
- }
+   
+  if(arrayBackground.length >2){
+    for (var i = 0; i < arrayBackground.length-1; i++) {
+      nombreSinExtencion = nombreSinExtencion+arrayBackground[i];
+    }
+  }
+  
  //console.log(nombreSinExtencion)
    extencion = arrayBackground[arrayBackground.length-1];
-   
-
    imagen.name = nombreimagen;
    
    //console.log(imagen)
    //console.log( path.join(__dirname,'/..','/..',postImg))
+   
+
    imagen.mv(path.join(__dirname,'/..','/..',"jsProyect",postImg), err=>{
-     if(err){
-       return res.status(402);
-     }
-   });
-
-
+    if(err){
+      return res.status(402);
+    }
+  });
 
    let difuminado = "backgroundDifuminado/"+nombreSinExtencion+".jpg"
 
@@ -437,14 +439,19 @@ router.post('/background/:id',async (req , res)=>{
     //console.log("el background es una video")
      ffmpeg({ source: path.join(__dirname,'/..','/..',"jsProyect",postImg)})
     .takeScreenshots({filename:nombreSinExtencion+".jpg",timemarks:[0]},path.join(__dirname,'/..','/..',"jsProyect/backgroundDifuminado"))
-
- }
+    await model.updateOne({usuari: user.usuari},{background : "/"+postImg}); 
+    await model.updateOne({usuari: user.usuari},{backgroundDifumidado : "/"+difuminado}); 
+    
+  }else{
+   
+    await model.updateOne({usuari: user.usuari},{background : "/"+postImg}); 
+    await model.updateOne({usuari: user.usuari},{backgroundDifumidado : "/"+postImg}); 
+     
+  }
    //  console.log(imagen)
   // console.log(path.join(__dirname,'/..','/..',postImg))
   // console.log(imagen.name)
  
-   await model.updateOne({usuari: user.usuari},{background : "/"+postImg}); 
-   await model.updateOne({usuari: user.usuari},{backgroundDifumidado : "/"+difuminado}); 
    
   res.status(200).send("all great");
 });

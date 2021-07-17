@@ -54,9 +54,9 @@
     background-color: rgba(var(--blanco),0.13) ;
 }
 .div-dentro-de-barra-de-busqueda{
-    padding: 2px 0 2px 0;
+
     width:100%;
-    height: 100%;
+    height: -webkit-fill-available;
     background-color:rgba(var(--gris-principal-rbga),.8);
     border-radius:50px;
     border: none;

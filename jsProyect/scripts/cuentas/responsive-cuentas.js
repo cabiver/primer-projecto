@@ -19,8 +19,15 @@ const lupa = document.getElementById("lupa");
 const escrituraParaBuscar = document.getElementById("escrituraParaBuscar");
 
 const divRecomiendaciones = document.getElementById("divRecomiendaciones");
-window.addEventListener("load",e=>{
 
+//console.log(document.getElementById("background").naturalWidth);
+window.addEventListener("load",e=>{
+    if(background.naturalWidth < 600){
+        background.style.objectFit ="contain";
+        
+    }else{
+        background.style.width = "100%"
+    }
     for (let index = 0; index < responsiveIconos.length; index++) {
         responsiveIconos[index].style.width = responsiveIconos[index].clientHeight+"px";
     }

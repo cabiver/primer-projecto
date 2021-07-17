@@ -3,10 +3,8 @@ var varchangeIcon= false;
 var canChangeBackground = true;
 var imagenDeBackground=false;
 var file;
-//const changeIcon = document.getElementById("changeIcon");
 
 const changeIcon = document.getElementById("changeIcon");
-
 const marco =document.getElementById("marco");
 const form = document.getElementById("formImg");
 const loadImg = document.getElementById("loadImg");
@@ -29,7 +27,7 @@ function esUnaImagen(nombre){
     return false;
 }
 
-async function ocultarMostrar(){
+ function ocultarMostrar(){
     if(!varchangeIcon){
         changeIcon.style.display = "block";
         varchangeIcon = true;
