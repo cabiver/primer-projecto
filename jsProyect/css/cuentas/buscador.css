@@ -35,6 +35,9 @@
     border-radius:6px;
     padding: 3px;
 }
+.normal:hover{
+    background-color:rgba(var(--blanco) , 0.3);
+}
 .divRecomiendaciones{
     position:absolute;
     display: flex;

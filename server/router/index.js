@@ -7,8 +7,6 @@ const { v4: uuidv4 } = require('uuid');
 const fileupload = require('express-fileupload');
 var methodOverride = require('method-override');
 const bodyParser = require('body-parser');
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: false }));
 const jwt = require('jsonwebtoken');
 const cookieNPM = require('cookie');
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
@@ -48,7 +46,7 @@ router.get('/variables',(req , res)=>res.sendFile(pages+'css/servis/variables.cs
 
 router.get('/401',(req , res)=>res.sendFile(pages+'css/servis/401.css'))
 
-router.get('/background',(req , res)=>res.sendFile(pages+'images/background.jpg'))//jsProyect/images/eyeball-icon-png-eye-icon-1.png
+router.get('/background',(req , res)=>res.sendFile(pages+'images/background.jpg'))
 
 router.get('/iconPredeterminado',(req , res)=>res.sendFile(pages+'images/camille-300x300.png'))
 
@@ -231,7 +229,6 @@ router.post('/register',async (req , res)=>{
     })
 
     const userNew= await primer.save();
-    //console.log(userNew)
     const token= jwt.sign({id: userNew._id, usuariname: userNew.usuari}, youKnow);
 
     res.send({metodo:true, mensage : "se ha guardado su usuario"
@@ -504,13 +501,10 @@ router.post("/miSitio",async (req , res)=>{
     return;
   }
   const user = await model.findOne({_id : objetoVerificacion.decodedToken.id});
-  //console.log(user)
   if(!user){
     res.status(404).send("no se ah encontrado el usuario")
     return;
   }
-  //console.log("llegas aca?")
-  //res.json({mensage: "como servira esto"});
   res.json({pagina: "/"+user.usuari})
 });
 router.post("/deleteimagen/:id",async (req , res)=>{

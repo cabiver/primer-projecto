@@ -35,7 +35,7 @@ window.addEventListener("load",e=>{
     borderParaPosts.style.minHeight = (window.innerHeight-cabecera.clientHeight) + "px";
     backgroundHeight.style.marginTop = cabecera.clientHeight+"px";
     buttonLupa.style.height= barraDeBusqueda.clientHeight *0.6 +"px";
-    buttonLupa.style.left = ((document.getElementById("totalWidthIcon").clientWidth +barraDeBusqueda.clientWidth+((barraDeBusqueda.clientWidth-escrituraParaBuscar.clientWidth)/2 ))-buttonLupa.clientWidth)+"px";
+    buttonLupa.style.left = ((document.getElementById("totalWidthIcon").clientWidth +escrituraParaBuscar.clientWidth+((barraDeBusqueda.clientWidth-escrituraParaBuscar.clientWidth)/2 ))-buttonLupa.clientWidth)+"px";
     
 })
 
@@ -49,7 +49,7 @@ window.addEventListener("resize",e=>{
         responsiveIconos[index].style.width = responsiveIconos[index].clientHeight+"px";
     }
     buttonLupa.style.height= barraDeBusqueda.clientHeight *0.6 +"px";
-    buttonLupa.style.left = ((document.getElementById("totalWidthIcon").clientWidth +barraDeBusqueda.clientWidth+((barraDeBusqueda.clientWidth-escrituraParaBuscar.clientWidth)/2 ))-buttonLupa.clientWidth)+"px";
+    buttonLupa.style.left = ((document.getElementById("totalWidthIcon").clientWidth +escrituraParaBuscar.clientWidth+((barraDeBusqueda.clientWidth-escrituraParaBuscar.clientWidth)/2 ))-buttonLupa.clientWidth)+"px";
     divRecomiendaciones.style.width = escrituraParaBuscar.clientWidth+"px";
 
 
