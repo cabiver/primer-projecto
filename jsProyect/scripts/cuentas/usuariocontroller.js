@@ -212,23 +212,19 @@ changeIcon.addEventListener('change',e=>{
 changeIcon.addEventListener('submit',e=>{
     e.preventDefault();
     const formdata = new FormData(changeIcon);
-    
+    let imagen = formdata.get("image");
+    let particiones =imagen.name.split(".");
     if(particiones[particiones.length-1] == "jpg" || particiones[particiones.length-1] == "png" || particiones[particiones.length-1] == "jpeg"){
        axios.post('/perfilIcon'+location.pathname, formdata)
     .then(function (response) {
         window.location.reload();
     })
     .catch(function (error) {
-        console.log(error);
         document.getElementById("resultIcono").innerHTML = "verifique que alla mandado un archivo";
-        
     });
     }else{
         document.getElementById("resultIcono").innerHTML = "no es un archivo de imagen valido";
-        
     }
-     
-    
 });
 form.addEventListener('submit',e=>{
     e.preventDefault();

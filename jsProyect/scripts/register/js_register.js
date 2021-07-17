@@ -26,30 +26,18 @@ register.addEventListener("click", (e)=>{
         error = validartodo("password",8);
         check(error);
         if(!error[0]){
-            let nombreAceptado = usuario.value.replaceAll(' ','_') 
+             
             axios.post('/register', {
-                uss: nombreAceptado,
+                uss: usuario.value,
                 contra: contraseña.value
             })
               .then(function (response) {
                   console.log(response);
                   document.getElementById("resultado").innerHTML = response.data.mensage;
                   if(response.data.metodo){
-                   
                     document.cookie= "userName="+response.data.token;
-                    window.location.assign("/"+nombreAceptado);
-                    /* axios.post('/',{
-                        uss: usuario.value,
-                        contra: contraseña.value})
-                            .then(resToken=> {    
-                            console.log(resToken.data);
-                                if(resToken.data.metodo){
-                                document.cookie = "userName="+resToken.data.token;     
-                                window.location.assign("/"+usuario.value);
-                        }else{
-                            document.getElementById("resultado").innerHTML = response.data.mensage;
-                        }
-                    });*/
+                    let urlNombre= response.data.nombre.replaceAll(" ","%20")
+                    window.location.assign("/"+urlNombre);
                 }
                  
               })
@@ -75,7 +63,6 @@ const validartodo = (text, cant)=>{
     let valido = document.getElementById(text);
 
     let vuelvaARellenar = validarLimpieza(valido.value);
-    console.log(vuelvaARellenar)
     
     if(!vuelvaARellenar){
         error[0]=true;
@@ -99,7 +86,6 @@ let valor=true;
 
     for (var i = 0; i < (textClear.length-1); i++) {
         let letra=textClear[i];
-        console.log(letra)
         if(letra=='/')valor= false;
         if(letra=='%')valor= false;
         if(letra=='!')valor= false;

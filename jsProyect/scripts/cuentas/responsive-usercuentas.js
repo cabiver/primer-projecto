@@ -7,7 +7,6 @@ window.addEventListener("load",e=>{
     containerCamara.style.right = (((document.body.offsetWidth-background.clientWidth) /2)+12) + "px";
 })
 
-console.log(background.clientWidth)
 imageIcono.addEventListener("loadeddata",e=>{
     divBorderCamaraIcono.style.left = (imageIcono.clientWidth-(divBorderCamaraIcono.clientWidth/3))+"px";
 

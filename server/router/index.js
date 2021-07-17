@@ -28,6 +28,22 @@ const bcrypt = require('bcrypt');
 const baseHash = 10;
 const model = require('../usariname.js');
 
+
+
+function verificacion(cookie){
+  let jsoncookie=cookieNPM.parse(cookie);
+  if(!jsoncookie.userName){
+    return {metodo:false};
+  }
+  const token = jsoncookie.userName
+  const decodedToken = jwt.verify(token, youKnow);
+  if(!decodedToken.id){
+    return {metodo:false};
+  }else{
+    return {metodo:true,decodedToken};
+  }
+}
+
 router.get('/variables',(req , res)=>res.sendFile(pages+'css/servis/variables.css'))
 
 router.get('/401',(req , res)=>res.sendFile(pages+'css/servis/401.css'))
@@ -72,8 +88,9 @@ router.get('/:id',async(req , res)=>{
   
   jsoncookie=cookieNPM.parse(cookie);
 
+  let nombreUrl =req.params.id.replaceAll("%20"," ") 
   //console.log(jsoncookie)
-  const user = await model.findOne({usuari: req.params.id});
+  const user = await model.findOne({usuari: nombreUrl});
   //console.log(user)
   if(!user){
     //console.log("no se encontro, te voy a mandar a error 404")
@@ -198,10 +215,6 @@ if(!op.uss||!op.contra){
 });
 router.post('/register',async (req , res)=>{
     let op = req.body;
-    //console.log(op)
-    
-    
-
     if(!op.uss || !op.contra ){
       res.status(400).send("que haces cambiando mi codigo?");
       return;
@@ -210,27 +223,20 @@ router.post('/register',async (req , res)=>{
     if(user){
       res.send({metodo:false,mensage: "Este usuario ya existe"});
     }
-    //console.log(primer.password)
-    
     const salt = bcrypt.genSaltSync(baseHash);
-    let passHash=bcrypt.hashSync(op.contra, salt);
-    const nombreTranformado= op.uss.replaceAll(" ","_");
-
+    const passHash=bcrypt.hashSync(op.contra, salt);
     let primer = new model({
-        usuari: nombreTranformado,
+        usuari: op.uss,
         password: passHash  
     })
 
-    if(!user){
-      //console.log("ya existe")
-      const userNew= await primer.save();
-      //console.log(userNew)
-      const token= jwt.sign({id: userNew._id, usuariname: userNew.usuari}, youKnow);
+    const userNew= await primer.save();
+    //console.log(userNew)
+    const token= jwt.sign({id: userNew._id, usuariname: userNew.usuari}, youKnow);
 
-      res.send({metodo:true, mensage : "se ha guardado su usuario"
-                ,nombre: nombreTranformado,  token: token});
-      return;
-    }
+    res.send({metodo:true, mensage : "se ha guardado su usuario"
+                ,nombre: userNew.usuari,  token: token});
+    return;
 });
 router.post('/cuentas/:id',async (req , res)=>{
   op = req.body;
@@ -269,20 +275,20 @@ router.post('/imagenes/:id',async (req , res)=>{
     res.status(401).render(pages+"/html/401NoAutorizacion.html");
     return;
     }
-  jsoncookie=cookieNPM.parse(cookie);
-  
+    let objetoVerificacion = verificacion(cookie);
+    if(!objetoVerificacion.metodo){
+      res.status(404).send("no se ah encontrado el usuario")
+      return;
+    }
    
-  if (!jsoncookie.userName ||!req.files || Object.keys(req.files).length === 0|| !req.files.image) {
+  if (!req.files || Object.keys(req.files).length === 0|| !req.files.image) {
    res.status(400).send('No files were uploaded.' + req.file);
    return;
   }
-  
-  const token = jsoncookie.userName
-  const decodedToken = jwt.verify(token, youKnow);
   const imagen = req.files.image;
   const user = await model.findOne({usuari : req.params.id});
   
-  if(user._id != decodedToken.id){
+  if(user._id != objetoVerificacion.decodedToken.id){
     res.status(400).json({mesage:'usted no tiene permitido cambiar ni agregar nada a esta cuenta'});
    return;
   }
@@ -333,15 +339,19 @@ router.post('/perfilIcon/:id',async (req , res)=>{
     return;
   }
   cookie=req.headers.cookie;
-  jsoncookie=cookieNPM.parse(cookie);
   
-  if (!jsoncookie||!req.files || Object.keys(req.files).length === 0 || !req.files.image) {
+  if (!req.files || Object.keys(req.files).length === 0 || !req.files.image) {
    res.status(400).json({mensage:'No files were uploaded.'});
    return;
   }
-  //console.log(req.file.filename);
+  let objetoVerificacion = verificacion(cookie);
+  if(!objetoVerificacion.metodo){
+    res.status(404).send("no se ah encontrado el usuario")
+    return;
+  }
+  
   const user = await model.findOne({usuari : req.params.id});
-  if(!user){
+  if(!user || user._id != objetoVerificacion.decodedToken.id){
     res.status(404).send("no se ah encontrado el usuario")
     return;
   }
@@ -384,7 +394,11 @@ router.post('/background/:id',async (req , res)=>{
     res.status(401).render(pages+"/html/servis/401NoAutorizacion.html");
     return;
   }
-  jsoncookie=cookieNPM.parse(cookie);
+  let objetoVerificacion = verificacion(cookie);
+   if(!objetoVerificacion.metodo){
+     res.status(404).send("no se ah encontrado el usuario")
+     return;
+   }
 
   if (!req.files || Object.keys(req.files).length === 0 || !req.files.image) {
     res.status(400).json({mensage:'No files were uploaded.'});
@@ -397,11 +411,10 @@ router.post('/background/:id',async (req , res)=>{
      return;
    }
    
+   
 
-   const token = jsoncookie.userName
-   const decodedToken = jwt.verify(token, youKnow);
 
-   if(user._id != decodedToken.id){
+   if(user._id != objetoVerificacion.decodedToken.id){
     res.status(400).json({mesage:'usted no tiene permitido cambiar ni agregar nada a esta cuenta'});
    return;
   }
@@ -480,16 +493,17 @@ router.post("/buscar",async (req , res)=>{
 });
 router.post("/miSitio",async (req , res)=>{
   let op = req.body;
-    cookie=req.headers.cookie;
+    cookie=op.cookie;
   if(!cookie){
     res.status(401).render(pages+"/html/servis/401NoAutorizacion.html");
     return;
   }
-  jsoncookie=cookieNPM.parse(cookie);
-  const token = jsoncookie.userName
-  const decodedToken = jwt.verify(token, youKnow);
-  //console.log(decodedToken)
-  const user = await model.findOne({_id : decodedToken.id});
+  let objetoVerificacion = verificacion(cookie);
+  if(!objetoVerificacion.metodo){
+    res.status(404).send("no se ah encontrado el usuario")
+    return;
+  }
+  const user = await model.findOne({_id : objetoVerificacion.decodedToken.id});
   //console.log(user)
   if(!user){
     res.status(404).send("no se ah encontrado el usuario")
@@ -506,17 +520,19 @@ router.post("/deleteimagen/:id",async (req , res)=>{
     res.status(401).render(pages+"/html/servis/401NoAutorizacion.html");
     return;
   }
-  jsoncookie=cookieNPM.parse(cookie);
-  const token = jsoncookie.userName
-  const decodedToken = jwt.verify(token, youKnow);
-  //console.log(decodedToken)
+  let objetoVerificacion = verificacion(cookie);
+  if(!objetoVerificacion.metodo){
+    res.status(404).send("no se ah encontrado el usuario")
+    return;
+  }
+  
   const user = await model.findOne({usuari : req.params.id});
-  //console.log(user)
+
   if(!user){
     res.status(404).send("no se ah encontrado el usuario")
     return;
   }
-  if(user._id!=decodedToken.id){
+  if(user._id!=objetoVerificacion.decodedToken.id){
     res.status(404).send("usted no esta autorizado")
     return;
   }
