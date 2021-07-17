@@ -5,7 +5,7 @@ body{
 }
 #gridChangeBackground{
     display:grid;
-    background-color: var(--blanco-con-opacidad);
+    background-color: rgba(var(--black-rgb),0.8);
     position: fixed;
     width: 100%;
     grid-template-columns: repeat(6,1fr);

@@ -24,15 +24,12 @@ window.addEventListener("load",e=>{
     for (let index = 0; index < responsiveIconos.length; index++) {
         responsiveIconos[index].style.width = responsiveIconos[index].clientHeight+"px";
     }
-    buttonLupa.style.width = barraDeBusqueda.clientWidth * 0.1  +"px";
-    buttonLupa.style.height= barraDeBusqueda.clientHeight *0.6 +"px";
     divRecomiendaciones.style.width = escrituraParaBuscar.clientWidth+"px";
-    lupa.style.height = "100%";
-    
-    buttonLupa.style.left = (((window.innerWidth -barraDeBusqueda.clientWidth)/2)+ barraDeBusqueda.clientWidth -parseInt( buttonLupa.style.width, 10) -46)+"px"
     borderParaPosts.style.minHeight = (window.innerHeight-cabecera.clientHeight) + "px";
     backgroundHeight.style.marginTop = cabecera.clientHeight+"px";
-
+    buttonLupa.style.height= barraDeBusqueda.clientHeight *0.6 +"px";
+    buttonLupa.style.left = ((document.getElementById("totalWidthIcon").clientWidth +barraDeBusqueda.clientWidth+((barraDeBusqueda.clientWidth-escrituraParaBuscar.clientWidth)/2 ))-buttonLupa.clientWidth)+"px";
+    
 })
 
 
@@ -44,9 +41,8 @@ window.addEventListener("resize",e=>{
     for (let index = 0; index < responsiveIconos.length; index++) {
         responsiveIconos[index].style.width = responsiveIconos[index].clientHeight+"px";
     }
-    buttonLupa.style.width = barraDeBusqueda.clientWidth * 0.1  +"px"
     buttonLupa.style.height= barraDeBusqueda.clientHeight *0.6 +"px";
-    buttonLupa.style.left = (((window.innerWidth -barraDeBusqueda.clientWidth)/2)+ barraDeBusqueda.clientWidth -parseInt( buttonLupa.style.width, 10) -46)+"px"
+    buttonLupa.style.left = ((document.getElementById("totalWidthIcon").clientWidth +barraDeBusqueda.clientWidth+((barraDeBusqueda.clientWidth-escrituraParaBuscar.clientWidth)/2 ))-buttonLupa.clientWidth)+"px";
     divRecomiendaciones.style.width = escrituraParaBuscar.clientWidth+"px";
 
 
