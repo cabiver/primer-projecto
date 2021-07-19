@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+    <link rel="stylesheet" href="css/servis/variables.css">
+    <link rel="stylesheet" href="css/servis/center.css">
+    <link rel="stylesheet" href="css/servis/normalize.css">
+    <link rel="stylesheet" href="css/servis/flexbox.css">
+    <link rel="stylesheet" href="css/cuentas/cuentas-css.css">
+    <link rel="stylesheet" href="css/cuentas/imagenes.css">
+    <link rel="stylesheet" href="css/cuentas/userController.css">
+    <link rel="stylesheet" href="css/cuentas/navegacion.css">
+    <link rel="stylesheet" href="css/cuentas/ventanaDePost.css">
+    <link rel="stylesheet" href="css/cuentas/buscador.css">
+    <link rel="stylesheet" href="css/cuentas/vistaDePost.css">
+    <link rel="stylesheet" href="css/cuentas/portadaUsuario.css">
+    <link rel="stylesheet" href="css/cuentas/ResponsiveAllCuentas.css">
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="scripts/cuentas/XparaVisitantes.js"></script>
+    <script src="scripts/cuentas/funciones/funciones_Visitants.js"></script>
+
+
+</head>
+
+
+<header id="Header">
+
+    <body>
+        
+
+        <div id="cabecera" class="cabecera">
+            <div id="totalWidthIcon">
+                <div id="iconoDeLaPagina" class="separadorDeCabecera">
+                    <img class="icono js-detectar_cuando_carge" src="images/camille-300x300.png" alt="">
+                </div>
+            </div>
+            <div class=" js-referencia_para_calcular_la_pocision_de_la_lupa">
+                <form id="barraDeBusqueda" class="" >
+                    <input id="escrituraParaBuscar" autocomplete="off" name="usuarios" class="inputs-text-sin-mamadas div-dentro-de-barra-de-busqueda" action="" type="text">
+                    <button id="button-lupa" class="fit-height">
+                        <img id="lupa" class="icono-lupa" src="images/lupa.png" >
+                    </button>
+                  
+    
+                </form>
+                <div style="display:flex; justify-content:center">
+                    <div id="divRecomiendaciones" class="divRecomiendaciones"></div>
+                </div>
+                
+            </div>
+            <div id="perfil-del-usuario">
+                <div class="separadorDeCabecera" id="perfil">
+                    <div class="responsiveIconos iconPerfil">
+                        <img class="iconoPrincipal"  src="<%= icon %>">
+                    </div>
+                    
+                    <div class="nombre">
+                        <%= name %>
+                    </div>
+                </div>
+            
+            </div>
+                
+            
+        </div>
+
+        <div id="barra-de-navegacion" class="Flex-navegador-user" style="display:none">
+            <button id="ir-a-mi-sitio" class="p-de-navegador">Ir a mi sitio web</button>
+            <button id="cerrarSesion" class="p-de-navegador">cerrar Sesion</button>
+        </div>
+
+</header>
+
+
+<div id="border-para-posts" class="postPaginas" style="display:none">
+        <div id="contenido-del-post">
+
+        </div>
+        <div id="comentarios-del-post">
+
+        </div>
+</div>
+
+<div class="containerUser">
+    <div class="difuminado-background background-height">
+        <%- backgroundDifuminado %>
+    </div>
+    <div id="separatorWidth">
+
+        
+
+
+    </div>
+
+
+    <div id="background-height" class="background background-height">
+
+        <div id="div-image-background" class="div-image-background">
+
+            <%- extencion %>
+
+
+        </div>
+
+
+    </div>
+
+  
+    <div id="FLEXperfilUser" class="FLEXperfilUser">
+        <div class="FLEXBOX ALIGN-ITEMS boxUser">
+
+            <div id="imageIcono" class="iconPerfil responsiveIconos">
+
+                <img class="iconoPrincipal" src="<%= perfil %>" alt="">
+            </div>
+            <div class="perfilName">
+                <%= user %>
+            </div>
+        </div>
+
+    </div>
+   
+
+</div>
+
+<div id="full" class="bak">
+
+
+    <div id="marco" class="marco">
+    
+    
+    
+    </div>
+    <div class="FLEXBOX JUSTIFY-CONTENT">
+        <div id="ventana-acabo-las-fotos" style="display:none" class="div-para-marco FLEXBOX ALIGN-ITEMS">
+            <p class=" fuente">ya no hay mas fotos?</p>
+        </div>
+    </div>
+    
+    <div id="load" style="height: 15px"></div>
+</div>
+
+<script src="scripts/cuentas/responsive-cuentas.js"></script>
+
+<script src="scripts/cuentas/cuentas.js"></script>
+
+
+
+</body>
+
+</html>
