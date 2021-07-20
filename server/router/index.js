@@ -7,7 +7,6 @@ const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 const bcrypt = require('bcrypt');
 const model = require('../usariname.js');
-
 const youKnow = "iLovePlayMinecraftForEver";
 const pages = path.join(__dirname, '/../public/');
 const baseHash = 10;
@@ -29,7 +28,7 @@ function verificacion(cookie) {
 }
 
 Router.get('/', (req, res) => res.render(path.join(pages, 'html/pagina_principal/index.html')));
-Router.get('/favicon.ico', (req, res) => res.sendFile(pages + 'images/camille-300x300.png'));
+// Router.get('/favicon.ico', (req, res) => res.sendFile(pages + 'images/camille-300x300.png'));
 Router.get('/register', (req, res) => res.render(path.join(pages, 'html/register/registro.html')));
 Router.get('/:id', async (req, res) => {
   cookie = req.headers.cookie;
@@ -59,12 +58,12 @@ Router.get('/:id', async (req, res) => {
       return;
     }
     arrayBackground = user.background.split(".");
-    extencion = arrayBackground[arrayBackground.length - 1];
-    if (extencion == "mp4" || extencion == "avi") {
-      extencion = `<video id="background" class="background-content-responsive-video" src="${user.background}" controls></video>`
-    } else {
-      extencion = `<img id="background" class="background-content-responsive-imagen" src="${user.background}" alt="">`
-    }
+    let extencion = arrayBackground[arrayBackground.length - 1];
+
+    extencion =="mp4"|| extencion =="avi"
+    ?extencion = `<video id="responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background" class="background-content-responsive-video" src="${user.background}" controls></video>`
+    :extencion = `<img id="responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background" class="background-content-responsive-imagen" src="${user.background}" alt="">`
+    
     difbackground = `<img class="imageDifumida" src="${user.backgroundDifumidado}" alt="">`
     const userToken = await model.findOne({ _id: decodedToken.id });
     if (user._id == decodedToken.id) {

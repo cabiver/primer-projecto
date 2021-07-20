@@ -52,16 +52,16 @@
 
         </div>
 
-        <div id="cabecera" class="cabecera">
+        <div id="responsive_cuentas.js-calcular_y_asignar_width_a_la_cabecera" class="cabecera">
             <div id="totalWidthIcon">
                 <div id="iconoDeLaPagina" class="separadorDeCabecera">
                     <img class="icono js-detectar_cuando_carge" src="images/camille-300x300.png" alt="">
                 </div>
             </div>
-            <div class="js-referencia_para_calcular_la_pocision_de_la_lupa">
-                <form id="barraDeBusqueda" class="" >
+            <div id="responsive_cuentas.js-referencia_para_calcular_la_pocision_de_la_lupa-barra_de_busqueda-div_barra_busqueda">
+                <form id="responsive_cuentas.js-variable_para_el_posicionamiento_de_la_lupa-form_busqueda" class="barraDeBusqueda" >
                     <input id="escrituraParaBuscar" autocomplete="off" name="usuarios" class="inputs-text-sin-mamadas div-dentro-de-barra-de-busqueda" action="" type="text">
-                    <button id="button-lupa" class="fit-height">
+                    <button id="responsive_cuentas.js-posicionar_la_lupa" class="fit-height">
                         <img id="lupa" class="icono-lupa" src="images/lupa.png" >
                     </button>
                   
@@ -73,14 +73,14 @@
                 
             </div>
 
-                <div id="perfil-del-usuario">
-                    <div class="separadorDeCabecera" id="perfil">
-                        <div class="responsiveIconos iconPerfil">
+                <div id="responsive_cuentas.js-div_de_tu_perfil_para_ajustar_barra_de_busqueda" class="div-perfil-tuyo">
+                    <div class="separadorDeCabecera div-icono-de-usuario" id="cuentas.js-agregar_eventos_que_desplegue_opciones_de_usuarios">
+                        <div class="responsive_cuentas.js-arrays_de_iconos_para_volverlos_cuadrados iconPerfil">
                             <img class="iconoPrincipal"  src="<%= icon %>">
                         </div>
                         
                         <div class="nombre">
-                            <%= name %>
+                            <%= name.length>7?`${name.substr(0,7)}...`:name %>
                         </div>
                     </div>
         
@@ -96,7 +96,7 @@
 
 </header>
 
-
+<!-- 
 <div id="border-para-posts" class="postPaginas" style="display:none">
         <div id="contenido-del-post">
 
@@ -104,32 +104,28 @@
         <div id="comentarios-del-post">
 
         </div>
-</div>
+</div> -->
 
 <div class="containerUser">
     <div class="difuminado-background background-height">
         <%- backgroundDifuminado %>
     </div>
-    <div id="separatorWidth">
+    <div id="responsive_usercuentas.js-para_posicionar_la_camara_del_background" class="separatorWidth">
 
-        <div id="divBorderCamara">
-
-            <div class="divBorderCamara">
-
-                <div id="plusCamaraDiv" class="plus-camara-div">
+        <div id="responsive_usercuentas.js-comparador_de_tamaño_para_posicionarlo" class="divBorderCamara">
+                <div class="plus-camara-div">
                     <img  src="images/mas.png" alt="">
                 </div>
                 <div class="camara-background feedCamara">
                     <img class="imagen-de-camara" id="changeBackground" src="images/camera-png.webp" alt="">
                 </div>
-            </div>
         </div>
 
 
     </div>
 
 
-    <div id="background-height" class="background background-height">
+    <div id="responsive_cuentas.js-para_hacer_margin_top" class="background background-height">
 
         <div id="div-image-background" class="div-image-background">
 
@@ -153,7 +149,7 @@
     <div id="FLEXperfilUser" class="FLEXperfilUser">
         <div class="FLEXBOX ALIGN-ITEMS boxUser">
 
-            <div id="imageIcono" class="iconPerfil responsiveIconos">
+            <div id="responsive_usercuentas.js-operador_para_posicionar_la_camara-icono" class="iconPerfil responsive_cuentas.js-arrays_de_iconos_para_volverlos_cuadrados">
 
                 <img class="iconoPrincipal" src="<%= perfil %>" alt="">
             </div>
@@ -223,8 +219,9 @@
 
 <script src="scripts/cuentas/responsive-cuentas.js"></script>
 <script src="scripts/cuentas/cuentas.js"></script>
-<script src="scripts/cuentas/usuariocontroller.js"></script>
+
 <script src="scripts/cuentas/responsive-usercuentas.js"></script>
+<script src="scripts/cuentas/usuariocontroller.js"></script>
 
 
 

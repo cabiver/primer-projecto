@@ -6,6 +6,7 @@ let limit = false;
 let navegacion = false;
 let arrayAllDelete;
 
+const perfil = document.getElementById("cuentas.js-agregar_eventos_que_desplegue_opciones_de_usuarios");
 const cerrarSesion = document.getElementById("cerrarSesion");
 const barraDeNavegacion =document.getElementById("barra-de-navegacion");
 const desc = document.getElementById("desc");

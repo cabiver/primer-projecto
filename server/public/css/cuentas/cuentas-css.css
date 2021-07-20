@@ -143,28 +143,10 @@ header{
     align-items: center;
 }
 
-#perfil{
-    padding: 2px 6px 2px 14px;
-    height: -webkit-fill-available;
-    border-radius: 30px;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-}
-#perfil:hover{
+.div-icono-de-usuario:hover{
     background-color: var(--blanco-con-opacidad);
 }
-.iconPerfil{
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    height: 90%;
-    object-fit: cover;
-    overflow:hidden;
-    border-radius: 50%;
-    border: 3px solid var(--colorSegundario-mas-oscuro);
 
-}
 .iconoPrincipal{
     height:100%;
     object-fit: cover;
