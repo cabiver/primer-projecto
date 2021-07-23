@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 let indiceDeBusqueda=-1;
 let contador=0;
 let canload=true;
@@ -219,7 +219,7 @@ const cal = ()=>{
         return;
     }
     canload = false;
-    axios.post('/cuentas'+location.pathname,{
+    axios.post("/cuentas"+location.pathname,{
         cont:contador,
     })
       .then(function (response) {

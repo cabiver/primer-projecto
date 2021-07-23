@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 const cabecera = document.getElementById("responsive_cuentas.js-calcular_y_asignar_width_a_la_cabecera");
 const backgroundHeight = document.getElementById("responsive_cuentas.js-para_hacer_margin_top");
 const buttonLupa=document.getElementById("responsive_cuentas.js-posicionar_la_lupa");
@@ -28,17 +28,17 @@ window.addEventListener("load",e=>{
     barraDeBusqueda.style.width = `${cabecera.clientWidth - document.getElementById("totalWidthIcon").clientWidth -divPerfilUsuario.clientWidth}px`;
     buttonLupa.style.width =  `${barraDeBusqueda.clientHeight *0.6}px`;  
     buttonLupa.style.left = `${((document.getElementById("totalWidthIcon").clientWidth +escrituraParaBuscar.clientWidth+
-    ((barraDeBusqueda.clientWidth-escrituraParaBuscar.clientWidth)/2 ))-buttonLupa.clientWidth)}px`;
+        ((barraDeBusqueda.clientWidth-escrituraParaBuscar.clientWidth)/2 ))-buttonLupa.clientWidth-6)}px`;
 })
 window.addEventListener("resize",e=>{
     cabecera.style.width=`${document.body.offsetWidth}px`
     for (let index = 0; index < responsiveIconos.length; index++) {
         responsiveIconos[index].style.width = `${responsiveIconos[index].clientHeight}px`;
     }
+    backgroundHeight.style.marginTop = `${cabecera.clientHeight}px`;
 
     barraDeBusqueda.style.width = `${cabecera.clientWidth - document.getElementById("totalWidthIcon").clientWidth-divPerfilUsuario.clientWidth}px`;
     buttonLupa.style.width =  `${barraDeBusqueda.clientHeight *0.6}px`;  
     buttonLupa.style.left = `${((document.getElementById("totalWidthIcon").clientWidth +escrituraParaBuscar.clientWidth+
-    ((barraDeBusqueda.clientWidth-escrituraParaBuscar.clientWidth)/2 ))-buttonLupa.clientWidth)}px`;
-    backgroundHeight.style.marginTop = `${cabecera.clientHeight}px`;
+        ((barraDeBusqueda.clientWidth-escrituraParaBuscar.clientWidth)/2 ))-buttonLupa.clientWidth-6)}px`;
 });

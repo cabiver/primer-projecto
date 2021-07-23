@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 const containerCamara = document.getElementById("responsive_usercuentas.js-para_posicionar_la_camara_del_background");
 const divBorderCamara=  document.getElementById("responsive_usercuentas.js-comparador_de_tamaño_para_posicionarlo");
 const imageIcono=document.getElementById("responsive_usercuentas.js-operador_para_posicionar_la_camara-icono");

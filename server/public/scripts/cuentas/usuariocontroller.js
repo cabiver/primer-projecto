@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var varchangeIcon= false;
 var canChangeBackground = true;
 var imagenDeBackground=false;
@@ -58,19 +58,19 @@ const renderImage = ()=>{
     if(extencion[(extencion.length-1)] == "mp4"||extencion[(extencion.length-1)] == "mkv"){
         document.getElementById("loadVideo").style.height = "fit-content";
         document.getElementById("loadVideoMobile").style.height = "fit-content";
-        img.setAttribute('src',"");
-        document.getElementById("imagMobile").setAttribute('src',"")
+        img.setAttribute("src","");
+        document.getElementById("imagMobile").setAttribute("src","")
         let barraDeCarga = document.getElementById("barra-de-carga");
-        img.setAttribute('src',"");
+        img.setAttribute("src","");
         reader.addEventListener("progress",e=>{
             let carga = Math.round(e.loaded / file.size * 100);
             barraDeCarga.style.width=`${carga}%`;
-            barraDeCarga.style.backgroundColor='#40da';
+            barraDeCarga.style.backgroundColor="#40da";
         });
         reader.addEventListener("load",e=>{ 
             let videofinalizado = new Blob([new Uint8Array(e.currentTarget.result)],{type: "video/mp4"});
             let url = URL.createObjectURL(videofinalizado);
-            barraDeCarga.style.backgroundColor='transparent';
+            barraDeCarga.style.backgroundColor="transparent";
             renderPc.style.width="100%";
             renderPc.setAttribute("src",url);
             document.getElementById("loadVideoMobile").setAttribute("src",url);
@@ -82,17 +82,17 @@ const renderImage = ()=>{
         renderPc.style.width = "0";
         document.getElementById("loadVideoMobile").style.height = "0";
         const image = URL.createObjectURL(file);
-        img.setAttribute('src',image);
-        document.getElementById("imagMobile").setAttribute('src',image);
+        img.setAttribute("src",image);
+        document.getElementById("imagMobile").setAttribute("src",image);
     }
 }
 function validar(){
     let validar = true;
     let formdata = new FormData(form);
     if(!file){
-        file =formdata.get('image');
+        file =formdata.get("image");
     }
-    const text = formdata.get('description');
+    const text = formdata.get("description");
     if(file.size ==0){
         validar = false;
         return validar;
@@ -114,7 +114,7 @@ imageIcono.addEventListener("click",e=>{
 })
 inputPost.addEventListener("change",e=>{
     const formdata = new FormData(form);
-    file =formdata.get('image');
+    file =formdata.get("image");
     renderImage();   
 })
 window.addEventListener("keydown",e=>{
@@ -136,7 +136,7 @@ fromChangeBackground.addEventListener("submit",e=>{
         cabecera.style.display = "";
         gridChangeBackground.style.display="none";
         respuestaBackground.innerHTML = "cargando peticion";
-        axios.post('/background'+location.pathname,formdata)
+        axios.post("/background"+location.pathname,formdata)
             .then(response=>{
                 console.log(response);
                 setTimeout(() => {
@@ -152,7 +152,7 @@ fromChangeBackground.addEventListener("submit",e=>{
 fromChangeBackground.addEventListener("change",e=>{
     const formdata = new FormData(fromChangeBackground);
     const image = URL.createObjectURL(formdata.get("image"));
-    renderBackground.setAttribute('src',image);
+    renderBackground.setAttribute("src",image);
 });
 divBorderCamara.addEventListener( "click",e=>{
     imagenDeBackground=true;
@@ -172,18 +172,18 @@ loadImg.addEventListener("drop",(e)=>{
     render(e.dataTransfer.files[0]);
     changecolorSubtract(e.srcElement ,"objetoEncima");
 });
-changeIcon.addEventListener('change',e=>{
+changeIcon.addEventListener("change",e=>{
     const formdata = new FormData(changeIcon);
     const image = URL.createObjectURL(formdata.get("image"));
-    renderIcono.setAttribute('src',image);
+    renderIcono.setAttribute("src",image);
 });
-changeIcon.addEventListener('submit',e=>{
+changeIcon.addEventListener("submit",e=>{
     e.preventDefault();
     const formdata = new FormData(changeIcon);
     let imagen = formdata.get("image");
     let particiones =imagen.name.split(".");
     if(particiones[particiones.length-1] == "jpg" || particiones[particiones.length-1] == "png" || particiones[particiones.length-1] == "jpeg"){
-       axios.post('/perfilIcon'+location.pathname, formdata)
+       axios.post("/perfilIcon"+location.pathname, formdata)
     .then(function (response) {
         window.location.reload();
     })
@@ -194,13 +194,13 @@ changeIcon.addEventListener('submit',e=>{
         document.getElementById("resultIcono").innerHTML = "no es un archivo de imagen valido";
     }
 });
-form.addEventListener('submit',e=>{
+form.addEventListener("submit",e=>{
     e.preventDefault();
     if(validar()){
         const formdata = new FormData(form);
         formdata.delete("image");
         formdata.append("image", file);
-        axios.post('/imagenes'+location.pathname, formdata)
+        axios.post("/imagenes"+location.pathname, formdata)
           .then(function (response) {
               console.log(response)
               window.location.reload();

@@ -1,14 +1,14 @@
-const path = require('path');
-const Router = require('express').Router();
-const { v4: uuidv4 } = require('uuid');
-const jwt = require('jsonwebtoken');
-const cookieNPM = require('cookie');
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-const ffmpeg = require('fluent-ffmpeg');
-const bcrypt = require('bcrypt');
-const model = require('../usariname.js');
+const path = require("path");
+const Router = require("express").Router();
+const { v4: uuidv4 } = require("uuid");
+const jwt = require("jsonwebtoken");
+const cookieNPM = require("cookie");
+const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
+const ffmpeg = require("fluent-ffmpeg");
+const bcrypt = require("bcrypt");
+const model = require("../usariname.js");
 const youKnow = "iLovePlayMinecraftForEver";
-const pages = path.join(__dirname, '/../public/');
+const pages = path.join(__dirname, "/../public/");
 const baseHash = 10;
 ffmpeg.setFfmpegPath(ffmpegPath);
 
@@ -27,10 +27,10 @@ function verificacion(cookie) {
   }
 }
 
-Router.get('/', (req, res) => res.render(path.join(pages, 'html/pagina_principal/index.html')));
-// Router.get('/favicon.ico', (req, res) => res.sendFile(pages + 'images/camille-300x300.png'));
-Router.get('/register', (req, res) => res.render(path.join(pages, 'html/register/registro.html')));
-Router.get('/:id', async (req, res) => {
+Router.get("/", (req, res) => res.render(path.join(pages, "html/pagina_principal/index.html")));
+// Router.get("/favicon.ico", (req, res) => res.sendFile(pages + "images/camille-300x300.png"));
+Router.get("/register", (req, res) => res.render(path.join(pages, "html/register/registro.html")));
+Router.get("/:id", async (req, res) => {
   cookie = req.headers.cookie;
   if (!cookie) {
     res.status(401).render(pages + "html/servis/401NoAutorizacion.html");
@@ -67,7 +67,7 @@ Router.get('/:id', async (req, res) => {
     difbackground = `<img class="imageDifumida" src="${user.backgroundDifumidado}" alt="">`
     const userToken = await model.findOne({ _id: decodedToken.id });
     if (user._id == decodedToken.id) {
-      res.render(pages + 'html/cuentas/cuentas.ejs',{
+      res.render(pages + "html/cuentas/cuentas.ejs",{
         extencion: extencion,
         user: userToken.usuari,
         name: user.usuari,
@@ -88,15 +88,14 @@ Router.get('/:id', async (req, res) => {
   }
 });
 
-Router.post('/', async (req, res) => {
+Router.post("/", async (req, res) => {
   let op = req.body;
   if (!op.uss || !op.contra) {
     res.status(400).json({ mensaje: "porque modificas mi codigo" })
     return
   }
-  let nombreDeComparacion = op.uss.replace(" ", "_");
   let primer = new model({
-    usuari: nombreDeComparacion,
+    usuari: op.uss,
     password: op.contra,
   });
   let user = await model.findOne({ usuari: primer.usuari });
@@ -107,10 +106,10 @@ Router.post('/', async (req, res) => {
       return;
     }
   }
-  res.status(203).json({ metodo: false, mensaje: 'su contraseña o usuario esta mal' });
+  res.status(203).json({ metodo: false, mensaje: "su contraseña o usuario esta mal" });
   return;
 });
-Router.post('/register', async (req, res) => {
+Router.post("/register", async (req, res) => {
   let op = req.body;
   if (!op.uss || !op.contra) {
     res.status(400).send("que haces cambiando mi codigo?");
@@ -135,7 +134,7 @@ Router.post('/register', async (req, res) => {
   });
   return;
 });
-Router.post('/cuentas/:id', async (req, res) => {
+Router.post("/cuentas/:id", async (req, res) => {
   op = req.body;
   cookie = req.headers.cookie;
   jsoncookie = cookieNPM.parse(cookie);
@@ -159,7 +158,7 @@ Router.post('/cuentas/:id', async (req, res) => {
   res.send(JSON.stringify(primer.post));
   res.end();
 });
-Router.post('/imagenes/:id', async (req, res) => {
+Router.post("/imagenes/:id", async (req, res) => {
   cookie = req.headers.cookie;
   if (!cookie) {
     res.status(401).render(pages + "/html/401NoAutorizacion.html");
@@ -171,13 +170,13 @@ Router.post('/imagenes/:id', async (req, res) => {
     return;
   }
   if (!req.files || Object.keys(req.files).length === 0 || !req.files.image) {
-    res.status(400).send('No files were uploaded.' + req.file);
+    res.status(400).send("No files were uploaded." + req.file);
     return;
   }
   const imagen = req.files.image;
   const user = await model.findOne({ usuari: req.params.id });
   if (user._id != objetoVerificacion.decodedToken.id) {
-    res.status(400).json({ mesage: 'usted no tiene permitido cambiar ni agregar nada a esta cuenta' });
+    res.status(400).json({ mesage: "usted no tiene permitido cambiar ni agregar nada a esta cuenta" });
     return;
   }
   if (!user) {
@@ -197,7 +196,7 @@ Router.post('/imagenes/:id', async (req, res) => {
   await model.updateOne({ usuari: user.usuari }, { $push: { "post.description": { $each: [desc], $position: 0 } } })
   res.status(200).send("all great");
 });
-Router.post('/perfilIcon/:id', async (req, res) => {
+Router.post("/perfilIcon/:id", async (req, res) => {
   cookie = req.headers.cookie;
   if (!cookie) {
     res.status(401).render(pages + "html/servis/401NoAutorizacion.html");
@@ -205,7 +204,7 @@ Router.post('/perfilIcon/:id', async (req, res) => {
   }
   cookie = req.headers.cookie;
   if (!req.files || Object.keys(req.files).length === 0 || !req.files.image) {
-    res.status(400).json({ mensage: 'No files were uploaded.' });
+    res.status(400).json({ mensage: "No files were uploaded." });
     return;
   }
   let objetoVerificacion = verificacion(cookie);
@@ -223,7 +222,7 @@ Router.post('/perfilIcon/:id', async (req, res) => {
   const token = jsoncookie.userName
   const decodedToken = jwt.verify(token, youKnow);
   if (user._id != decodedToken.id) {
-    res.status(400).json({ mesage: 'usted no tiene permitido cambiar ni agregar nada a esta cuenta' });
+    res.status(400).json({ mesage: "usted no tiene permitido cambiar ni agregar nada a esta cuenta" });
     return;
   }
   imagen = req.files.image
@@ -239,7 +238,7 @@ Router.post('/perfilIcon/:id', async (req, res) => {
   await model.updateOne({ usuari: user.usuari }, { icon: "/" + postImg });
   res.status(200).send("all great");
 });
-Router.post('/background/:id', async (req, res) => {
+Router.post("/background/:id", async (req, res) => {
   cookie = req.headers.cookie;
   if (!cookie) {
     res.status(401).render(pages + "html/servis/401NoAutorizacion.html");
@@ -251,7 +250,7 @@ Router.post('/background/:id', async (req, res) => {
     return;
   }
   if (!req.files || Object.keys(req.files).length === 0 || !req.files.image) {
-    res.status(400).json({ mensage: 'No files were uploaded.' });
+    res.status(400).json({ mensage: "No files were uploaded." });
     return;
   }
   const user = await model.findOne({ usuari: req.params.id });
@@ -260,7 +259,7 @@ Router.post('/background/:id', async (req, res) => {
     return;
   }
   if (user._id != objetoVerificacion.decodedToken.id) {
-    res.status(400).json({ mesage: 'usted no tiene permitido cambiar ni agregar nada a esta cuenta' });
+    res.status(400).json({ mesage: "usted no tiene permitido cambiar ni agregar nada a esta cuenta" });
     return;
   }
   imagen = req.files.image

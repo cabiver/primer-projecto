@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 function createX(element){
     let divDelete = document.createElement("img");
     divDelete.setAttribute("class","deleteX deleteListener");

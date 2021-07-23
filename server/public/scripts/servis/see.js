@@ -1,11 +1,11 @@
 let pass = true;
-const see = document.getElementById("see");
+const see = document.getElementById("see.js-servicio_de_visualizador_de_password");
 see.addEventListener("click", (e)=>{
     if(pass){
-        document.getElementById("password").type = "text";
+        document.getElementById("see.js code.js responsive_index.js-cambiar_a_visible").type = "text";
         pass=false;
     }else{
-        document.getElementById("password").type = "password";
+        document.getElementById("see.js code.js responsive_index.js-cambiar_a_visible").type = "password";
         pass=true;
     } 
 });

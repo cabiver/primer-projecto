@@ -14,15 +14,12 @@
     display : none;
 }
 body{
-   
     background-color: var(--principal-gris);
-
-    padding: 0 12px 0 12px;
+   
 }
-#all{
+.all{
     max-width: 1300px;
     width: fit-content;
-    
 }
 ul{
     padding-left: 0;
@@ -41,20 +38,18 @@ header{
 .fix{
     position:fixed;
     z-index: 150;
+    width: 100%;
 }
 .marHeader{
     background-color: var(--principal-gris);
     display:flex;
     justify-content:flex-end;
-    margin-right: 20px;
+
     opacity: 0.8;
-    width: inherit;
-    
+    width: auto;
 }
 .iniciar{
     width:fit-content;
-
-    
 }
 
 .flexPassword{
@@ -109,12 +104,12 @@ header{
 .margin_sign{
     margin: 32px 16px;
 }
-#formCenter{
+.from-login{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-#full{
+.full{
     display: flex;
     margin: 0 4% 0 4%;
     justify-content: center;
@@ -163,13 +158,13 @@ a{
     position: absolute;
     display: flex;
     min-width: fit-content;
-    width: 60%;
+    width: 40%;
     max-width:360px;
     z-index: 50; 
     justify-content: center;  
 }
 .boton{
-    width: inherit; 
+    width: 100%; 
     opacity: 0.83;
     min-height: fit-content;
     border:2px solid var(--dark);
@@ -229,7 +224,7 @@ h2{
 height:19px;
 }
 .text p{
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Georgia, "Times New Roman", Times, serif;
     margin-top: 3px;
     margin-bottom: 3px;
 }
@@ -249,15 +244,15 @@ height:19px;
     opacity: 1;
 }
 
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 470px) {
     .margin_sign{
         margin: 20px 10px 0 10px;
     }
-    #full{
+    .full{
         margin: 0;
     }
     .stuffed{
-        height: 320px;
+        height: 220px;
     }
     *{
         font-size: 12px;
@@ -265,24 +260,16 @@ height:19px;
     .backzero{
         font-size:18px;
     }
-    body{
-        padding: 0;
-    }
-
 }
-
-@media screen and (max-width: 600px) and (min-width:370px){
+@media screen and (max-width: 700px) and (min-width:470px){
     .backzero{
         font-size:18px;
         padding-right: 12px;
     }
-    body{
-        padding: 0;
-    }
     .margin_sign{
         margin: 20px 10px 0 10px;
     }
-    #full{
+    .full{
         margin: 0;
     }
     .stuffed{
@@ -292,9 +279,9 @@ height:19px;
         font-size: 16px;
     }
 }
-@media screen and (min-width:600px) and (max-width:900px){
+@media screen and (min-width:700px) and (max-width:900px){
     
-    #ful{
+    .full{
         margin: 0 2% 0 2%;
     }
     .stuffed{
