@@ -1,7 +1,5 @@
 "use strict";
 var canDelete=true;
-
-
 function actualizarDelete(){
     let arrayAllDelete = document.querySelectorAll(".deleteListener");
     
@@ -18,10 +16,8 @@ function actualizarDelete(){
                 window.location.reload();
                 })
                 .catch(e=>console.log(e));
-            }
-            
-            
-        })
+            }           
+        });
     }
 
 }

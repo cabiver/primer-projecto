@@ -7,7 +7,6 @@ const fromBarraDeBusqueda= document.getElementById("responsive_cuentas.js-variab
 const background = document.getElementById("responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background");
 const responsiveIconos=document.querySelectorAll(".responsive_cuentas.js-arrays_de_iconos_para_volverlos_cuadrados");
 const divPerfilUsuario = document.getElementById("responsive_cuentas.js-div_de_tu_perfil_para_ajustar_barra_de_busqueda");
-// const lupa = document.getElementById("lupa");
 const escrituraParaBuscar = document.getElementById("escrituraParaBuscar");
 const divRecomiendaciones = document.getElementById("divRecomiendaciones");
 
@@ -15,7 +14,6 @@ window.addEventListener("load",e=>{
     cabecera.style.width=`${document.body.offsetWidth}px`
     if(background.naturalWidth < 600){
         background.style.objectFit ="contain";
-        
     }else{
         background.style.width = "100%"
     }

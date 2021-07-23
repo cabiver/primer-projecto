@@ -3,7 +3,7 @@
     .render-de-video{
         max-width: 70%;
     }
-    #loadImg{
+    .load-imge{
         display:none;
     }
     .mobile{
@@ -63,7 +63,7 @@
     .render-de-video{
         max-width: 70%;
     }
-    #loadImg{
+    .load-imge{
         display:none;
     }
     #loadVideoMobile{

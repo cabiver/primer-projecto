@@ -2,10 +2,10 @@
 let create = false;
 
 const contra= document.getElementById("see.js code.js responsive_index.js-cambiar_a_visible");
-const send = document.getElementById("send");
+const send = document.getElementById("code.js-boton_event_submit");
 const prueba = document.getElementById("prueba");
-const usuariName= document.getElementById("usuarios");
-const resultado=document.getElementById("resultado");
+const usuariName= document.getElementById("code.js-captar_datos_nombre_de_usuario");
+const resultado=document.getElementById("code.js-informar_usuario_de_la_peticion");
 botonSesion.addEventListener("touchstart", (e)=>{
     sesion.classList.remove("hidden");
     sesion.classList.add("pestana");

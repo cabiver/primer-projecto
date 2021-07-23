@@ -1,16 +1,16 @@
 "use strict";
-const usuario = document.getElementById("usuari");
+const usuario = document.getElementById("js_register.js-validar_el_nombre_de_usuario");
 const contraseña = document.getElementById("see.js code.js responsive_index.js-cambiar_a_visible");
-const register = document.getElementById("send");
-const sesion = document.getElementById("sign");
+const register = document.getElementById("js_register.js-boton_event_submit");
+const sesion = document.getElementById("js_register-detectar_cuando_sea_clicado");
 
 
 
 const check = (error)=>{
     if(error[0]){
-        document.getElementById("resultado").innerHTML = error[1];
+        document.getElementById("js_register-informar_usuario_de_la_peticion").innerHTML = error[1];
     }   else{
-        document.getElementById("resultado").innerHTML = "request send";
+        document.getElementById("js_register-informar_usuario_de_la_peticion").innerHTML = "request send";
     }   
 }
 const validartodo = (text, cant)=>{
@@ -20,7 +20,7 @@ const validartodo = (text, cant)=>{
 
     if(!vuelvaARellenar){
         error[0]=true;
-        error[1]="quite los simbolos raros al usuario o al password Ejemplo: "#"%"&"/")"
+        error[1]="quite los simbolos raros al usuario o al password Ejemplo: '#'%'&'/')";
         return error;
     }
     if(valido.value.length <cant){
@@ -50,7 +50,7 @@ const validarLimpieza=(textClear)=>{
     return valor;
 }
 const limpliar=(textClear)=>{
-    textClear=textClear.replaceAll(""","");
+    textClear=textClear.replaceAll("'","");
     textClear=textClear.replaceAll(String.fromCharCode(92),"");
     textClear=textClear.replaceAll("$","");
 }
@@ -67,7 +67,7 @@ sesion.addEventListener("click",(e)=>{
 });
 register.addEventListener("click", (e)=>{
     e.preventDefault();
-    let error = validartodo("usuari", 5);
+    let error = validartodo("js_register.js-validar_el_nombre_de_usuario", 5);
     check(error);
     if(!error[0]){
         error = validartodo("password",8);
@@ -78,8 +78,7 @@ register.addEventListener("click", (e)=>{
                 contra: contraseña.value
             })
               .then(function (response) {
-                  console.log(response);
-                  document.getElementById("resultado").innerHTML = response.data.mensage;
+                  document.getElementById("js_register-informar_usuario_de_la_peticion").innerHTML = response.data.mensage;
                   if(response.data.metodo){
                     document.cookie= "userName="+response.data.token;
                     let urlNombre= response.data.nombre.replaceAll(" ","%20")

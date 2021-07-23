@@ -1,3 +1,4 @@
+"use strict";
 let pass = true;
 const see = document.getElementById("see.js-servicio_de_visualizador_de_password");
 see.addEventListener("click", (e)=>{

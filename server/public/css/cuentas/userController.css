@@ -2,7 +2,7 @@
     filter: sepia(30%);
 }
 
-#changeIcon{
+.change-icon{
     max-width: fit-content;
     padding: 12px;
     overflow:hidden;
@@ -12,7 +12,6 @@
     border-style: none dashed dashed none; 
     border-radius: 0 4px;
     background-image: linear-gradient(to bottom right, var(--black-trancition),var(--black));
-
 }
 
 

@@ -4,10 +4,10 @@ var canChangeBackground = true;
 var imagenDeBackground=false;
 var file;
 
-const changeIcon = document.getElementById("changeIcon");
+const changeIcon = document.getElementById("usuario_controller.js-formulario_para_cambiar_icono");
 const marco =document.getElementById("marco");
-const form = document.getElementById("formImg");
-const loadImg = document.getElementById("loadImg");
+const form = document.getElementById("usuario_controller.js-formulario_subir_post");
+const loadImg = document.getElementById("usuario_controller.js-div_renderisa_pre_prost");
 const img=  document.getElementById("imag");
 const Header=  document.getElementById("Header");
 const divBorderCamaraIcono = document.getElementById("divBorderCamaraIcono");
@@ -37,7 +37,6 @@ function esUnaImagen(nombre){
 }
 const changecolorAdd = (obj, clase)=>{
     obj.classList.add(`${clase}`);
-    console.log(obj.classList.contains(`${clase}`))
 }
 const changecolorSubtract = (obj, clase)=>{
     obj.classList.remove(`${clase}`);

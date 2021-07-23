@@ -9,8 +9,8 @@ let arrayAllDelete;
 const perfil = document.getElementById("cuentas.js-agregar_eventos_que_desplegue_opciones_de_usuarios");
 const cerrarSesion = document.getElementById("cerrarSesion");
 const barraDeNavegacion =document.getElementById("barra-de-navegacion");
-const desc = document.getElementById("desc");
-const load = document.getElementById("load");
+// const desc = document.getElementById("cuentas.js-input_de_descricion");
+const load = document.getElementById("cuentas.js-detectar_cuando_es_observado");
 const miSitio = document.getElementById("ir-a-mi-sitio");
 
 const redirecionarClick = ()=>{
