@@ -1,6 +1,7 @@
 const path = require("path");
 const Router = require("express").Router();
 const { v4: uuidv4 } = require("uuid");
+const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const cookieNPM = require("cookie");
 const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
@@ -26,9 +27,7 @@ function verificacion(cookie) {
     return { metodo: true, decodedToken };
   }
 }
-
 Router.get("/", (req, res) => res.render(path.join(pages, "html/pagina_principal/index.html")));
-// Router.get("/favicon.ico", (req, res) => res.sendFile(pages + "images/camille-300x300.png"));
 Router.get("/register", (req, res) => res.render(path.join(pages, "html/register/registro.html")));
 Router.get("/:id", async (req, res) => {
   cookie = req.headers.cookie;
@@ -87,7 +86,6 @@ Router.get("/:id", async (req, res) => {
     }
   }
 });
-
 Router.post("/", async (req, res) => {
   let op = req.body;
   if (!op.uss || !op.contra) {
@@ -356,12 +354,16 @@ Router.post("/deleteimagen/:id", async (req, res) => {
   let content = user.post.content;
   let deleteDescription;
   let deleteContent;
+
   content.forEach((element, indice) => {
     if (element == op.parametros) {
       deleteDescription = description[indice];
       deleteContent = element;
     }
   });
+
+  fs.unlinkSync(path.join(pages,op.parametros))
+
   await model.updateMany({ usuari: user.usuari }, { $pullAll: { "post.content": [deleteContent] } });
   await model.updateMany({ usuari: user.usuari }, { $pullAll: { "post.description": [deleteDescription] } });
   res.status(200).send("all great");
