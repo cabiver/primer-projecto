@@ -16,7 +16,7 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 
 function verificacion(cookie) {
   let jsoncookie = cookieNPM.parse(cookie);
-  if (!jsoncookie.userName) {
+  if (!jsoncookie.userName|| jsoncookie.userName =="undefined" ||jsoncookie.userName.length ==0) {
     return { metodo: false };
   }
   const token = jsoncookie.userName
@@ -51,27 +51,19 @@ Router.get("/:id", async (req, res) => {
     res.status(401).render(pages + "html/servis/401NoAutorizacion.html");
     return;
   }
-  jsoncookie = cookieNPM.parse(cookie);
   let nombreUrl = req.params.id.replaceAll("%20", " ")
   const user = await model.findOne({ usuari: nombreUrl });
+  
   if (!user) {
     res.render(pages + "html/servis/error.html");
     return;
   } else {
-    if (!jsoncookie.userName || jsoncookie.userName == "undefined") {
-      res.status(401).render(pages + "html/servis/401NoAutorizacion.html");
-      return;
-    }
-    let token = jsoncookie.userName;
-    if (token.length == 0) {
-      res.status(401).render(pages + "html/servis/401NoAutorizacion.html");
-      return;
-    }
-    const decodedToken = jwt.verify(token, youKnow);
-    if (!decodedToken.id) {
-      res.status(401).json({ mensaje: "ocurrio un error con la verificacion" });
-      return;
-    }
+  let objetoVerificacion = verificacion(cookie);
+  if (!objetoVerificacion.metodo) {
+    res.status(401).render("html/servis/401NoAutorizacion.html")
+    return;
+  }
+    const decodedToken = objetoVerificacion.decodedToken;
     arrayBackground = user.background.split(".");
     let extencion = arrayBackground[arrayBackground.length - 1];
 
@@ -79,8 +71,16 @@ Router.get("/:id", async (req, res) => {
     ?extencion = `<video id="responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background" class="background-content-responsive-video" src="${user.background}" controls></video>`
     :extencion = `<img id="responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background" class="background-content-responsive-imagen" src="${user.background}" alt="">`
     
-    difbackground = `<img class="imageDifumida" src="${user.backgroundDifumidado}" alt="">`
+    let difbackground = `<img class="imageDifumida" src="${user.backgroundDifumidado}" alt="">`
+
     const userToken = await model.findOne({ _id: decodedToken.id });
+    let amigo=false;
+    userToken.amigos.forEach(el=>{
+      if(el == nombreUrl){
+        amigo = true;
+        return;
+      }
+    });
     if (user._id == decodedToken.id) {
       res.render(pages + "html/cuentas/cuentas.ejs",{
         extencion: extencion,
@@ -98,6 +98,7 @@ Router.get("/:id", async (req, res) => {
         backgroundDifuminado: difbackground,
         icon: userToken.icon,
         perfil: user.icon,
+        amigo,
       });
     }
   }
@@ -129,6 +130,7 @@ Router.post("/", async (req, res) => {
 });
 Router.post("/register", async (req, res) => {
   let op = req.body;
+  console.log(op)
   if (!op.uss || !op.contra) {
     res.status(400).send("que haces cambiando mi codigo?");
     return;
@@ -144,7 +146,7 @@ Router.post("/register", async (req, res) => {
     password: passHash
   })
   const userNew = await primer.save();
-  const token = jwt.sign({ id: userNew._id, usuariname: userNew.usuari }, youKnow);
+  const token = await jwt.sign({ id: userNew._id, usuariname: userNew.usuari,icon:userNew.icon }, youKnow);
   res.send({
     metodo: true, mensage: "se ha guardado su usuario",
     nombre: userNew.usuari, 
@@ -153,9 +155,9 @@ Router.post("/register", async (req, res) => {
   return;
 });
 Router.post("/cuentas/:id", async (req, res) => {
-  op = req.body;
-  cookie = req.headers.cookie;
-  jsoncookie = cookieNPM.parse(cookie);
+  let op = req.body;
+  let cookie = req.headers.cookie;
+  let jsoncookie = cookieNPM.parse(cookie);
   const user = await model.findOne({ usuari: req.params.id });
   if (!user) {
     return res.status(404).render(pages + "/html/error.html")
@@ -396,5 +398,33 @@ Router.post("/recomendacion", async (req, res) => {
     arrayUsers.push(element.usuari);
   })
   res.status(200).json({ nombres: arrayUsers });
+});
+
+Router.post("/:id", async (req, res) => {
+  cookie = req.headers.cookie;
+  if (!cookie) {
+    res.render(path.join(pages, "html/pagina_principal/index.html"))
+    return;
+  }
+  let objetoVerificacion = verificacion(cookie);
+  if (!objetoVerificacion.metodo) {
+    res.render(path.join(pages, "html/pagina_principal/index.html"))
+    return;
+  }
+  let nombreAmigo = req.params.id.replaceAll("%20"," ");
+  let user = await model.findOne({ usuari: objetoVerificacion.decodedToken.usuariname });
+  let amigo=false;
+  user.amigos.forEach(el=>{
+    if(el == nombreAmigo){
+      amigo = true;
+      return;
+    }
+  });
+  if(amigo){
+    await model.updateMany({ usuari: user.usuari }, { $pullAll: { amigos: [nombreAmigo] } });
+  }else{
+    await model.updateOne({ usuari: user.usuari }, { $push: { amigos: { $each: [nombreAmigo], $position: 0 } } })
+  }
+  res.json(objetoVerificacion);
 });
 module.exports = Router;

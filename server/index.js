@@ -16,10 +16,11 @@ mongoose.connect(url, {useNewUrlParser: true,useUnifiedTopology: true})
 
 app.set("port", process.env.port || 3000);
 app.engine("html", require("ejs").renderFile);
+
+app.use("/",express.static(path.join(__dirname,"/public")));
 app.use(require(path.join(__dirname,"Router/index.js")));
 
 
-app.use("/",express.static(path.join(__dirname,"/public")));
 app.use("*",(req,res)=>{
   res.render(path.join(__dirname,"public/html/servis/error.html"));
 });

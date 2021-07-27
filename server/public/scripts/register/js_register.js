@@ -70,7 +70,7 @@ register.addEventListener("click", (e)=>{
     let error = validartodo("js_register.js-validar_el_nombre_de_usuario", 5);
     check(error);
     if(!error[0]){
-        error = validartodo("password",8);
+        error = validartodo("see.js code.js responsive_index.js-cambiar_a_visible",8);
         check(error);
         if(!error[0]){             
             axios.post("/register", {

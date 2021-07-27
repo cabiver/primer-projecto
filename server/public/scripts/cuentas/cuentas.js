@@ -12,6 +12,9 @@ const barraDeNavegacion =document.getElementById("barra-de-navegacion");
 const load = document.getElementById("cuentas.js-detectar_cuando_es_observado");
 const miSitio = document.getElementById("ir-a-mi-sitio");
 
+
+
+
 const redirecionarClick = ()=>{
     let arrayRediret=document.querySelectorAll(".redirectClick");
     arrayRediret.forEach(element => {
