@@ -76,6 +76,11 @@ const renderImage = ()=>{
         });
     }else{
         renderPc.setAttribute("src","");
+        reader.addEventListener("progress",e=>{
+            let carga = Math.round(e.loaded / file.size * 100);
+            barraDeCarga.style.width=`${carga}%`;
+            barraDeCarga.style.backgroundColor="#40da";
+        });
         document.getElementById("loadVideoMobile").setAttribute("src","");
         renderPc.style.height = "0";
         renderPc.style.width = "0";

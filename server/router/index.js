@@ -27,7 +27,23 @@ function verificacion(cookie) {
     return { metodo: true, decodedToken };
   }
 }
-Router.get("/", (req, res) => res.render(path.join(pages, "html/pagina_principal/index.html")));
+Router.get("/", (req, res) => {
+  cookie = req.headers.cookie;
+  if (!cookie) {
+    res.render(path.join(pages, "html/pagina_principal/index.html"))
+    return;
+  }
+  let objetoVerificacion = verificacion(cookie);
+  if (!objetoVerificacion.metodo) {
+    res.render(path.join(pages, "html/pagina_principal/index.html"))
+    return;
+  }
+    res.render(path.join(pages, "html/cuentas/sujeridos.ejs"),{
+    name:objetoVerificacion.decodedToken.usuariname,
+    icon:objetoVerificacion.decodedToken.icon,
+  })
+  return;
+});
 Router.get("/register", (req, res) => res.render(path.join(pages, "html/register/registro.html")));
 Router.get("/:id", async (req, res) => {
   cookie = req.headers.cookie;
@@ -99,7 +115,11 @@ Router.post("/", async (req, res) => {
   let user = await model.findOne({ usuari: primer.usuari });
   if (user) {
     if (await bcrypt.compare(primer.password, user.password)) {
-      const token = jwt.sign({ id: user._id, usuariname: user.usuari }, youKnow);
+      const token = jwt.sign({ 
+        id: user._id, 
+        usuariname: user.usuari,
+        icon: user.icon
+        }, youKnow);
       res.json({ metodo: true, token: token });
       return;
     }

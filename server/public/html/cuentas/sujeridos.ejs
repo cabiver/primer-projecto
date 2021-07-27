@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    
+
     <link rel="stylesheet" href="css/servis/variables.css">
     <link rel="stylesheet" href="css/servis/center.css">
     <link rel="stylesheet" href="css/servis/normalize.css">
@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="css/cuentas/vistaDePost.css">
     <link rel="stylesheet" href="css/cuentas/portadaUsuario.css">
     <link rel="stylesheet" href="css/cuentas/ResponsiveAllCuentas.css">
-    
-    
+
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="scripts/cuentas/XparaVisitantes.js"></script>
     <script src="scripts/cuentas/funciones/funciones_Visitants.js"></script>
@@ -34,7 +34,7 @@
 <header id="Header">
 
     <body>
-        
+
 
         <div id="responsive_cuentas.js-calcular_y_asignar_width_a_la_cabecera" class="cabecera">
             <div id="totalWidthIcon">
@@ -42,34 +42,39 @@
                     <img class="icono js-detectar_cuando_carge" src="images/camille-300x300.png" alt="">
                 </div>
             </div>
-            <div id="responsive_cuentas.js-referencia_para_calcular_la_pocision_de_la_lupa-barra_de_busqueda-div_barra_busqueda">
-                <form id="responsive_cuentas.js-variable_para_el_posicionamiento_de_la_lupa-form_busqueda" class="barraDeBusqueda" >
-                    <input id="responsive_cuentas.js-variable_de_posicionamiento" autocomplete="off" name="usuarios" class="inputs-text-sin-mamadas div-dentro-de-barra-de-busqueda" action="" type="text">
+            <div
+                id="responsive_cuentas.js-referencia_para_calcular_la_pocision_de_la_lupa-barra_de_busqueda-div_barra_busqueda">
+                <form id="responsive_cuentas.js-variable_para_el_posicionamiento_de_la_lupa-form_busqueda"
+                    class="barraDeBusqueda">
+                    <input id="responsive_cuentas.js-variable_de_posicionamiento" autocomplete="off" name="usuarios"
+                        class="inputs-text-sin-mamadas div-dentro-de-barra-de-busqueda" action="" type="text">
                     <button id="responsive_cuentas.js-posicionar_la_lupa" class="fit-height">
-                        <img id="lupa" class="icono-lupa" src="images/lupa.png" >
+                        <img id="lupa" class="icono-lupa" src="images/lupa.png">
                     </button>
-                  
-    
+
+
                 </form>
                 <div style="display:flex; justify-content:center">
-                    <div id="responsive_cuentas.js cuentas.js-posicionamiento_y_actualizacion_de_peticiones_de_recomendados" class="divRecomiendaciones"></div>
+                    <div id="responsive_cuentas.js cuentas.js-posicionamiento_y_actualizacion_de_peticiones_de_recomendados"
+                        class="divRecomiendaciones"></div>
                 </div>
-                
+
             </div>
             <div id="responsive_cuentas.js-div_de_tu_perfil_para_ajustar_barra_de_busqueda" class="div-perfil-tuyo">
-                <div class="separadorDeCabecera div-icono-de-usuario" id="cuentas.js-agregar_eventos_que_desplegue_opciones_de_usuarios">
+                <div class="separadorDeCabecera div-icono-de-usuario"
+                    id="cuentas.js-agregar_eventos_que_desplegue_opciones_de_usuarios">
                     <div class="responsive_cuentas.js-arrays_de_iconos_para_volverlos_cuadrados iconPerfil">
-                        <img class="iconoPrincipal"  src="<%= icon %>">
+                        <img class="iconoPrincipal" src="<%= icon %>">
                     </div>
-                    
+
                     <div class="nombre">
                         <%= name.length>7?`${name.substr(0,7)}...`:name %>
                     </div>
                 </div>
-            
+
             </div>
-                
-            
+
+
         </div>
 
         <div id="barra-de-navegacion" class="Flex-navegador-user" style="display:none">
@@ -79,78 +84,27 @@
 
 </header>
 
-<!-- 
-<div id="border-para-posts" class="postPaginas" style="display:none">
-        <div id="contenido-del-post">
-
-        </div>
-        <div id="comentarios-del-post">
-
-        </div>
-</div> -->
-
-<div class="containerUser">
-    <div class="difuminado-background background-height">
-        <%- backgroundDifuminado %>
-    </div>
-    <div id="responsive_usercuentas.js-para_posicionar_la_camara_del_background">
-
-        
-
-
-    </div>
-
-
-    <div id="responsive_cuentas.js-para_hacer_margin_top" class="background background-height">
-
-        <div id="div-image-background" class="div-image-background">
-
-            <%- extencion %>
-
-
-        </div>
-
-
-    </div>
-
-  
-    <div id="FLEXperfilUser" class="FLEXperfilUser">
-        <div class="FLEXBOX ALIGN-ITEMS boxUser">
-
-            <div id="responsive_usercuentas.js-operador_para_posicionar_la_camara-icono" class="iconPerfil responsive_cuentas.js-arrays_de_iconos_para_volverlos_cuadrados">
-
-                <img class="iconoPrincipal" src="<%= perfil %>" alt="">
-            </div>
-            <div class="perfilName">
-                <%= user %>
-            </div>
-        </div>
-        <div id="agregar_persona" class="botton_agregar_persona">
-            agregar a amigos
-        </div>
-    </div>
-   
-
+<div id="responsive_pagina_recomendacion.js-separador_para_el_header">
 </div>
 
 <div id="full" class="bak">
 
 
     <div id="marco" class="marco">
-    
-    
-    
+
+
+
     </div>
     <div class="FLEXBOX JUSTIFY-CONTENT">
         <div id="ventana-acabo-las-fotos" style="display:none" class="div-para-marco FLEXBOX ALIGN-ITEMS">
             <p class=" fuente">ya no hay mas fotos?</p>
         </div>
     </div>
-    
+
     <div id="cuentas.js-detectar_cuando_es_observado" style="height: 15px"></div>
 </div>
 
-<script src="scripts/cuentas/responsive-cuentas.js"></script>
+<script src="scripts/cuentas/responsive_pagina_recomendacion.js"></script>
 <script src="scripts/cuentas/cuentas.js"></script>
 
 
