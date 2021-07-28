@@ -16,7 +16,6 @@ mongoose.connect(url, {useNewUrlParser: true,useUnifiedTopology: true})
 
 app.set("port", process.env.port || 3000);
 app.engine("html", require("ejs").renderFile);
-
 app.use("/",express.static(path.join(__dirname,"/public")));
 app.use(require(path.join(__dirname,"Router/index.js")));
 

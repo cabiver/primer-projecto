@@ -54,18 +54,19 @@ const limpliar=(textClear)=>{
     textClear=textClear.replaceAll(String.fromCharCode(92),"");
     textClear=textClear.replaceAll("$","");
 }
-sesion.addEventListener("click",(e)=>{
-    axios.post("/",{
+sesion.addEventListener("click",async (e)=>{
+    let respuesta = await axios.post("/",{
         uss: usuario.value,
         contra: contraseña.value
-    })
-        .then((response)=> {
-            console.log(response);
-            document.cookie = "userName="+response.data.token;     
-            window.location.assign("/"+usuario.value);
-        });
+    });
+    if(respuesta.status=="OK"){
+        document.cookie = "userName="+respuesta.data.token;     
+        window.location.assign("/"+usuario.value);
+    }else{
+        console.log(respuesta)
+    }
 });
-register.addEventListener("click", (e)=>{
+register.addEventListener("click",async (e)=>{
     e.preventDefault();
     let error = validartodo("js_register.js-validar_el_nombre_de_usuario", 5);
     check(error);
@@ -73,23 +74,20 @@ register.addEventListener("click", (e)=>{
         error = validartodo("see.js code.js responsive_index.js-cambiar_a_visible",8);
         check(error);
         if(!error[0]){             
-            axios.post("/register", {
+            let respuesta = await axios.post("/register", {
                 uss: usuario.value,
                 contra: contraseña.value
-            })
-              .then(function (response) {
-                  document.getElementById("js_register-informar_usuario_de_la_peticion").innerHTML = response.data.mensage;
-                  if(response.data.metodo){
-                    document.cookie= "userName="+response.data.token;
-                    let urlNombre= response.data.nombre.replaceAll(" ","%20")
-                    window.location.assign("/"+urlNombre);
-                }
-              })
-              .catch(function (error) {
-                  console.log(error);
-              });
+            });
+            if(respuesta.statusText == "OK"){
+            document.getElementById("js_register-informar_usuario_de_la_peticion").innerHTML = respuesta.data.mensage;
+            if(respuesta.data.metodo){
+                  document.cookie= "userName="+respuesta.data.token;
+                  let urlNombre= respuesta.data.nombre.replaceAll(" ","%20")
+                  window.location.assign("/"+urlNombre);
+              }
+            }else{
+                console.log(respuesta);
+            }
         }
     }
 });
-
-

@@ -50,6 +50,7 @@ const render = (imageToRender)=>{
     renderImage();
 }
 const renderImage = ()=>{
+    let barraDeCarga = document.getElementById("barra-de-carga");
     let extencion = file.name.split(".");
     let renderPc =document.getElementById("loadVideo");
     let reader = new FileReader;
@@ -59,7 +60,7 @@ const renderImage = ()=>{
         document.getElementById("loadVideoMobile").style.height = "fit-content";
         img.setAttribute("src","");
         document.getElementById("imagMobile").setAttribute("src","")
-        let barraDeCarga = document.getElementById("barra-de-carga");
+        
         img.setAttribute("src","");
         reader.addEventListener("progress",e=>{
             let carga = Math.round(e.loaded / file.size * 100);
@@ -80,6 +81,9 @@ const renderImage = ()=>{
             let carga = Math.round(e.loaded / file.size * 100);
             barraDeCarga.style.width=`${carga}%`;
             barraDeCarga.style.backgroundColor="#40da";
+        });
+        reader.addEventListener("load",e=>{ 
+            barraDeCarga.style.backgroundColor="transparent";
         });
         document.getElementById("loadVideoMobile").setAttribute("src","");
         renderPc.style.height = "0";
@@ -124,7 +128,7 @@ inputPost.addEventListener("change",e=>{
 window.addEventListener("keydown",e=>{
     if(e.key=="Escape" && imagenDeBackground){
         cabecera.style.display = "";
-    gridChangeBackground.style.display="none";
+        gridChangeBackground.style.display="none";
     }
 })
 closeChangeBackground.addEventListener("click",e=>{
@@ -132,7 +136,7 @@ closeChangeBackground.addEventListener("click",e=>{
     cabecera.style.display = "";
     gridChangeBackground.style.display="none";
 });
-fromChangeBackground.addEventListener("submit",e=>{
+fromChangeBackground.addEventListener("submit",async e=>{
     e.preventDefault();
     if(canChangeBackground){
         canChangeBackground = false;
@@ -140,17 +144,14 @@ fromChangeBackground.addEventListener("submit",e=>{
         cabecera.style.display = "";
         gridChangeBackground.style.display="none";
         respuestaBackground.innerHTML = "cargando peticion";
-        axios.post("/background"+location.pathname,formdata)
-            .then(response=>{
-                console.log(response);
-                setTimeout(() => {
+        let respuesta =await axios.post("/background"+location.pathname,formdata)
+        if(respuesta.statusText=="OK"){
+            setTimeout(() => {
                 window.location.reload();    
-            }, 3000);   
-            })
-            .catch(error=>{
-                respuestaBackground.innerHTML="ah ocurriodo un error";
-                console.log(error)
-            });
+            }, 3000);
+        }else{
+            respuestaBackground.innerHTML="ah ocurriodo un error";
+        }
     }
 });
 fromChangeBackground.addEventListener("change",e=>{
@@ -166,51 +167,49 @@ divBorderCamara.addEventListener( "click",e=>{
 });
 loadImg.addEventListener("dragover",(e)=>{
     e.preventDefault();
-    changecolorAdd(e.srcElement ,"objetoEncima");
+    changecolorAdd(e.target ,"objetoEncima");
 });
 loadImg.addEventListener("dragleave",(e)=>{
-    changecolorSubtract(e.srcElement ,"objetoEncima");
+    changecolorSubtract(e.target ,"objetoEncima");
 });
 loadImg.addEventListener("drop",(e)=>{
     e.preventDefault();
     render(e.dataTransfer.files[0]);
-    changecolorSubtract(e.srcElement ,"objetoEncima");
+    changecolorSubtract(e.target,"objetoEncima");
 });
 changeIcon.addEventListener("change",e=>{
     const formdata = new FormData(changeIcon);
     const image = URL.createObjectURL(formdata.get("image"));
     renderIcono.setAttribute("src",image);
 });
-changeIcon.addEventListener("submit",e=>{
+changeIcon.addEventListener("submit",async e=>{
     e.preventDefault();
     const formdata = new FormData(changeIcon);
     let imagen = formdata.get("image");
     let particiones =imagen.name.split(".");
     if(particiones[particiones.length-1] == "jpg" || particiones[particiones.length-1] == "png" || particiones[particiones.length-1] == "jpeg"){
-       axios.post("/perfilIcon"+location.pathname, formdata)
-    .then(function (response) {
-        window.location.reload();
-    })
-    .catch(function (error) {
-        document.getElementById("resultIcono").innerHTML = "verifique que alla mandado un archivo";
-    });
+       let respuesta = await axios.post("/perfilIcon"+location.pathname, formdata)
+        if(respuesta.statusText == "OK"){
+            window.location.reload();
+        }else{
+            document.getElementById("resultIcono").innerHTML = "verifique que alla mandado un archivo";
+        }
     }else{
         document.getElementById("resultIcono").innerHTML = "no es un archivo de imagen valido";
     }
 });
-form.addEventListener("submit",e=>{
+form.addEventListener("submit",async e=>{
     e.preventDefault();
     if(validar()){
         const formdata = new FormData(form);
         formdata.delete("image");
         formdata.append("image", file);
-        axios.post("/imagenes"+location.pathname, formdata)
-          .then(function (response) {
-              console.log(response)
-              window.location.reload();
-          })
-          .catch(function (error) {
-              console.log(error);
-          });
+        let respuesta = await axios.post("/imagenes"+location.pathname, formdata)
+        if(respuesta.statusText == "OK"){
+            window.location.reload();
+        }else{
+            console.log(respuesta);
+        }
+   
     }        
 });

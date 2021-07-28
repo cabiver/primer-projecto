@@ -28,22 +28,22 @@ botonSesion.addEventListener("click", (e)=>{
 send.addEventListener("click",(e)=>{
     e.preventDefault();
     resultado.innerHTML = "cargando";
-    axios.post("/",  {
+
+    let respuesta = await axios.post("/",  {
         uss: usuariName.value,
         contra: contra.value
     })
-        .then(function (response) {
-            let autorizar = response.data.metodo;
-            let mensaje = response.data.mensaje;
-            let token = response.data.token;
-            if(autorizar) {
-                document.cookie = "userName="+token;
-                window.location.assign("/"+usuariName.value);
-            }else{
-                resultado.innerHTML = mensaje;
-            }
-        })
-        .catch(function (error) {
+    if(respuesta.statusText == "OK"){
+        let autorizar = respuesta.data.metodo;
+        let mensaje = respuesta.data.mensaje;
+        let token = respuesta.data.token;
+        if(autorizar) {
+            document.cookie = "userName="+token;
+            window.location.assign("/"+usuariName.value);
+        }else{
+            resultado.innerHTML = mensaje;
+        }
+    }else{
         resultado.innerHTML = "contraseña o usuario incorrecto";
-        });
+    }
 });

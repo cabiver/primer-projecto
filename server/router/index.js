@@ -76,7 +76,7 @@ Router.get("/:id", async (req, res) => {
     const userToken = await model.findOne({ _id: decodedToken.id });
     let amigo=false;
     userToken.amigos.forEach(el=>{
-      if(el == nombreUrl){
+      if(el == `${user._id}`){
         amigo = true;
         return;
       }
@@ -130,7 +130,6 @@ Router.post("/", async (req, res) => {
 });
 Router.post("/register", async (req, res) => {
   let op = req.body;
-  console.log(op)
   if (!op.uss || !op.contra) {
     res.status(400).send("que haces cambiando mi codigo?");
     return;
@@ -156,11 +155,9 @@ Router.post("/register", async (req, res) => {
 });
 Router.post("/cuentas/:id", async (req, res) => {
   let op = req.body;
-  let cookie = req.headers.cookie;
-  let jsoncookie = cookieNPM.parse(cookie);
   const user = await model.findOne({ usuari: req.params.id });
-  if (!user) {
-    return res.status(404).render(pages + "/html/error.html")
+  if (!user || req.params.id=="") {
+    return res.status(404).send(pages + "/html/error.html")
   }
   arrayPost = user.post.content.slice(op.cont, op.cont + 3);
   arrayDescription = user.post.description.slice(op.cont, op.cont + 3);
@@ -384,8 +381,7 @@ Router.post("/deleteimagen/:id", async (req, res) => {
     }
   });
 
-  fs.unlinkSync(path.join(pages,op.parametros))
-
+  fs.unlinkSync(path.join(pages,op.parametros));
   await model.updateMany({ usuari: user.usuari }, { $pullAll: { "post.content": [deleteContent] } });
   await model.updateMany({ usuari: user.usuari }, { $pullAll: { "post.description": [deleteDescription] } });
   res.status(200).send("all great");
@@ -398,6 +394,33 @@ Router.post("/recomendacion", async (req, res) => {
     arrayUsers.push(element.usuari);
   })
   res.status(200).json({ nombres: arrayUsers });
+});
+Router.post("/UltimosPost", async (req, res) => {
+  cookie = req.headers.cookie;
+  if (!cookie) {
+    res.status(401).render(pages + "html/servis/401NoAutorizacion.html");
+    return;
+  }
+  let objetoVerificacion = verificacion(cookie);
+  if (!objetoVerificacion.metodo) {
+    res.status(404).send("no se ah encontrado el usuario")
+    return;
+  }
+  const user = await model.findOne({ _id: objetoVerificacion.decodedToken.id });
+  if (!user) {
+    res.status(404).send("no se ah encontrado el usuario")
+    return;
+  }
+  let numeroPost = 5;
+  let postMandar= [];
+  for (let i = 0; i < user.amigos.length-1 && i < numeroPost; i++) {
+    if(numeroPost<=0){
+      let userAmigo = await model.findOne({_id : user.amigos[i]});
+      postMandar = [...postMandar, userAmigo.post.content];
+    }
+  }
+  console.log(postMandar)
+  res.status(200).json({ nombres: "bien" });
 });
 
 Router.post("/:id", async (req, res) => {
@@ -413,17 +436,22 @@ Router.post("/:id", async (req, res) => {
   }
   let nombreAmigo = req.params.id.replaceAll("%20"," ");
   let user = await model.findOne({ usuari: objetoVerificacion.decodedToken.usuariname });
+  let userAmigo = await model.findOne({ usuari: nombreAmigo });
+  if(!userAmigo){
+    res.status(400).send("que shinga me mandaste?");
+    return;
+  }
   let amigo=false;
   user.amigos.forEach(el=>{
-    if(el == nombreAmigo){
+    if(el == `${userAmigo._id}`){
       amigo = true;
       return;
     }
   });
   if(amigo){
-    await model.updateMany({ usuari: user.usuari }, { $pullAll: { amigos: [nombreAmigo] } });
+    await model.updateMany({ usuari: user.usuari }, { $pullAll: { amigos: [userAmigo._id] } });
   }else{
-    await model.updateOne({ usuari: user.usuari }, { $push: { amigos: { $each: [nombreAmigo], $position: 0 } } })
+    await model.updateOne({ usuari: user.usuari }, { $push: { amigos: { $each: [userAmigo._id], $position: 0 } } })
   }
   res.json(objetoVerificacion);
 });
