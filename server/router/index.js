@@ -396,6 +396,8 @@ Router.post("/recomendacion", async (req, res) => {
   res.status(200).json({ nombres: arrayUsers });
 });
 Router.post("/UltimosPost", async (req, res) => {
+  let op = req.body;
+  // console.log(op);
   cookie = req.headers.cookie;
   if (!cookie) {
     res.status(401).render(pages + "html/servis/401NoAutorizacion.html");
@@ -411,16 +413,43 @@ Router.post("/UltimosPost", async (req, res) => {
     res.status(404).send("no se ah encontrado el usuario")
     return;
   }
+  if(!op.amigosVisitados){
+    res.status(404).send("no se ah encontrado el usuario")
+    return;
+  }
+
   let numeroPost = 5;
   let postMandar= [];
-  for (let i = 0; i < user.amigos.length-1 && i < numeroPost; i++) {
-    if(numeroPost<=0){
+  let arrayAmigos= op.amigosVisitados;
+  let nuevoAmigosVisitados = [];
+  // console.log(user.amigos.length);
+  for (let i = 0; i <= user.amigos.length && numeroPost > 0; i++) {
       let userAmigo = await model.findOne({_id : user.amigos[i]});
-      postMandar = [...postMandar, userAmigo.post.content];
-    }
+        // console.log(i)
+        // console.log(userAmigo)
+        let existeAmigo=false;
+          arrayAmigos.forEach(element => {
+            if(element.nombre == userAmigo.usuari){
+              existeAmigo=true;
+              return;
+            }
+          });
+        if(!existeAmigo){
+          nuevoAmigosVisitados=[...nuevoAmigosVisitados, userAmigo.usuari];
+        }
+          postMandar = [...postMandar, { nombre:userAmigo.usuari, 
+          post:userAmigo.post.content[0],
+          description:userAmigo.post.description[0],
+          icon:userAmigo.icon,
+         }];
+      // console.log(user.amigos[i])
+      numeroPost--;
   }
-  console.log(postMandar)
-  res.status(200).json({ nombres: "bien" });
+  // console.log(numeroPost)
+  //  console.log(nuevoAmigosVisitados)
+
+  res.status(200).json({ amigos: postMandar,nuevoAmigosVisitados })
+  // res.status(200).json({ nombres: "bien" });
 });
 
 Router.post("/:id", async (req, res) => {

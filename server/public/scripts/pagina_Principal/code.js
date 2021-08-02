@@ -25,7 +25,7 @@ botonSesion.addEventListener("click", (e)=>{
         create = true;
     }
 });
-send.addEventListener("click",(e)=>{
+send.addEventListener("click",async (e)=>{
     e.preventDefault();
     resultado.innerHTML = "cargando";
 

@@ -1,4 +1,21 @@
-
+.nombre-usuario{
+    display: flex;
+    flex-direction:column;
+    align-items: center; 
+    margin-right: 3px;
+}
+.users-flex{
+    display: flex;
+    align-items: center;
+}
+.icono-post{
+    height:60px;
+    border-radius:50%;
+}
+.div-icono-fecha{
+    display: flex;
+    
+}
 .div-para-marco{
     display: flex;
     flex-direction: column;
