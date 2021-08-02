@@ -128,7 +128,7 @@ const cal=async ()=>{
         })
     });
     respuesta.data.nuevoAmigosVisitados.forEach(element =>{
-        amigosVisitados=[...amigosVisitados, {nombre:element,contador:0}]
+        amigosVisitados=[...amigosVisitados, {nombre:element,contador:1}]
     });
 
     

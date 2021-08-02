@@ -16,7 +16,7 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 
 function verificacion(cookie) {
   let jsoncookie = cookieNPM.parse(cookie);
-  if (!jsoncookie.userName|| jsoncookie.userName =="undefined" ||jsoncookie.userName.length ==0) {
+  if (!jsoncookie.userName || jsoncookie.userName == "undefined" || jsoncookie.userName.length == 0) {
     return { metodo: false };
   }
   const token = jsoncookie.userName
@@ -38,9 +38,9 @@ Router.get("/", (req, res) => {
     res.render(path.join(pages, "html/pagina_principal/index.html"))
     return;
   }
-    res.render(path.join(pages, "html/cuentas/sujeridos.ejs"),{
-    name:objetoVerificacion.decodedToken.usuariname,
-    icon:objetoVerificacion.decodedToken.icon,
+  res.render(path.join(pages, "html/cuentas/sujeridos.ejs"), {
+    name: objetoVerificacion.decodedToken.usuariname,
+    icon: objetoVerificacion.decodedToken.icon,
   })
   return;
 });
@@ -53,36 +53,36 @@ Router.get("/:id", async (req, res) => {
   }
   let nombreUrl = req.params.id.replaceAll("%20", " ")
   const user = await model.findOne({ usuari: nombreUrl });
-  
+
   if (!user) {
     res.render(pages + "html/servis/error.html");
     return;
   } else {
-  let objetoVerificacion = verificacion(cookie);
-  if (!objetoVerificacion.metodo) {
-    res.status(401).render("html/servis/401NoAutorizacion.html")
-    return;
-  }
+    let objetoVerificacion = verificacion(cookie);
+    if (!objetoVerificacion.metodo) {
+      res.status(401).render("html/servis/401NoAutorizacion.html")
+      return;
+    }
     const decodedToken = objetoVerificacion.decodedToken;
     arrayBackground = user.background.split(".");
     let extencion = arrayBackground[arrayBackground.length - 1];
 
-    extencion =="mp4"|| extencion =="avi"
-    ?extencion = `<video id="responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background" class="background-content-responsive-video" src="${user.background}" controls></video>`
-    :extencion = `<img id="responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background" class="background-content-responsive-imagen" src="${user.background}" alt="">`
-    
+    extencion == "mp4" || extencion == "avi"
+      ? extencion = `<video id="responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background" class="background-content-responsive-video" src="${user.background}" controls></video>`
+      : extencion = `<img id="responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background" class="background-content-responsive-imagen" src="${user.background}" alt="">`
+
     let difbackground = `<img class="imageDifumida" src="${user.backgroundDifumidado}" alt="">`
 
     const userToken = await model.findOne({ _id: decodedToken.id });
-    let amigo=false;
-    userToken.amigos.forEach(el=>{
-      if(el == `${user._id}`){
+    let amigo = false;
+    userToken.amigos.forEach(el => {
+      if (el == `${user._id}`) {
         amigo = true;
         return;
       }
     });
     if (user._id == decodedToken.id) {
-      res.render(pages + "html/cuentas/cuentas.ejs",{
+      res.render(pages + "html/cuentas/cuentas.ejs", {
         extencion: extencion,
         user: userToken.usuari,
         name: user.usuari,
@@ -116,11 +116,11 @@ Router.post("/", async (req, res) => {
   let user = await model.findOne({ usuari: primer.usuari });
   if (user) {
     if (await bcrypt.compare(primer.password, user.password)) {
-      const token = jwt.sign({ 
-        id: user._id, 
+      const token = jwt.sign({
+        id: user._id,
         usuariname: user.usuari,
         icon: user.icon
-        }, youKnow);
+      }, youKnow);
       res.json({ metodo: true, token: token });
       return;
     }
@@ -145,10 +145,10 @@ Router.post("/register", async (req, res) => {
     password: passHash
   })
   const userNew = await primer.save();
-  const token = await jwt.sign({ id: userNew._id, usuariname: userNew.usuari,icon:userNew.icon }, youKnow);
+  const token = await jwt.sign({ id: userNew._id, usuariname: userNew.usuari, icon: userNew.icon }, youKnow);
   res.send({
     metodo: true, mensage: "se ha guardado su usuario",
-    nombre: userNew.usuari, 
+    nombre: userNew.usuari,
     token: token
   });
   return;
@@ -156,7 +156,7 @@ Router.post("/register", async (req, res) => {
 Router.post("/cuentas/:id", async (req, res) => {
   let op = req.body;
   const user = await model.findOne({ usuari: req.params.id });
-  if (!user || req.params.id=="") {
+  if (!user || req.params.id == "") {
     return res.status(404).send(pages + "/html/error.html")
   }
   arrayPost = user.post.content.slice(op.cont, op.cont + 3);
@@ -285,11 +285,11 @@ Router.post("/background/:id", async (req, res) => {
   let postImg = "backgrounds/" + nombreimagen;
   arrayBackground = nombreimagen.split(".");
   let nombreSinExtencion = "";
-  if(arrayBackground.length.length >2){
-    for (let index = 0; index < arrayBackground.length-2; index++) {
-      nombreSinExtencion+=arrayBackground.length[index]
+  if (arrayBackground.length.length > 2) {
+    for (let index = 0; index < arrayBackground.length - 2; index++) {
+      nombreSinExtencion += arrayBackground.length[index]
     }
-  }else{
+  } else {
     nombreSinExtencion = arrayBackground[0]
   }
   extencion = arrayBackground[arrayBackground.length - 1];
@@ -302,7 +302,7 @@ Router.post("/background/:id", async (req, res) => {
   let difuminado = `backgroundDifuminado/${nombreSinExtencion}.jpg`
   if (extencion == "mp4" || extencion == "avi") {
     ffmpeg({ source: path.join(pages, postImg) })
-      .takeScreenshots({ filename:`${nombreSinExtencion}.jpg`, timemarks: [0] }, pages+"/backgroundDifuminado");
+      .takeScreenshots({ filename: `${nombreSinExtencion}.jpg`, timemarks: [0] }, pages + "/backgroundDifuminado");
     await model.updateOne({ usuari: user.usuari }, { background: "/" + postImg });
     await model.updateOne({ usuari: user.usuari }, { backgroundDifumidado: "/" + difuminado });
   } else {
@@ -381,7 +381,7 @@ Router.post("/deleteimagen/:id", async (req, res) => {
     }
   });
 
-  fs.unlinkSync(path.join(pages,op.parametros));
+  fs.unlinkSync(path.join(pages, op.parametros));
   await model.updateMany({ usuari: user.usuari }, { $pullAll: { "post.content": [deleteContent] } });
   await model.updateMany({ usuari: user.usuari }, { $pullAll: { "post.description": [deleteDescription] } });
   res.status(200).send("all great");
@@ -413,42 +413,60 @@ Router.post("/UltimosPost", async (req, res) => {
     res.status(404).send("no se ah encontrado el usuario")
     return;
   }
-  if(!op.amigosVisitados){
+  if (!op.amigosVisitados) {
     res.status(404).send("no se ah encontrado el usuario")
     return;
   }
 
   let numeroPost = 5;
-  let postMandar= [];
-  let arrayAmigos= op.amigosVisitados;
+  let postMandar = [];
+  let arrayAmigos = op.amigosVisitados;
   let nuevoAmigosVisitados = [];
   // console.log(user.amigos.length);
   for (let i = 0; i <= user.amigos.length && numeroPost > 0; i++) {
-      let userAmigo = await model.findOne({_id : user.amigos[i]});
-        // console.log(i)
-        // console.log(userAmigo)
-        let existeAmigo=false;
-          arrayAmigos.forEach(element => {
-            if(element.nombre == userAmigo.usuari){
-              existeAmigo=true;
-              return;
-            }
-          });
-        if(!existeAmigo){
-          nuevoAmigosVisitados=[...nuevoAmigosVisitados, userAmigo.usuari];
+    let userAmigo = await model.findOne({ _id: user.amigos[i] });
+    // console.log(i)
+    // console.log(userAmigo)
+    let existeAmigo = false;
+    arrayAmigos.forEach(element => {
+      if (element.nombre == userAmigo.usuari) {
+        existeAmigo = true;
+        return;
+      }
+    });
+
+
+    if (!existeAmigo) {
+      nuevoAmigosVisitados = [...nuevoAmigosVisitados, userAmigo.usuari];
+    }
+
+    if (op.amigosVisitados.length == 0) {
+      postMandar = [...postMandar, {
+        nombre: userAmigo.usuari,
+        post: userAmigo.post.content[0],
+        description: userAmigo.post.description[0],
+        icon: userAmigo.icon,
+      }];
+    } else {
+      op.amigosVisitados.forEach(el => {
+        if (el.nombre == userAmigo.usuari) {
+          if(userAmigo.post.content[el.contador]){
+            postMandar = [...postMandar, {
+              nombre: userAmigo.usuari,
+              post: userAmigo.post.content[el.contador],
+              description: userAmigo.post.description[el.contador],
+              icon: userAmigo.icon,
+            }]
+          }
         }
-          postMandar = [...postMandar, { nombre:userAmigo.usuari, 
-          post:userAmigo.post.content[0],
-          description:userAmigo.post.description[0],
-          icon:userAmigo.icon,
-         }];
-      // console.log(user.amigos[i])
-      numeroPost--;
+      });
+    }
+    numeroPost--;
   }
   // console.log(numeroPost)
   //  console.log(nuevoAmigosVisitados)
 
-  res.status(200).json({ amigos: postMandar,nuevoAmigosVisitados })
+  res.status(200).json({ amigos: postMandar, nuevoAmigosVisitados })
   // res.status(200).json({ nombres: "bien" });
 });
 
@@ -463,23 +481,23 @@ Router.post("/:id", async (req, res) => {
     res.render(path.join(pages, "html/pagina_principal/index.html"))
     return;
   }
-  let nombreAmigo = req.params.id.replaceAll("%20"," ");
+  let nombreAmigo = req.params.id.replaceAll("%20", " ");
   let user = await model.findOne({ usuari: objetoVerificacion.decodedToken.usuariname });
   let userAmigo = await model.findOne({ usuari: nombreAmigo });
-  if(!userAmigo){
+  if (!userAmigo) {
     res.status(400).send("que shinga me mandaste?");
     return;
   }
-  let amigo=false;
-  user.amigos.forEach(el=>{
-    if(el == `${userAmigo._id}`){
+  let amigo = false;
+  user.amigos.forEach(el => {
+    if (el == `${userAmigo._id}`) {
       amigo = true;
       return;
     }
   });
-  if(amigo){
+  if (amigo) {
     await model.updateMany({ usuari: user.usuari }, { $pullAll: { amigos: [userAmigo._id] } });
-  }else{
+  } else {
     await model.updateOne({ usuari: user.usuari }, { $push: { amigos: { $each: [userAmigo._id], $position: 0 } } })
   }
   res.json(objetoVerificacion);
