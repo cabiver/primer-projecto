@@ -7,10 +7,10 @@ const cookieNPM = require("cookie");
 const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
 const ffmpeg = require("fluent-ffmpeg");
 const bcrypt = require("bcrypt");
-const model = require("../usariname.js");
 const youKnow = "iLovePlayMinecraftForEver";
 const pages = path.join(__dirname, "/../public/");
 const baseHash = 10;
+const model = require("../usariname.js");
 ffmpeg.setFfmpegPath(ffmpegPath);
 
 
@@ -119,7 +119,7 @@ Router.post("/", async (req, res) => {
       const token = jwt.sign({
         id: user._id,
         usuariname: user.usuari,
-        icon: user.icon
+        icon: user.icon,
       }, youKnow);
       res.json({ metodo: true, token: token });
       return;
@@ -318,17 +318,24 @@ Router.post("/buscar", async (req, res) => {
     res.status(401).render(pages + "html/servis/401NoAutorizacion.html");
     return;
   }
+  let objetoVerificacion = verificacion(cookie);
+  if (!objetoVerificacion.metodo) {
+    res.status(404).send("no se ah encontrado el usuario")
+    return;
+  }
   if (!op.usuarios) {
     res.status(404).send("no se ah encontrado el usuario")
     return;
   }
 
-  const user = await model.findOne({ usuari: op.usuarios });
-  if (!user) {
+  const userPerfil = await model.findOne({ usuari: op.usuarios });
+  if (!userPerfil) {
     res.status(404).send("no se ah encontrado el usuario")
     return;
   }
-  res.json({ pagina: "/" + user.usuari })
+  await model.updateOne({ _id: objetoVerificacion.decodedToken.id }, { $push: { "ultimasBusquedas": { $each: [op.usuarios], $position: 0 } } })
+  
+  res.json({ pagina: "/" + userPerfil.usuari })
 });
 Router.post("/miSitio", async (req, res) => {
   cookie = req.headers.cookie;
@@ -397,7 +404,6 @@ Router.post("/recomendacion", async (req, res) => {
 });
 Router.post("/UltimosPost", async (req, res) => {
   let op = req.body;
-  // console.log(op);
   cookie = req.headers.cookie;
   if (!cookie) {
     res.status(401).render(pages + "html/servis/401NoAutorizacion.html");
@@ -422,11 +428,8 @@ Router.post("/UltimosPost", async (req, res) => {
   let postMandar = [];
   let arrayAmigos = op.amigosVisitados;
   let nuevoAmigosVisitados = [];
-  // console.log(user.amigos.length);
-  for (let i = 0; i <= user.amigos.length && numeroPost > 0; i++) {
+  for (let i = 0; i <= user.amigos.length - 1 && numeroPost > 0; i++) {
     let userAmigo = await model.findOne({ _id: user.amigos[i] });
-    // console.log(i)
-    // console.log(userAmigo)
     let existeAmigo = false;
     arrayAmigos.forEach(element => {
       if (element.nombre == userAmigo.usuari) {
@@ -435,41 +438,38 @@ Router.post("/UltimosPost", async (req, res) => {
       }
     });
 
+    if (userAmigo) {
+      if (!existeAmigo) {
+        nuevoAmigosVisitados = [...nuevoAmigosVisitados, userAmigo.usuari];
+      }
 
-    if (!existeAmigo) {
-      nuevoAmigosVisitados = [...nuevoAmigosVisitados, userAmigo.usuari];
-    }
+      if (op.amigosVisitados.length == 0) {
+        postMandar = [...postMandar, {
+          nombre: userAmigo.usuari,
+          post: userAmigo.post.content[0],
+          description: userAmigo.post.description[0],
+          icon: userAmigo.icon,
+        }];
+      } else {
+        op.amigosVisitados.forEach(el => {
 
-    if (op.amigosVisitados.length == 0) {
-      postMandar = [...postMandar, {
-        nombre: userAmigo.usuari,
-        post: userAmigo.post.content[0],
-        description: userAmigo.post.description[0],
-        icon: userAmigo.icon,
-      }];
-    } else {
-      op.amigosVisitados.forEach(el => {
-        if (el.nombre == userAmigo.usuari) {
-          if(userAmigo.post.content[el.contador]){
-            postMandar = [...postMandar, {
-              nombre: userAmigo.usuari,
-              post: userAmigo.post.content[el.contador],
-              description: userAmigo.post.description[el.contador],
-              icon: userAmigo.icon,
-            }]
+          if (el.nombre == userAmigo.usuari) {
+            if (userAmigo.post.content[el.contador]) {
+              postMandar = [...postMandar, {
+                nombre: userAmigo.usuari,
+                post: userAmigo.post.content[el.contador],
+                description: userAmigo.post.description[el.contador],
+                icon: userAmigo.icon,
+              }]
+            }
           }
-        }
-      });
+        });
+      }
+      numeroPost--;
     }
-    numeroPost--;
   }
-  // console.log(numeroPost)
-  //  console.log(nuevoAmigosVisitados)
-
   res.status(200).json({ amigos: postMandar, nuevoAmigosVisitados })
-  // res.status(200).json({ nombres: "bien" });
 });
-
 Router.post("/:id", async (req, res) => {
   cookie = req.headers.cookie;
   if (!cookie) {

@@ -14,8 +14,10 @@
     display : none;
 }
 body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     background-color: var(--principal-gris);
-   
 }
 .all{
     max-width: 1300px;
@@ -38,7 +40,6 @@ header{
 .fix{
     position:fixed;
     z-index: 150;
-    width: 100%;
 }
 .marHeader{
     background-color: var(--principal-gris);

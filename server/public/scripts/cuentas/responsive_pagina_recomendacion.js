@@ -1,5 +1,5 @@
 "use strict";
-const cabecera = document.getElementById("responsive_cuentas.js-calcular_y_asignar_width_a_la_cabecera");
+const cabecera = document.getElementById("responsive_cuentas.js-calcular_y_asignar_width_a_la_cabecera_y_detectar_click");
 const backgroundHeight = document.getElementById("responsive_cuentas.js-para_hacer_margin_top");
 const buttonLupa=document.getElementById("responsive_cuentas.js-posicionar_la_lupa");
 const barraDeBusqueda =document.getElementById("responsive_cuentas.js-referencia_para_calcular_la_pocision_de_la_lupa-barra_de_busqueda-div_barra_busqueda");
@@ -9,6 +9,7 @@ const divPerfilUsuario = document.getElementById("responsive_cuentas.js-div_de_t
 const escrituraParaBuscar = document.getElementById("responsive_cuentas.js-variable_de_posicionamiento");
 const divRecomiendaciones = document.getElementById("responsive_cuentas.js cuentas.js-posicionamiento_y_actualizacion_de_peticiones_de_recomendados");
 const marginSeparadorHeader = document.getElementById("responsive_pagina_recomendacion.js-separador_para_el_header")
+const iconoPagina = document.getElementById("responsive_cuentas.js cuentas.js-calcular_distancia_y_esperar_click");
 
 window.addEventListener("load",e=>{
     cabecera.style.width=`${document.body.offsetWidth}px`
@@ -18,9 +19,9 @@ window.addEventListener("load",e=>{
     }
     marginSeparadorHeader.style.marginTop = `${cabecera.clientHeight}px`
     divRecomiendaciones.style.width = `${escrituraParaBuscar.clientWidth}px`;
-    barraDeBusqueda.style.width = `${cabecera.clientWidth - document.getElementById("totalWidthIcon").clientWidth -divPerfilUsuario.clientWidth}px`;
+    barraDeBusqueda.style.width = `${cabecera.clientWidth - iconoPagina.clientWidth -divPerfilUsuario.clientWidth}px`;
     buttonLupa.style.width =  `${barraDeBusqueda.clientHeight *0.6}px`;  
-    buttonLupa.style.left = `${((document.getElementById("totalWidthIcon").clientWidth +escrituraParaBuscar.clientWidth+
+    buttonLupa.style.left = `${((iconoPagina.clientWidth +escrituraParaBuscar.clientWidth+
         ((barraDeBusqueda.clientWidth-escrituraParaBuscar.clientWidth)/2 ))-buttonLupa.clientWidth-6)}px`;
 })
 window.addEventListener("resize",e=>{
@@ -30,8 +31,8 @@ window.addEventListener("resize",e=>{
         responsiveIconos[index].style.width = `${responsiveIconos[index].clientHeight}px`;
     }
     divRecomiendaciones.style.width = `${escrituraParaBuscar.clientWidth}px`;
-    barraDeBusqueda.style.width = `${cabecera.clientWidth - document.getElementById("totalWidthIcon").clientWidth-divPerfilUsuario.clientWidth}px`;
+    barraDeBusqueda.style.width = `${cabecera.clientWidth - iconoPagina.clientWidth-divPerfilUsuario.clientWidth}px`;
     buttonLupa.style.width =  `${barraDeBusqueda.clientHeight *0.6}px`;  
-    buttonLupa.style.left = `${((document.getElementById("totalWidthIcon").clientWidth +escrituraParaBuscar.clientWidth+
+    buttonLupa.style.left = `${((iconoPagina.clientWidth +escrituraParaBuscar.clientWidth+
         ((barraDeBusqueda.clientWidth-escrituraParaBuscar.clientWidth)/2 ))-buttonLupa.clientWidth-6)}px`;
 });

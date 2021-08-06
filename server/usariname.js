@@ -7,6 +7,7 @@ const usuari = new Schema({
     backgroundDifumidado:{type:String, default:"images/background.jpg"},
     icon: {type: String, default: "images/camille-300x300.png"},
     amigos:{type: [], default:[]},
+    ultimasBusquedas:{type: [], default:[]},
     post: {
         content:[],
         description:[]

@@ -6,17 +6,15 @@ const botonSesion = document.getElementById("responsive_indexjs,code.js-posicion
 const divSesion = document.getElementById("responsive_index.js-ajustar_width_de_la_cabecera");
 const sesion = document.getElementById("responsive_index.js,code.js-pocisionamineto_y_eventos_con_la_ventana");
 
-background.addEventListener("loadeddata",e=>{
-    fix.style.width =`${all.clientWidth}px`;
-})
 window.addEventListener("load",e=>{
+    fix.style.width =`${all.clientWidth }px`;
     botonSesion.style.marginRight =`${((document.body.offsetWidth - background.clientWidth) /2)+3}px`;
     divSesion.style.right = `${((document.body.offsetWidth- background.clientWidth ) /2)}px`;
     sesion.style.right = `${((document.body.offsetWidth - background.clientWidth ) /2)}px`;
-})
+});
 window.addEventListener("resize",e=>{
     fix.style.width =`${all.clientWidth }px`;
     botonSesion.style.marginRight =`${((document.body.offsetWidth - background.clientWidth) /2)+3}px`;
     divSesion.style.right = `${((document.body.offsetWidth- background.clientWidth ) /2)}px`;
     sesion.style.right = `${((document.body.offsetWidth - background.clientWidth ) /2)}px`;
-})
+});

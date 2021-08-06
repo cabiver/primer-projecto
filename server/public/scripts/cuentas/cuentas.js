@@ -91,6 +91,9 @@ miSitio.addEventListener("click",async e=>{
     }
     
 });
+iconoPagina.addEventListener("click", async (e)=>{
+    window.location.assign("/");
+});
 fromBarraDeBusqueda.addEventListener("keyup",async e=>{
     const formdata = new FormData(fromBarraDeBusqueda);
     if((e.key=="ArrowUp")||e.key=="ArrowDown"){

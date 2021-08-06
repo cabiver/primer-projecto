@@ -100,7 +100,7 @@ function elementos(p){
         contador+=3;
         setTimeout(() => {
             canload=true;
-        }, 2000);
+        }, 1500);
         
     }
 }
