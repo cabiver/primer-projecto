@@ -128,6 +128,23 @@ Router.post("/", async (req, res) => {
   res.status(203).json({ metodo: false, mensaje: "su contraseña o usuario esta mal" });
   return;
 });
+Router.post("/ultimaBusqueda", async (req, res) => {
+  cookie = req.headers.cookie;
+  if (!cookie) {
+    res.status(401).render(pages + "/html/401NoAutorizacion.html");
+    return;
+  }
+  let objetoVerificacion = verificacion(cookie);
+  if (!objetoVerificacion.metodo) {
+    res.status(404).send("no se ah encontrado el usuario")
+    return;
+  }
+  
+  let user = await model.findOne({_id: objetoVerificacion.decodedToken.id});
+  res.send(JSON.stringify(user.ultimasBusquedas));
+  res.end();
+  
+});
 Router.post("/register", async (req, res) => {
   let op = req.body;
   if (!op.uss || !op.contra) {
@@ -333,7 +350,39 @@ Router.post("/buscar", async (req, res) => {
     res.status(404).send("no se ah encontrado el usuario")
     return;
   }
-  await model.updateOne({ _id: objetoVerificacion.decodedToken.id }, { $push: { "ultimasBusquedas": { $each: [op.usuarios], $position: 0 } } })
+  let user = await model.findOne({_id: objetoVerificacion.decodedToken.id});
+  if(user.ultimasBusquedas.length >=5){
+    let noExisteEsaBusqueda = true;
+    let indiceDeLaBusqueda;
+    let elemetoAEliminar;
+    user.ultimasBusquedas.forEach((elemet,indice)=>{
+      
+      if(elemet == op.usuarios){
+        elemetoAEliminar = elemet;
+        indiceDeLaBusqueda= indice;
+        noExisteEsaBusqueda=false;
+      }
+    });
+    if(noExisteEsaBusqueda){
+      await model.updateMany({_id: objetoVerificacion.decodedToken.id }, { "ultimasBusquedas":[
+        op.usuarios,
+        user.ultimasBusquedas[0],
+        user.ultimasBusquedas[1],
+        user.ultimasBusquedas[2],
+        user.ultimasBusquedas[3],]});
+    }else{
+        await model.updateMany({_id: objetoVerificacion.decodedToken.id}, { $pullAll: { "ultimasBusquedas": [elemetoAEliminar] } });
+        await model.updateMany({_id: objetoVerificacion.decodedToken.id}, { "ultimasBusquedas":[
+        user.ultimasBusquedas[indiceDeLaBusqueda],
+        user.ultimasBusquedas[0],
+        user.ultimasBusquedas[1],
+        user.ultimasBusquedas[2],
+        user.ultimasBusquedas[3],]});
+    }
+  }else{
+    await model.updateOne({ _id: objetoVerificacion.decodedToken.id }, { $push: { "ultimasBusquedas": { $each: [op.usuarios], $position: 0 } } });
+  }
+  
   
   res.json({ pagina: "/" + userPerfil.usuari })
 });
