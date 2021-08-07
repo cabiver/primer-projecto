@@ -355,14 +355,17 @@ Router.post("/buscar", async (req, res) => {
     let noExisteEsaBusqueda = true;
     let indiceDeLaBusqueda;
     let elemetoAEliminar;
+    let arrayConservador = []
     user.ultimasBusquedas.forEach((elemet,indice)=>{
-      
       if(elemet == op.usuarios){
         elemetoAEliminar = elemet;
         indiceDeLaBusqueda= indice;
         noExisteEsaBusqueda=false;
+      }else{
+        arrayConservador=[...arrayConservador,elemet];
       }
     });
+    
     if(noExisteEsaBusqueda){
       await model.updateMany({_id: objetoVerificacion.decodedToken.id }, { "ultimasBusquedas":[
         op.usuarios,
@@ -371,13 +374,12 @@ Router.post("/buscar", async (req, res) => {
         user.ultimasBusquedas[2],
         user.ultimasBusquedas[3],]});
     }else{
-        await model.updateMany({_id: objetoVerificacion.decodedToken.id}, { $pullAll: { "ultimasBusquedas": [elemetoAEliminar] } });
         await model.updateMany({_id: objetoVerificacion.decodedToken.id}, { "ultimasBusquedas":[
-        user.ultimasBusquedas[indiceDeLaBusqueda],
-        user.ultimasBusquedas[0],
-        user.ultimasBusquedas[1],
-        user.ultimasBusquedas[2],
-        user.ultimasBusquedas[3],]});
+        elemetoAEliminar,
+        arrayConservador[0],
+        arrayConservador[1],
+        arrayConservador[2],
+        arrayConservador[3],]});
     }
   }else{
     await model.updateOne({ _id: objetoVerificacion.decodedToken.id }, { $push: { "ultimasBusquedas": { $each: [op.usuarios], $position: 0 } } });
@@ -473,51 +475,127 @@ Router.post("/UltimosPost", async (req, res) => {
     return;
   }
 
-  let numeroPost = 5;
+  let numeroPost = 10;
   let postMandar = [];
   let arrayAmigos = op.amigosVisitados;
   let nuevoAmigosVisitados = [];
-  for (let i = 0; i <= user.amigos.length - 1 && numeroPost > 0; i++) {
-    let userAmigo = await model.findOne({ _id: user.amigos[i] });
-    let existeAmigo = false;
-    arrayAmigos.forEach(element => {
-      if (element.nombre == userAmigo.usuari) {
-        existeAmigo = true;
-        return;
-      }
-    });
+  console.log(arrayAmigos);
+  if(user.ultimasBusquedas.length >=5){
+    for (let i = 0; i <= user.ultimasBusquedas.length - 1 && numeroPost > 0; i++) {
+      let userAmigo = await model.findOne({ usuari: user.ultimasBusquedas[i]});
+      let existeAmigo = false;
+      arrayAmigos.forEach(el => {
+        if (el.nombre == userAmigo.usuari) {
+          existeAmigo = true;
+          return;
+        }
+      });
 
-    if (userAmigo) {
-      if (!existeAmigo) {
-        nuevoAmigosVisitados = [...nuevoAmigosVisitados, userAmigo.usuari];
-      }
+      if (userAmigo) {
+        if (!existeAmigo) {
+          nuevoAmigosVisitados = [...nuevoAmigosVisitados, userAmigo.usuari];
+          arrayAmigos=[...arrayAmigos, {nombre:userAmigo.usuari,contador:0}]
+        }
 
-      if (op.amigosVisitados.length == 0) {
-        postMandar = [...postMandar, {
-          nombre: userAmigo.usuari,
-          post: userAmigo.post.content[0],
-          description: userAmigo.post.description[0],
-          icon: userAmigo.icon,
-        }];
-      } else {
-        op.amigosVisitados.forEach(el => {
-
-          if (el.nombre == userAmigo.usuari) {
-            if (userAmigo.post.content[el.contador]) {
-              postMandar = [...postMandar, {
-                nombre: userAmigo.usuari,
-                post: userAmigo.post.content[el.contador],
-                description: userAmigo.post.description[el.contador],
-                icon: userAmigo.icon,
-              }]
+         
+          arrayAmigos.forEach((el , index) => {
+            if(el.nombre ==userAmigo.usuari){
+              if (userAmigo.post.content[el.contador]) {
+                postMandar = [...postMandar, {
+                  nombre: userAmigo.usuari,
+                  post: userAmigo.post.content[el.contador],
+                  description: userAmigo.post.description[el.contador],
+                  icon: userAmigo.icon,
+                }];
+                arrayAmigos[index].contador=arrayAmigos[index].contador+1;
+              }
             }
-          }
-        });
+            
+          });
+        
+      }
+      numeroPost--;
+    }
+    for (let i = 0; numeroPost > 0; numeroPost--) {
+      let userAmigo = await model.findOne({ _id: user.amigos[Math.floor(Math.random() * (user.amigos.length -1))] });
+      let existeAmigo = false;
+      arrayAmigos.forEach(el => {
+        if (el.nombre == userAmigo.usuari) {
+          existeAmigo = true;
+          return;
+        }
+      });
+      if (userAmigo) {
+        if (!existeAmigo) {
+          nuevoAmigosVisitados = [...nuevoAmigosVisitados, userAmigo.usuari];
+          arrayAmigos=[...arrayAmigos, {nombre:userAmigo.usuari,contador:0}]
+        }
+
+        
+          arrayAmigos.forEach((el,index) => {
+            if(el.nombre ==userAmigo.usuari){
+              if (userAmigo.post.content[el.contador]) {
+                postMandar = [...postMandar, {
+                  nombre: userAmigo.usuari,
+                  post: userAmigo.post.content[el.contador],
+                  description: userAmigo.post.description[el.contador],
+                  icon: userAmigo.icon,
+                }];
+                arrayAmigos[index].contador=arrayAmigos[index].contador+1;
+              }
+            }
+          });
+        
+
+      }
+      
+    }
+      
+  }else{
+    for (let i = 0; i <= user.amigos.length - 1 && numeroPost > 0; i++) {
+      let userAmigo = await model.findOne({ _id: user.amigos[i] });
+      let existeAmigo = false;
+      arrayAmigos.forEach((element,indice) => {
+        if (element.nombre == userAmigo.usuari) {
+          existeAmigo = true;
+          arrayAmigos[indice].contador=arrayAmigos[indice].contador++;
+          return;
+        }
+      });
+
+      if (userAmigo) {
+        if (!existeAmigo) {
+          nuevoAmigosVisitados = [...nuevoAmigosVisitados, userAmigo.usuari];
+        }
+
+        if (op.amigosVisitados.length == 0) {
+          postMandar = [...postMandar, {
+            nombre: userAmigo.usuari,
+            post: userAmigo.post.content[0],
+            description: userAmigo.post.description[0],
+            icon: userAmigo.icon,
+          }];
+        } else {
+          op.amigosVisitados.forEach(el => {
+
+            if (el.nombre == userAmigo.usuari) {
+              if (userAmigo.post.content[el.contador]) {
+                postMandar = [...postMandar, {
+                  nombre: userAmigo.usuari,
+                  post: userAmigo.post.content[el.contador],
+                  description: userAmigo.post.description[el.contador],
+                  icon: userAmigo.icon,
+                }]
+              }
+            }
+          });
+        }
       }
       numeroPost--;
     }
   }
-  res.status(200).json({ amigos: postMandar, nuevoAmigosVisitados })
+  console.log(arrayAmigos);
+  res.status(200).json({ amigos: postMandar, nuevoAmigosVisitados,arrayAmigos })
 });
 Router.post("/:id", async (req, res) => {
   cookie = req.headers.cookie;

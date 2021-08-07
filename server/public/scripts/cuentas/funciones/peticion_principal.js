@@ -120,16 +120,7 @@ const cal=async ()=>{
         infoVisitados,
     });
     console.log(respuesta);
-    respuesta.data.amigos.forEach(element =>{
-        amigosVisitados.forEach(el=>{
-            if(element.nombre == el.nombre){
-                el.contador++;
-            }
-        })
-    });
-    respuesta.data.nuevoAmigosVisitados.forEach(element =>{
-        amigosVisitados=[...amigosVisitados, {nombre:element,contador:1}]
-    });
+    amigosVisitados =respuesta.data.arrayAmigos;
 
     
     if(respuesta.statusText == "OK"){

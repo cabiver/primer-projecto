@@ -96,10 +96,8 @@ iconoPagina.addEventListener("click", async (e) => {
 });
 fromBarraDeBusqueda.addEventListener("click", async e => {
     const formdata = new FormData(fromBarraDeBusqueda);
-    console.log("hola")
     if (formdata.get("usuarios") == "") {
         let respuesta = await axios.post("/ultimaBusqueda", formdata);
-        console.log(respuesta)
         if (respuesta.statusText == "OK") {
             while (divRecomiendaciones.firstChild) {
                 divRecomiendaciones.removeChild(divRecomiendaciones.firstChild);
@@ -114,10 +112,6 @@ fromBarraDeBusqueda.addEventListener("click", async e => {
             redirecionarClick();
         } else {
             console.log(respuesta);
-        }
-    } else {
-        while (divRecomiendaciones.firstChild) {
-            divRecomiendaciones.removeChild(divRecomiendaciones.firstChild);
         }
     }
 
@@ -166,6 +160,7 @@ fromBarraDeBusqueda.addEventListener("submit", async e => {
             }
         }
     } else {
+        console.log(divRecomiendaciones)
         let nombreSeleccionado = divRecomiendaciones.childNodes[indiceDeBusqueda].textContent;
         let formdata = new FormData();
         formdata.set("usuarios", nombreSeleccionado);
