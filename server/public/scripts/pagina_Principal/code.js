@@ -39,7 +39,7 @@ send.addEventListener("click",async (e)=>{
         let token = respuesta.data.token;
         if(autorizar) {
             document.cookie = "userName="+token;
-            window.location.assign("/"+usuariName.value);
+            window.location.assign("/");
         }else{
             resultado.innerHTML = mensaje;
         }
