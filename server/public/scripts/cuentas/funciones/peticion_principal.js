@@ -1,8 +1,8 @@
 let canload=true;
 let limit = false;
-let contador=0;
 let amigosVisitados=[];
 let infoVisitados ={};
+let intentos = 0;
 const load = document.getElementById("cuentas.js-detectar_cuando_es_observado");
 
 
@@ -72,7 +72,6 @@ function elementos(p){
     let op =  p.data.amigos;
     if(p != undefined){
         op.forEach((element, indice) => {
-            // console.log(element);
             if(!element.post){
                 return;
             }
@@ -93,11 +92,7 @@ function elementos(p){
                 }
                
         });
-        if(op.length <3){
-            createMorePhoto()
-        }
         actualizarDelete()
-        contador+=3;
         setTimeout(() => {
             canload=true;
         }, 1500);
@@ -115,7 +110,6 @@ const cal=async ()=>{
     }
     canload = false;
     let respuesta = await axios.post("/UltimosPost",{
-        cont:contador,
         amigosVisitados,
         infoVisitados,
     });
@@ -125,8 +119,11 @@ const cal=async ()=>{
     
     if(respuesta.statusText == "OK"){
         if(respuesta.data.amigos.length === 0){
-            createMorePhoto();
-            return;
+            intentos++;
+            if(intentos >10){
+                createMorePhoto();
+                return;
+            }
         }
         elementos(respuesta);
     }else{
