@@ -83,7 +83,7 @@ register.addEventListener("click",async (e)=>{
             if(respuesta.data.metodo){
                   document.cookie= "userName="+respuesta.data.token;
                   let urlNombre= respuesta.data.nombre.replaceAll(" ","%20")
-                  window.location.assign("/");
+                  window.location.assign("/"+urlNombre);
               }
             }else{
                 console.log(respuesta);

@@ -176,20 +176,15 @@ Router.post("/cuentas/:id", async (req, res) => {
   if (!user || req.params.id == "") {
     return res.status(404).send(pages + "/html/error.html")
   }
-  arrayPost = user.post.content.slice(op.cont, op.cont + 3);
-  arrayDescription = user.post.description.slice(op.cont, op.cont + 3);
+  arrayPost = user.post.slice(op.cont, op.cont + 3);
   if (arrayPost == null) {
     res.send(JSON.stringify({ post: null }));
     return;
   }
-  let primer = new model({
-    usuari: user.usuari,
-    post: {
+  let primer = {
       content: arrayPost,
-      description: arrayDescription
-    }
-  });
-  res.send(JSON.stringify(primer.post));
+  };
+  res.send(JSON.stringify(primer));
   res.end();
 });
 Router.post("/imagenes/:id", async (req, res) => {
@@ -226,8 +221,7 @@ Router.post("/imagenes/:id", async (req, res) => {
       return res.status(402);
     }
   });
-  await model.updateOne({ usuari: user.usuari }, { $push: { "post.content": { $each: [postImg], $position: 0 } } })
-  await model.updateOne({ usuari: user.usuari }, { $push: { "post.description": { $each: [desc], $position: 0 } } })
+  await model.updateOne({ usuari: user.usuari }, { $push: { post: { $each: [{postImg,desc}], $position: 0 } } })
   res.status(200).send("all great");
 });
 Router.post("/perfilIcon/:id", async (req, res) => {
@@ -414,21 +408,9 @@ Router.post("/deleteimagen/:id", async (req, res) => {
     res.status(404).send("usted no esta autorizado");
     return;
   }
-  let description = user.post.description;
-  let content = user.post.content;
-  let deleteDescription;
-  let deleteContent;
-
-  content.forEach((element, indice) => {
-    if (element == op.parametros) {
-      deleteDescription = description[indice];
-      deleteContent = element;
-    }
-  });
-
+  
   fs.unlinkSync(path.join(pages, op.parametros));
-  await model.updateMany({ usuari: user.usuari }, { $pullAll: { "post.content": [deleteContent] } });
-  await model.updateMany({ usuari: user.usuari }, { $pullAll: { "post.description": [deleteDescription] } });
+  await model.updateMany({ usuari: user.usuari }, { $pull: { "post": {postImg: op.parametros} } });
   res.status(200).send("all great");
 });
 Router.post("/recomendacion", async (req, res) => {
@@ -485,11 +467,11 @@ Router.post("/UltimosPost", async (req, res) => {
 
       arrayAmigos.forEach((el, index) => {
         if (el.nombre == userAmigo.usuari) {
-          if (userAmigo.post.content[el.contador]) {
+          if (userAmigo.post[el.contador]) {
             postMandar = [...postMandar, {
               nombre: userAmigo.usuari,
-              post: userAmigo.post.content[el.contador],
-              description: userAmigo.post.description[el.contador],
+              post: userAmigo.post[el.contador],
+              // description: userAmigo.post.description[el.contador],
               icon: userAmigo.icon,
             }];
             arrayAmigos[index].contador = arrayAmigos[index].contador + 1;
@@ -519,11 +501,11 @@ Router.post("/UltimosPost", async (req, res) => {
 
       arrayAmigos.forEach((el, index) => {
         if (el.nombre == userAmigo.usuari) {
-          if (userAmigo.post.content[el.contador]) {
+          if (userAmigo.post[el.contador]) {
             postMandar = [...postMandar, {
               nombre: userAmigo.usuari,
-              post: userAmigo.post.content[el.contador],
-              description: userAmigo.post.description[el.contador],
+              post: userAmigo.post[el.contador],
+              // description: userAmigo.post.description[el.contador],
               icon: userAmigo.icon,
             }];
             arrayAmigos[index].contador = arrayAmigos[index].contador + 1;

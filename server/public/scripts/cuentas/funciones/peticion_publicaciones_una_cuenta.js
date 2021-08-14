@@ -7,7 +7,7 @@ const load = document.getElementById("cuentas.js-detectar_cuando_es_observado");
 
 
 function createImgVideo(element,complement,ast,indice) {
-    let descrip = complement[indice].split("█");
+    let descrip = complement.split("█");
     let nars =document.createElement("div");
     let content =document.createElement("div");
     ast.setAttribute("src",element);
@@ -50,22 +50,22 @@ function createMorePhoto(){
 }
 function elementos(p){
     let op =  p.data.content;
-    let complement = p.data.description;
     if(p != undefined){
-        op.forEach((element, indice) => {
-                let extencion = element.split(".");
+        op.forEach(element => {
+            
+                let extencion = element.postImg.split(".");
                 if(extencion[(extencion.length-1)]=="mp4" ||extencion[(extencion.length-1)]=="avi"){
                     let ast = document.createElement("video");
                     ast.setAttribute("controls", "")
-                    createImgVideo(element,complement,ast,indice)
+                    createImgVideo(element.postImg,element.desc,ast)
                 }else{
                     if(extencion[(extencion.length-1)]=="mp3" ||extencion[(extencion.length-1)]=="ogg"||extencion[(extencion.length-1)]=="wav"){
                         let ast = document.createElement("audio");
                         ast.setAttribute("controls", "");
-                        createImgVideo(element,complement,ast,indice)
+                        createImgVideo(element.postImg,element,desc,ast)
                     }else{
                         let ast = document.createElement("img");
-                        createImgVideo(element,complement,ast,indice)
+                        createImgVideo(element.postImg,element.desc,ast)
                     }
                 }
                
@@ -91,7 +91,7 @@ const cal = async ()=>{
     });
     console.log(respuesta)
     if(respuesta.statusText == "OK"){
-        if(respuesta.data.content.length === 0){
+        if(respuesta.data.length === 0){
             createMorePhoto();
             return;
         }

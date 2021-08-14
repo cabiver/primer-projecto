@@ -7,14 +7,14 @@ const load = document.getElementById("cuentas.js-detectar_cuando_es_observado");
 
 
 
-function createImgVideo(element,ast,indice) {
-    // console.log(element,ast,indice)
-    let descrip = element.description.split("█");
+function createImgVideo(element,ast) {
+    console.log(element.post.postImg)
+    let descrip = element.post.desc.split("█");
     
 
     let nars =document.createElement("div");
     let content =document.createElement("div");
-    ast.setAttribute("src",element.post);
+    ast.setAttribute("src",element.post.postImg);
     ast.setAttribute("class", " precentacion");
     let descr =  document.createElement("p");
     descr.setAttribute("class", " fuente");
@@ -75,19 +75,19 @@ function elementos(p){
             if(!element.post){
                 return;
             }
-                let extencion = element.post.split(".");
+                let extencion = element.post.desc.split(".");
                 if(extencion[(extencion.length-1)]=="mp4" ||extencion[(extencion.length-1)]=="avi"){
                     let ast = document.createElement("video");
                     ast.setAttribute("controls", "")
-                    createImgVideo(element,ast,indice)
+                    createImgVideo(element,ast)
                 }else{
                     if(extencion[(extencion.length-1)]=="mp3" ||extencion[(extencion.length-1)]=="ogg"||extencion[(extencion.length-1)]=="wav"){
                         let ast = document.createElement("audio");
                         ast.setAttribute("controls", "");
-                        createImgVideo(element,ast,indice)
+                        createImgVideo(element,ast)
                     }else{
                         let ast = document.createElement("img");
-                        createImgVideo(element,ast,indice)
+                        createImgVideo(element,ast)
                     }
                 }
                
