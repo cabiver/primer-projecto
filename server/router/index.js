@@ -400,12 +400,8 @@ Router.post("/deleteimagen/:id", async (req, res) => {
     return;
   }
   const user = await model.findOne({ usuari: req.params.id });
-  if (!user) {
+  if (!user || user._id != objetoVerificacion.decodedToken.id) {
     res.status(404).send("no se ah encontrado el usuario");
-    return;
-  }
-  if (user._id != objetoVerificacion.decodedToken.id) {
-    res.status(404).send("usted no esta autorizado");
     return;
   }
   
@@ -440,7 +436,7 @@ Router.post("/UltimosPost", async (req, res) => {
     return;
   }
   if (!op.amigosVisitados) {
-    res.status(404).send("no se ah encontrado el usuario")
+    res.status(404).send("deja de meterte con mi codigo")
     return;
   }
 
@@ -463,15 +459,12 @@ Router.post("/UltimosPost", async (req, res) => {
         nuevoAmigosVisitados = [...nuevoAmigosVisitados, userAmigo.usuari];
         arrayAmigos = [...arrayAmigos, { nombre: userAmigo.usuari, contador: 0 }]
       }
-
-
       arrayAmigos.forEach((el, index) => {
         if (el.nombre == userAmigo.usuari) {
           if (userAmigo.post[el.contador]) {
             postMandar = [...postMandar, {
               nombre: userAmigo.usuari,
               post: userAmigo.post[el.contador],
-              // description: userAmigo.post.description[el.contador],
               icon: userAmigo.icon,
             }];
             arrayAmigos[index].contador = arrayAmigos[index].contador + 1;
@@ -484,7 +477,9 @@ Router.post("/UltimosPost", async (req, res) => {
     numeroPost--;
   }
   for (let i = 0; numeroPost > 0; numeroPost--) {
-    let userAmigo = await model.findOne({ _id: user.amigos[Math.floor(Math.random() * (user.amigos.length - 1))] });
+    
+    let random = Math.round(Math.random() * (user.amigos.length - 1));
+    let userAmigo = await model.findOne({ _id: user.amigos[random] });
     let existeAmigo = false;
     arrayAmigos.forEach(el => {
       if (el.nombre == userAmigo.usuari) {
@@ -497,27 +492,20 @@ Router.post("/UltimosPost", async (req, res) => {
         nuevoAmigosVisitados = [...nuevoAmigosVisitados, userAmigo.usuari];
         arrayAmigos = [...arrayAmigos, { nombre: userAmigo.usuari, contador: 0 }]
       }
-
-
       arrayAmigos.forEach((el, index) => {
         if (el.nombre == userAmigo.usuari) {
           if (userAmigo.post[el.contador]) {
             postMandar = [...postMandar, {
               nombre: userAmigo.usuari,
               post: userAmigo.post[el.contador],
-              // description: userAmigo.post.description[el.contador],
               icon: userAmigo.icon,
             }];
             arrayAmigos[index].contador = arrayAmigos[index].contador + 1;
           }
         }
       });
-
-
     }
-
   }
-  console.log(arrayAmigos);
   res.status(200).json({ amigos: postMandar, nuevoAmigosVisitados, arrayAmigos })
 });
 Router.post("/:id", async (req, res) => {

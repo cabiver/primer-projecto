@@ -8,10 +8,7 @@ const load = document.getElementById("cuentas.js-detectar_cuando_es_observado");
 
 
 function createImgVideo(element,ast) {
-    console.log(element.post.postImg)
     let descrip = element.post.desc.split("█");
-    
-
     let nars =document.createElement("div");
     let content =document.createElement("div");
     ast.setAttribute("src",element.post.postImg);
