@@ -1,115 +1,125 @@
-.barraDeBusqueda{
-    min-width: 30px;
-    height:-webkit-fill-available;
-    display: flex;
-    flex-grow:1;
-    justify-content: center;
-    align-items: center;
+.barraDeBusqueda {
+  min-width: 30px;
+  height: -webkit-fill-available;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
 }
 
-.div-icono-de-usuario{
-    padding: 2px 6px 2px 14px;
-    height: 100%;
-    border-radius: 30px;
-    height: -webkit-fill-available;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-}
-.iconPerfil{
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    height: 85%;
-    object-fit: cover;
-    overflow:hidden;
-    border-radius: 50%;
-    border: 3px solid var(--colorSegundario-mas-oscuro);
-}
-.divBarraDeBusqueda{
-    flex-grow: 1;
-}
-.div-perfil-tuyo{
-    height: inherit;
-}
-.fit-height{
-    padding:0;
-    height:100%;
-    position: absolute;
-    z-index:200;
-    min-width:fit-content;
-    display: flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    background: none;
-    border:none;
-}
-.seleccionado{
-    background-image: linear-gradient(to top,var(--gris-claro-opaco), var(--gris-hiper-claro-opacity));
-}
-.normal{
-    width: fit-content;
-    border-radius:6px;
-    padding: 3px;
-}
-.normal:hover{
-    background-color:rgba(var(--blanco) , 0.3);
-    
-}
-.divRecomiendaciones{
-    position:absolute;
-    display: flex;
-    align-items: center;
-    flex-direction:column;
-    background-color:var(--colorPrincipal-claro);
-    text-align: center;
-}
-.icono-lupa{
-    object-fit:cover;
-    border-radius: 10%;
-    width:inherit;
+.div-icono-de-usuario {
+  padding: 2px 6px 2px 14px;
+  height: 100%;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.icono-lupa:hover{
-    background-color: rgba(var(--blanco),0.13) ;
-    
+.iconPerfil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85%;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 3px solid var(--colorSegundario-mas-oscuro);
 }
-.div-dentro-de-barra-de-busqueda{
 
-    padding: 0;
-    width:100%;
-    height: -webkit-fill-available;
-    background-color:rgba(var(--gris-principal-rbga),.8);
-    border-radius:50px;
-    border: none;
-    text-align:center;
+.divBarraDeBusqueda {
+  flex-grow: 1;
 }
-.inputs-text-sin-mamadas:focus{
-    outline: none;
-    
+
+.div-perfil-tuyo {
+  height: inherit;
 }
-.icono{
-    height: inherit;
-    z-index: 10;
-    object-fit:cover;
-    background-color: #0003;   
-    border-radius: 50%;
+
+.fit-height {
+  padding: 0;
+  height: 100%;
+  position: absolute;
+  z-index: 200;
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: none;
+  border: none;
 }
-#iconoDeLaPagina{
-    border-radius:50%;
-    height: 100%;
-    background-color: rgb(104, 88, 204);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+
+.seleccionado {
+  background-image: linear-gradient(to top, var(--gris-claro-opaco), var(--gris-hiper-claro-opacity));
 }
-.separadorDeCabecera{
-    margin:0 8px 0 8px;
+
+.normal {
+  width: fit-content;
+  border-radius: 6px;
+  padding: 3px;
 }
-@media screen and (min-width:900px){
-    .div-dentro-de-barra-de-busqueda{
-        width:80%;
-    }
+
+.normal:hover {
+  background-color: rgba(var(--blanco), 0.3);
+}
+
+.divRecomiendaciones {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--colorPrincipal-claro);
+  text-align: center;
+}
+
+.icono-lupa {
+  object-fit: cover;
+  border-radius: 10%;
+  width: inherit;
+}
+
+.icono-lupa:hover {
+  background-color: rgba(var(--blanco), 0.13);
+}
+
+.div-dentro-de-barra-de-busqueda {
+  padding: 0;
+  width: 100%;
+  height: -webkit-fill-available;
+  background-color: rgba(var(--gris-principal-rbga), 0.8);
+  border-radius: 50px;
+  border: none;
+  text-align: center;
+}
+
+.inputs-text-sin-mamadas:focus {
+  outline: none;
+}
+
+.icono {
+  height: inherit;
+  z-index: 10;
+  object-fit: cover;
+  background-color: #0003;
+  border-radius: 50%;
+}
+
+#iconoDeLaPagina {
+  border-radius: 50%;
+  height: 100%;
+  background-color: rgb(104, 88, 204);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.separadorDeCabecera {
+  margin: 0 8px 0 8px;
+}
+
+@media screen and (min-width: 900px) {
+  .div-dentro-de-barra-de-busqueda {
+    width: 80%;
+  }
 }

@@ -1,9 +1,11 @@
-.FLEXBOX{
-    display: flex;
+.FLEXBOX {
+  display: flex;
 }
-.JUSTIFY-CONTENT{
-    justify-content:center;
+
+.JUSTIFY-CONTENT {
+  justify-content: center;
 }
-.ALIGN-ITEMS{
-    align-items:center;
+
+.ALIGN-ITEMS {
+  align-items: center;
 }

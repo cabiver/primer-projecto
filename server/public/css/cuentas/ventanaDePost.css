@@ -1,17 +1,19 @@
-.postPaginas{
-    position: fixed;
-    width: 100%;
-    background-color: aqua;
-    z-index: 500;
-    display: flex;
+.postPaginas {
+  position: fixed;
+  width: 100%;
+  background-color: aqua;
+  z-index: 500;
+  display: flex;
 }
-#contenido-del-post{
-    min-width: 230px;
-    flex-grow: 1;
-    background-color: yellow;
+
+#contenido-del-post {
+  min-width: 230px;
+  flex-grow: 1;
+  background-color: yellow;
 }
-#comentarios-del-post{
-    flex-grow: 0;
-    width: 200px;
-    background-color: red;
+
+#comentarios-del-post {
+  flex-grow: 0;
+  width: 200px;
+  background-color: red;
 }

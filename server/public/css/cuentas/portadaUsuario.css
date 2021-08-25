@@ -1,100 +1,111 @@
-.containerUser{
-    margin-bottom: 50px;
-}
-.background-height{
-    height:50vh;
-}
-.background{
-    display: flex;
-    justify-content:center;
-    width:100%;
-    object-fit: cover;
-}
-.botton_agregar_persona{
-    display: flex;
-    color:var(--blanco-no-tan-brilloso);
-    align-items:center;
-    background-color: var(--black);
-    height:50%;
-    min-width: 30px;
-    border: 2px solid var(--black);
-    border-radius: 12px;
-}
-.botton_agregar_persona:hover{
-    background-color: rgb(var(--black-rgb),.7) ;
-}
-.difuminado-background{
-    position: absolute;
-    z-index: -200;
-    width: 100%;
-}
-.difuminado-background img{
-width: inherit;
-height: inherit;
-filter: blur(5px);
+.containerUser {
+  margin-bottom: 50px;
 }
 
-.separatorWidth{
-    position: absolute;
-    z-index: 10;
+.background-height {
+  height: 50vh;
 }
 
-.plus-camara-div{
-    position:absolute;
-    top: -2px;
-    right: 0;
-    background-color: #FFF;
-    border-radius: 50%;
-    border: 1px solid #FFFc;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    height:12px;
-    width:12px;
+.background {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  object-fit: cover;
 }
-.plus-camara-div img{
-    width: inherit;
-    height: inherit;
-    object-fit: cover;
-}
-.imagen-de-camara{
-    width: 23px;
-    height: 23px;
 
+.botton_agregar_persona {
+  display: flex;
+  color: var(--blanco-no-tan-brilloso);
+  align-items: center;
+  background-color: var(--black);
+  height: 50%;
+  min-width: 30px;
+  border: 2px solid var(--black);
+  border-radius: 12px;
 }
-.div-image-background{
-    width: 80%;
-    height: inherit;
-    display: flex;
-    justify-content:center;
+
+.botton_agregar_persona:hover {
+  background-color: rgb(var(--black-rgb), 0.7);
 }
-.background-content-responsive-imagen{
-    height: inherit;
-    object-fit: cover;
+
+.difuminado-background {
+  position: absolute;
+  z-index: -200;
+  width: 100%;
 }
-.background-content-responsive-video{
-    height: inherit;
-    object-fit: contain;
+
+.difuminado-background img {
+  width: inherit;
+  height: inherit;
+  filter: blur(5px);
 }
-.divBorderCamara{ 
-    border:3px solid var(--blanco-poca-opacidad);
-    border-radius:50%;
-    display: flex;
-    background-color: var(--gris-super-claro-opacity);
-    overflow: hidden;
-    height: fit-content;
-    width:fit-content;
+
+.separatorWidth {
+  position: absolute;
+  z-index: 10;
 }
-.camara-background{  
-    width: 100%;
-    height: 100%;
-    
-    padding: 5px;
+
+.plus-camara-div {
+  position: absolute;
+  top: -2px;
+  right: 0;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #fffc;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 12px;
+  width: 12px;
 }
-.feedCamara:hover{
-    
-    width: fit-content;
-    height: fit-content;
-    background-color: var(--gris-claro-opaco);
-    padding: 5px;
+
+.plus-camara-div img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+}
+
+.imagen-de-camara {
+  width: 23px;
+  height: 23px;
+}
+
+.div-image-background {
+  width: 80%;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+}
+
+.background-content-responsive-imagen {
+  height: inherit;
+  object-fit: cover;
+}
+
+.background-content-responsive-video {
+  height: inherit;
+  object-fit: contain;
+}
+
+.divBorderCamara {
+  border: 3px solid var(--blanco-poca-opacidad);
+  border-radius: 50%;
+  display: flex;
+  background-color: var(--gris-super-claro-opacity);
+  overflow: hidden;
+  height: fit-content;
+  width: fit-content;
+}
+
+.camara-background {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+
+.feedCamara:hover {
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--gris-claro-opaco);
+  padding: 5px;
 }

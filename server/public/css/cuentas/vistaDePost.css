@@ -1,78 +1,87 @@
-.nombre-usuario{
-    display: flex;
-    flex-direction:column;
-    align-items: center; 
-    margin-right: 3px;
-}
-.users-flex{
-    display: flex;
-    align-items: center;
-}
-.icono-post{
-    height:60px;
-    border-radius:50%;
-}
-.div-icono-fecha{
-    display: flex;
-    
-}
-.div-para-marco{
-    display: flex;
-    flex-direction: column;
-    min-height: 60px;
-    padding: 3vh 6px;
-    width: 80%;
-    background-image: linear-gradient(to bottom left, var(--black-trancition), var(--black));
-    color:var(--blanco-no-tan-brilloso);
-    margin:25px 0 25px 0;
-    border-radius:12px;
-    box-shadow: 10px 5px 5px black;    
-}
-.mar{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
-.precentacion{
-    border-radius: 20px;
-    display: block;
-    padding:6px 0 6px 0;
-    max-height:550px;
-    max-width: 70%;
-}
-.marco{
-    width: 100%;
-    object-fit: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.fecha-post{
-    min-width:fit-content;
-    flex: 0;
-    margin:0;
-}
-.flex-para-contenido{
-    display:flex;
-    align-items:center;
-}
-.flexGrow{
-    flex:5;
+.nombre-usuario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 3px;
 }
 
-.deleteX{
-    flex: 0; 
-    border-radius:50%;
-    object-fit:cover;
-    height:3vh;
+.users-flex {
+  display: flex;
+  align-items: center;
 }
-.deleteX:hover{
-    background:var(--blanco-poca-opacidad);
+
+.icono-post {
+  height: 60px;
+  border-radius: 50%;
 }
-.fuente{
-    font-family: Tahoma, sans-serif;
-    font-stretch: semi-condensed;
-    max-width: 470px;
-    
+
+.div-icono-fecha {
+  display: flex;
+}
+
+.div-para-marco {
+  display: flex;
+  flex-direction: column;
+  min-height: 60px;
+  padding: 3vh 6px;
+  width: 80%;
+  background-image: linear-gradient(to bottom left, var(--black-trancition), var(--black));
+  color: var(--blanco-no-tan-brilloso);
+  margin: 25px 0 25px 0;
+  border-radius: 12px;
+  box-shadow: 10px 5px 5px black;
+}
+
+.mar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.precentacion {
+  border-radius: 20px;
+  display: block;
+  padding: 6px 0 6px 0;
+  max-height: 550px;
+  max-width: 70%;
+}
+
+.marco {
+  width: 100%;
+  object-fit: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fecha-post {
+  min-width: fit-content;
+  flex: 0;
+  margin: 0;
+}
+
+.flex-para-contenido {
+  display: flex;
+  align-items: center;
+}
+
+.flexGrow {
+  flex: 5;
+}
+
+.deleteX {
+  flex: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  height: 3vh;
+}
+
+.deleteX:hover {
+  background: var(--blanco-poca-opacidad);
+}
+
+.fuente {
+  font-family: Tahoma, sans-serif;
+  font-stretch: semi-condensed;
+  max-width: 470px;
 }

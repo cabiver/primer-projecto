@@ -1,89 +1,105 @@
-@media screen  and (min-width:450px)  and (max-width:780px){
-    .icono-post{
-        height:35px;
-    }
-    .render-de-video{
-        max-width: 70%;
-    }
-    .load-imge{
-        display:none;
-    }
-    .mobile{
-        display: block;
-    }
-    #loadVideoMobile{
-        display:inline-block;
-    }
-    .pc{
-        max-width:0px;
-    }
-    
-    .div-image-background{
-        width: 85%;
-    }
-    .FLEXperfilUser{
-        height:70px
-    }
-    .imagen-de-camara{
-        width: 18px;
-        height: 18px;
-    
-    }
-    .background-height{
-        height:250px;
-       
-    }
-    .precentacion{
-        
-    max-width: 90%;
-}
-}
-@media screen and (max-width: 450px) {
-    .icono-post{
-        height:35px;
-    }
-    .FLEXperfilUser{
-        height: 50px;
-    }
-    .div-image-background{
-        width:inherit;
-    }
-    .background-height{
-        height:200px;
-            
-    }
-    .precentacion{
-        max-width: 100%;
-    }
-    .imagen-de-camara{
-        width: 14px;
-        height: 14px;
-        
-    }
-    .cabecera{
-        height: 25px;
-    }
+@media screen  and (min-width: 450px)  and (max-width: 780px) {
+  .icono-post {
+    height: 35px;
+  }
 
-    .render-de-video{
-        max-width: 70%;
-    }
-    .load-imge{
-        display:none;
-    }
-    #loadVideoMobile{
-        display:inline-block;
-    }
-    .mobile{
-        display: block;
-    }
-    .pc{
-        max-width:0px;
-    }
+  .render-de-video {
+    max-width: 70%;
+  }
+
+  .load-imge {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  #loadVideoMobile {
+    display: inline-block;
+  }
+
+  .pc {
+    max-width: 0;
+  }
+
+  .div-image-background {
+    width: 85%;
+  }
+
+  .FLEXperfilUser {
+    height: 70px;
+  }
+
+  .imagen-de-camara {
+    width: 18px;
+    height: 18px;
+  }
+
+  .background-height {
+    height: 250px;
+  }
+
+  .precentacion {
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .icono-post {
+    height: 35px;
+  }
+
+  .FLEXperfilUser {
+    height: 50px;
+  }
+
+  .div-image-background {
+    width: inherit;
+  }
+
+  .background-height {
+    height: 200px;
+  }
+
+  .precentacion {
+    max-width: 100%;
+  }
+
+  .imagen-de-camara {
+    width: 14px;
+    height: 14px;
+  }
+
+  .cabecera {
+    height: 25px;
+  }
+
+  .render-de-video {
+    max-width: 70%;
+  }
+
+  .load-imge {
+    display: none;
+  }
+
+  #loadVideoMobile {
+    display: inline-block;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .pc {
+    max-width: 0;
+  }
 }
 
 @media screen and (min-width: 1050px) {
-    *{font-size: 30px}
+  * { font-size: 30px; }
 }
+
 @media screen and (min-width: 1650px) {
-    *{font-size: 50px}
+  * { font-size: 50px; }
 }
