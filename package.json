@@ -26,6 +26,7 @@
   "devDependencies": {
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
     "@babel/preset-env": "^7.15.0",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
@@ -37,8 +38,8 @@
     "stylelint-config-standard": "^22.0.0"
   },
   "scripts": {
-    "start": "npx nodemon server/index.js",
-    "build": "babel server -d build",
+    "start": "npx nodemon --exec babel-node server/index.js",
+    "build": "npx babel server -d build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

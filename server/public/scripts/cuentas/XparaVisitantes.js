@@ -1,5 +1,5 @@
-"use strict";
-function createX(element){
-    let divDelete = document.createElement("div");
-    return divDelete;
+'use strict'
+function createX (element) {
+  const divDelete = document.createElement('div')
+  return divDelete
 }
