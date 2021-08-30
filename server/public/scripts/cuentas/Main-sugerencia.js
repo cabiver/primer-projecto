@@ -1,4 +1,5 @@
 'use strict'
+
 let indiceDeBusqueda = -1
 let canDelete = true
 let navegacion = false
@@ -28,11 +29,6 @@ const divRecomiendaciones = document.getElementById('responsive_cuentas.js cuent
 const marginSeparadorHeader = document.getElementById('responsive_pagina_recomendacion.js-separador_para_el_header')
 const iconoPagina = document.getElementById('responsive_cuentas.js cuentas.js-calcular_distancia_y_esperar_click')
 const cabecera = document.getElementById('responsive_cuentas.js-calcular_y_asignar_width_a_la_cabecera_y_detectar_click')
-
-// const containerCamara = document.getElementById('responsive_usercuentas.js-para_posicionar_la_camara_del_background')
-// const divBorderCamara = document.getElementById('responsive_usercuentas.js-comparador_de_tamaño_para_posicionarlo')
-// const imageIcono = document.getElementById('responsive_usercuentas.js-operador_para_posicionar_la_camara-icono')
-// const divBorderCamaraIcono = document.getElementById('divBorderCamaraIcono')
 
 window.addEventListener('load', e => {
   cabecera.style.width = `${document.body.offsetWidth}px`
@@ -75,7 +71,6 @@ function actualizarDelete () {
         canDelete = false
         const formdata = new FormData()
         formdata.set('parametros', e.target.attributes.referen.nodeValue)
-
         const element = await axios.post('/deleteimagen' + location.pathname, formdata)
         if (element.statusText === 'OK') {
           window.location.reload()

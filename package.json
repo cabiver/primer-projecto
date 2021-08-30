@@ -39,6 +39,7 @@
   },
   "scripts": {
     "start": "npx nodemon --exec babel-node server/index.js",
+    "lint": "eslint .",
     "build": "npx babel server -d build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

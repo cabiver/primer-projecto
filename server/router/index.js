@@ -26,6 +26,13 @@ function verificacion (cookie) {
     return { metodo: true, decodedToken }
   }
 }
+function compararID (userID, cookieID) {
+  if (`${userID}` !== `${cookieID}`) {
+    return true
+  } else {
+    return false
+  }
+}
 Router.get('/', (req, res) => {
   const cookie = req.headers.cookie
   if (!cookie) {
@@ -198,12 +205,12 @@ Router.post('/imagenes/:id', async (req, res) => {
   }
   const imagen = req.files.image
   const user = await ModelUser.findOne({ usuari: req.params.id })
-  if (user._id !== objetoVerificacion.decodedToken.id) {
-    res.status(400).json({ mesage: 'usted no tiene permitido cambiar ni agregar nada a esta cuenta' })
-    return
-  }
   if (!user) {
     res.status(404).send('no se ah encontrado el usuario')
+    return
+  }
+  if (compararID(user._id, objetoVerificacion.decodedToken.id)) {
+    res.status(401).json({ mesage: 'usted no tiene permitido cambiar ni agregar nada a esta cuenta' })
     return
   }
   const desc = Date() + '█ ' + req.body.description
@@ -234,15 +241,8 @@ Router.post('/perfilIcon/:id', async (req, res) => {
     return
   }
   const user = await ModelUser.findOne({ usuari: req.params.id })
-  if (!user || user._id !== objetoVerificacion.decodedToken.id) {
-    res.status(404).send('no se ah encontrado el usuario')
-    return
-  }
-  const jsoncookie = cookieNPM.parse(cookie)
-  const token = jsoncookie.userName
-  const decodedToken = jwt.verify(token, youKnow)
-  if (user._id !== decodedToken.id) {
-    res.status(400).json({ mesage: 'usted no tiene permitido cambiar ni agregar nada a esta cuenta' })
+  if (compararID(user._id, objetoVerificacion.decodedToken.id)) {
+    res.status(401).json({ mesage: 'usted no tiene permitido cambiar ni agregar nada a esta cuenta' })
     return
   }
   const imagen = req.files.image
@@ -278,8 +278,8 @@ Router.post('/background/:id', async (req, res) => {
     res.status(404).send('no se ah encontrado el usuario')
     return
   }
-  if (user._id !== objetoVerificacion.decodedToken.id) {
-    res.status(400).json({ mesage: 'usted no tiene permitido cambiar ni agregar nada a esta cuenta' })
+  if (compararID(user._id, objetoVerificacion.decodedToken.id)) {
+    res.status(401).json({ mesage: 'usted no tiene permitido cambiar ni agregar nada a esta cuenta' })
     return
   }
   const imagen = req.files.image
@@ -385,12 +385,12 @@ Router.post('/deleteimagen/:id', async (req, res) => {
   }
   const objetoVerificacion = verificacion(cookie)
   if (!objetoVerificacion.metodo) {
-    res.status(404).send('no se ah encontrado el usuario')
+    res.status(401).send('no se ah encontrado el usuario')
     return
   }
   const user = await ModelUser.findOne({ usuari: req.params.id })
-  if (!user || user._id !== objetoVerificacion.decodedToken.id) {
-    res.status(404).send('no se ah encontrado el usuario')
+  if (compararID(user._id, objetoVerificacion.decodedToken.id)) {
+    res.status(401).json({ mesage: 'usted no tiene permitido cambiar ni agregar nada a esta cuenta' })
     return
   }
 

@@ -1,5 +1,4 @@
 'use strict'
-const axios = require('axios')
 const usuario = document.getElementById('js_register.js-validar_el_nombre_de_usuario')
 const contraseña = document.getElementById('see.js code.js responsive_index.js-cambiar_a_visible')
 const register = document.getElementById('js_register.js-boton_event_submit')
