@@ -1,6 +1,5 @@
 'use strict'
 let indiceDeBusqueda = -1
-let canDelete = true
 let navegacion = false
 let contador = 0
 
@@ -27,6 +26,7 @@ const cabecera = document.getElementById('responsive_cuentas.js-calcular_y_asign
 
 const backgroundHeight = document.getElementById('responsive_cuentas.js-para_hacer_margin_top')
 const background = document.getElementById('responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background')
+const botonDeAmistad = document.getElementById('cuentas.js-agregar_persona_amigo')
 
 window.addEventListener('load', e => {
   for (let index = 0; index < responsiveIconos.length; index++) {
@@ -60,25 +60,6 @@ window.addEventListener('resize', e => {
   backgroundHeight.style.marginTop = `${cabecera.clientHeight}px`
 })
 
-function actualizarDelete () {
-  const arrayAllDelete = document.querySelectorAll('.deleteListener')
-  for (let index = 0; index < arrayAllDelete.length; index++) {
-    arrayAllDelete[index].addEventListener('click', async e => {
-      if (canDelete) {
-        canDelete = false
-        const formdata = new FormData()
-        formdata.set('parametros', e.target.attributes.referen.nodeValue)
-
-        const element = await axios.post('/deleteimagen' + location.pathname, formdata)
-        if (element.statusText === 'OK') {
-          window.location.reload()
-        } else {
-          console.log('ocurrio un fallo al eliminar')
-        }
-      }
-    })
-  }
-}
 function createImgVideo (element, complement, ast, indice) {
   const descrip = complement.split('█')
   const nars = document.createElement('div')
@@ -111,6 +92,16 @@ function createImgVideo (element, complement, ast, indice) {
   marco.appendChild(content)
 }
 
+botonDeAmistad.addEventListener('click', async () => {
+  const res = await axios.post(window.location.pathname)
+  if (res.statusText === 'OK') {
+    if (botonDeAmistad.innerHTML === 'dejar de segir') {
+      botonDeAmistad.innerHTML = 'agregar a amigos'
+    } else {
+      botonDeAmistad.innerHTML = 'dejar de segir'
+    }
+  }
+})
 function createMorePhoto () {
   limit = true
   document.getElementById('ventana-acabo-las-fotos').style.display = ''
@@ -139,7 +130,6 @@ function elementos (p) {
     if (op.length < 3) {
       createMorePhoto()
     }
-    actualizarDelete()
     contador += 3
     setTimeout(() => {
       canload = true

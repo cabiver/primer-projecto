@@ -433,6 +433,10 @@ Router.post('/UltimosPost', async (req, res) => {
   let postMandar = []
   let arrayAmigos = op.amigosVisitados
   let nuevoAmigosVisitados = []
+  if (user.amigos.length === 0) {
+    res.status(200).json({ amigos: [] })
+    return
+  }
   for (let i = 0; i <= user.ultimasBusquedas.length - 1 && numeroPost > 0; i++) {
     const userAmigo = await ModelUser.findOne({ usuari: user.ultimasBusquedas[i] })
     let existeAmigo = false
