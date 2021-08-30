@@ -10,20 +10,20 @@ const sesion = document.getElementById('responsive_index.js,code.js-pocisionamin
 
 botonSesion.addEventListener('touchstart', (e) => {
   sesion.classList.remove('hidden')
-  sesion.classList.add('pestana')
+  sesion.classList.add('formulario')
 })
 botonSesion.addEventListener('touchleave', (e) => {
   sesion.classList.remove('hidden')
-  sesion.classList.add('pestana')
+  sesion.classList.add('formulario')
 })
 botonSesion.addEventListener('click', (e) => {
   if (create) {
     create = false
-    sesion.classList.remove('pestana')
+    sesion.classList.remove('formulario')
     sesion.classList.add('hidden')
   } else {
     sesion.classList.remove('hidden')
-    sesion.classList.add('pestana')
+    sesion.classList.add('formulario')
     create = true
   }
 })
@@ -51,18 +51,18 @@ send.addEventListener('click', async (e) => {
 })
 
 const all = document.getElementById('responsive_index.js-contenedor_de_todo_y_comparador_para_operaciones')
-const fix = document.getElementById('responsive_index.js-la_cabecera_para_ajustarla')
+const cabecerra = document.getElementById('responsive_index.js-la_cabecera_para_ajustarla')
 const background = document.getElementById('responsive-index.js-detectar_cuando_carge_y_posicionar_objetos')
 const divSesion = document.getElementById('responsive_index.js-ajustar_width_de_la_cabecera')
 
 window.addEventListener('load', e => {
-  fix.style.width = `${all.clientWidth}px`
+  cabecerra.style.width = `${all.clientWidth}px`
   botonSesion.style.marginRight = `${((document.body.offsetWidth - background.clientWidth) / 2) + 3}px`
   divSesion.style.right = `${((document.body.offsetWidth - background.clientWidth) / 2)}px`
   sesion.style.right = `${((document.body.offsetWidth - background.clientWidth) / 2)}px`
 })
 window.addEventListener('resize', e => {
-  fix.style.width = `${all.clientWidth}px`
+  cabecerra.style.width = `${all.clientWidth}px`
   botonSesion.style.marginRight = `${((document.body.offsetWidth - background.clientWidth) / 2) + 3}px`
   divSesion.style.right = `${((document.body.offsetWidth - background.clientWidth) / 2)}px`
   sesion.style.right = `${((document.body.offsetWidth - background.clientWidth) / 2)}px`

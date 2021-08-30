@@ -1,8 +1,8 @@
 'use strict'
+const form = document.getElementById('js_register.js-tener elemento form')
 const usuario = document.getElementById('js_register.js-validar_el_nombre_de_usuario')
 const contraseña = document.getElementById('see.js code.js responsive_index.js-cambiar_a_visible')
 const register = document.getElementById('js_register.js-boton_event_submit')
-const sesion = document.getElementById('js_register-detectar_cuando_sea_clicado')
 
 const check = (error) => {
   if (error[0]) {
@@ -48,20 +48,12 @@ const validarLimpieza = (textClear) => {
   return valor
 }
 
-sesion.addEventListener('click', async (e) => {
-  const respuesta = await axios.post('/', {
-    uss: usuario.value,
-    contra: contraseña.value
-  })
-  if (respuesta.status === 'OK') {
-    document.cookie = 'userName=' + respuesta.data.token
-    window.location.assign('/' + usuario.value)
-  } else {
-    console.log(respuesta)
-  }
-})
 register.addEventListener('click', async (e) => {
   e.preventDefault()
+  const Form = new FormData(form)
+  if (Form.get('password') !== Form.get('password-again')) {
+    return
+  }
   let error = validartodo('js_register.js-validar_el_nombre_de_usuario', 5)
   check(error)
   if (!error[0]) {
@@ -69,8 +61,8 @@ register.addEventListener('click', async (e) => {
     check(error)
     if (!error[0]) {
       const respuesta = await axios.post('/register', {
-        uss: usuario.value,
-        contra: contraseña.value
+        uss: Form.get('usuario'),
+        contra: Form.get('password')
       })
       if (respuesta.statusText === 'OK') {
         document.getElementById('js_register-informar_usuario_de_la_peticion').innerHTML = respuesta.data.mensage

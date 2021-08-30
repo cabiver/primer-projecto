@@ -3,7 +3,7 @@
   font-size: 18px;
 }
 
-.backzero {
+.cabecerra__boton-formulario {
   border: 0;
   padding-top: 6px;
   padding-bottom: 6px;
@@ -38,12 +38,12 @@ header {
   position: absolute;
 }
 
-.fix {
+.cabecerra {
   position: fixed;
   z-index: 150;
 }
 
-.marHeader {
+.cabecerra__margenFixeada {
   background-color: var(--principal-gris);
   display: flex;
   justify-content: flex-end;
@@ -51,11 +51,11 @@ header {
   width: auto;
 }
 
-.iniciar {
+.cabecerra__margin-inicio {
   width: fit-content;
 }
 
-.flexPassword {
+.formulario__input-caja {
   display: flex;
   width: 100%;
   align-items: center;
@@ -74,7 +74,7 @@ header {
   background-color: #fff6;
 }
 
-.aspect {
+.formulario__input {
   width: 100%;
   padding-left: 10px;
   border: 0;
@@ -85,16 +85,16 @@ header {
   border-radius: 2px 2px 1px 1px;
 }
 
-.aspect:focus-visible {
+.formulario__input:focus-visible {
   outline: none;
 }
 
-.fix .rigth div a {
+.cabecerra .rigth div a {
   display: inline-block;
   margin: 6px 5px;
 }
 
-.pestana {
+.formulario {
   position: fixed;
   opacity: 0.98;
   min-width: fit-content;
@@ -108,11 +108,11 @@ header {
   border-radius: 5px 0 5px 5px;
 }
 
-.margin_sign {
+.formulario__margin {
   margin: 32px 16px;
 }
 
-.from-login {
+.formulario__form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,14 +125,14 @@ header {
   align-items: center;
 }
 
-.send {
+.formulario__submit {
   background-color: #fe524bff;
   margin-bottom: 20px;
   border: 0;
   border-radius: 4px;
 }
 
-.send:hover {
+.formulario__submit:hover {
   background-color: #fe524b88;
 }
 
@@ -154,7 +154,7 @@ header {
   object-fit: cover;
 }
 
-.stuffed img {
+.stuffed__img {
   border-radius: inherit;
   width: inherit;
   height: inherit;
@@ -162,7 +162,7 @@ header {
   z-index: 10;
 }
 
-.botonMarco {
+.boton-margin {
   position: absolute;
   display: flex;
   min-width: fit-content;
@@ -172,7 +172,7 @@ header {
   justify-content: center;
 }
 
-.boton {
+.boton-margin__boton {
   width: 100%;
   opacity: 0.83;
   min-height: fit-content;
@@ -183,11 +183,16 @@ header {
   background-color: var(--principal-gris);
 }
 
+.boton-margin__boton:hover {
+  background-color: var(--dark);
+  opacity: 1;
+}
+
 .centeText {
   text-align: center;
 }
 
-.boton__a {
+.boton-margin__a {
   display: flex;
   min-width: fit-content;
   height: 100%;
@@ -196,7 +201,7 @@ header {
   align-items: center;
 }
 
-.boton a b {
+.boton-margin__b {
   margin: 0 4px 0 4px;
 }
 
@@ -206,7 +211,7 @@ h2 {
   margin: 0;
 }
 
-.tem {
+.titulo {
   display: flex;
   margin-top: 12px;
   padding: 10px;
@@ -218,7 +223,8 @@ h2 {
   align-content: center;
 }
 
-.text {
+.texto {
+  font-family: Georgia, "Times New Roman", Times, serif;
   width: 87%;
   min-width: 300px;
   background-color: var(--gris-claro);
@@ -229,17 +235,12 @@ h2 {
   padding: 5px;
 }
 
-.icon {
-  height: 19px;
-}
-
-.text p {
-  font-family: Georgia, "Times New Roman", Times, serif;
+.texto__p {
   margin-top: 3px;
   margin-bottom: 3px;
 }
 
-.text ul {
+.texto__ul {
   padding-left: 20px;
 }
 
@@ -254,13 +255,12 @@ h2 {
   color: #aaa;
 }
 
-.feedback_boton:hover {
-  background-color: var(--dark);
-  opacity: 1;
+.icon {
+  height: 19px;
 }
 
 @media screen and (max-width: 470px) {
-  .margin_sign {
+  .formulario__margin {
     margin: 20px 10px 0 10px;
   }
 
@@ -276,18 +276,18 @@ h2 {
     font-size: 12px;
   }
 
-  .backzero {
+  .cabecerra__boton-formulario {
     font-size: 18px;
   }
 }
 
 @media screen and (max-width: 700px) and (min-width: 470px) {
-  .backzero {
+  .cabecerra__boton-formulario {
     font-size: 18px;
     padding-right: 12px;
   }
 
-  .margin_sign {
+  .formulario__margin {
     margin: 20px 10px 0 10px;
   }
 
@@ -317,7 +317,7 @@ h2 {
     font-size: 15px;
   }
 
-  .backzero {
+  .cabecerra__boton-formulario {
     font-size: 18px;
   }
 }

@@ -6,7 +6,7 @@ body {
   background-color: #555;
 }
 
-.formulari {
+.border__margin-form-center {
   background-color: #bbb;
   height: fit-content;
   display: block;
@@ -22,7 +22,10 @@ body {
   padding-bottom: 10px;
 }
 
-.form_border {
+.border__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 25px;
   min-width: 270px;
 }
@@ -36,7 +39,7 @@ body {
   font-style: oblique;
 }
 
-.aspect {
+.border__input {
   padding-left: 10px;
   padding-right: 10px;
   border: 0;
@@ -44,6 +47,11 @@ body {
   background: #ccc;
   border-bottom: 3px solid #055;
   border-radius: 2px;
+}
+
+.border__input:focus-visible {
+  outline: none;
+  border-bottom: 3px solid #05a;
 }
 
 .send {
@@ -64,7 +72,7 @@ body {
   width: 20px;
 }
 
-.pass {
+.border__input--left {
   position: relative;
   left: 10px;
 }
