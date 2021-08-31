@@ -45,7 +45,7 @@
   z-index: 10;
 }
 
-.plus-camara-div {
+.divrCamaraIcono__plus-camara-div {
   position: absolute;
   top: -2px;
   right: 0;
@@ -59,7 +59,7 @@
   width: 12px;
 }
 
-.plus-camara-div img {
+.divrCamaraIcono__img {
   width: inherit;
   height: inherit;
   object-fit: cover;
@@ -87,7 +87,7 @@
   object-fit: contain;
 }
 
-.divBorderCamara {
+.divrCamaraIcono--div-background {
   border: 3px solid var(--blanco-poca-opacidad);
   border-radius: 50%;
   display: flex;

@@ -8,46 +8,46 @@ let canChangeBackground = true
 let imagenDeBackground = false
 let file
 
-const changeIcon = document.getElementById('usuario_controller.js-formulario_para_cambiar_icono')
-const form = document.getElementById('usuario_controller.js-formulario_subir_post')
-const loadImg = document.getElementById('usuario_controller.js-div_renderisa_pre_prost')
-const img = document.getElementById('imag')
-const closeChangeBackground = document.getElementById('closeChangeBackground')
-const gridChangeBackground = document.getElementById('gridChangeBackground')
-const fromChangeBackground = document.getElementById('fromChangeBackground')
-const inputPost = document.getElementById('imgFile')
-const respuestaBackground = document.getElementById('respuestaBackground')
-const renderIcono = document.getElementById('renderIcono')
-const renderBackground = document.getElementById('renderBackground')
-
-const perfil = document.getElementById('cuentas.js-agregar_eventos_que_desplegue_opciones_de_usuarios')
-const cerrarSesion = document.getElementById('cerrarSesion')
-const barraDeNavegacion = document.getElementById('barra-de-navegacion')
-const miSitio = document.getElementById('ir-a-mi-sitio')
-const fromBarraDeBusqueda = document.getElementById('responsive_cuentas.js-variable_para_el_posicionamiento_de_la_lupa-form_busqueda')
-
 let canload = true
 let limit = false
 
-const load = document.getElementById('cuentas.js-detectar_cuando_es_observado')
-const marco = document.getElementById('marco')
+const changeIcon = document.getElementById('main-cuentas.js-formulario_para_cambiar_icono')
+const form = document.getElementById('main-cuentas.js-formulario_subir_post')
+const loadImg = document.getElementById('main-cuentas.js-div_renderisa_pre_prost')
+const img = document.getElementById('main-cuentas.js-imagen_para_renderiar')
+const closeChangeBackground = document.getElementById('main-cuentas.js-detectar-click')
+const gridChangeBackground = document.getElementById('main-cuentas.js-detectar-click-para-cambiar-background')
+const fromChangeBackground = document.getElementById('main-cuentas.js-form-del-background')
+const inputPost = document.getElementById('main-cuentas.js-detectar-cambio-de-imagen')
+const respuestaBackground = document.getElementById('main-cuentas.js-respuesta-de-la-peticion')
+const renderIcono = document.getElementById('main-cuentas-js-renderizar-icono')
+const renderBackground = document.getElementById('main-cuentas.js-renderizar-background')
 
-const buttonLupa = document.getElementById('responsive_cuentas.js-posicionar_la_lupa')
-const barraDeBusqueda = document.getElementById('responsive_cuentas.js-referencia_para_calcular_la_pocision_de_la_lupa-barra_de_busqueda-div_barra_busqueda')
-const responsiveIconos = document.querySelectorAll('.responsive_cuentas.js-arrays_de_iconos_para_volverlos_cuadrados')
-const divPerfilUsuario = document.getElementById('responsive_cuentas.js-div_de_tu_perfil_para_ajustar_barra_de_busqueda')
-const escrituraParaBuscar = document.getElementById('responsive_cuentas.js-variable_de_posicionamiento')
-const divRecomiendaciones = document.getElementById('responsive_cuentas.js cuentas.js-posicionamiento_y_actualizacion_de_peticiones_de_recomendados')
-const iconoPagina = document.getElementById('responsive_cuentas.js cuentas.js-calcular_distancia_y_esperar_click')
-const cabecera = document.getElementById('responsive_cuentas.js-calcular_y_asignar_width_a_la_cabecera_y_detectar_click')
+const perfil = document.getElementById('Mains.js-agregar_eventos_que_desplegue_opciones_de_usuarios')
+const cerrarSesion = document.getElementById('Mains.js-detectar-click-eliminar-cookies')
+const barraDeNavegacion = document.getElementById('Mains.js-pesplegar-opciones-de-sesion')
+const miSitio = document.getElementById('Mains.js-detectar-click-ir-a-tu-sitio-web')
+const fromBarraDeBusqueda = document.getElementById('Mains.js-variable_para_el_posicionamiento_de_la_lupa-form_busqueda')
 
-const containerCamara = document.getElementById('responsive_usercuentas.js-para_posicionar_la_camara_del_background')
-const divBorderCamara = document.getElementById('responsive_usercuentas.js-comparador_de_tamaño_para_posicionarlo')
-const imageIcono = document.getElementById('responsive_usercuentas.js-operador_para_posicionar_la_camara-icono')
-const divBorderCamaraIcono = document.getElementById('divBorderCamaraIcono')
+const load = document.getElementById('Mains.js-detectar-cuando-es-observado')
+const marco = document.getElementById('Mains.js-div-donde-colocaras-los-post')
 
-const backgroundHeight = document.getElementById('responsive_cuentas.js-para_hacer_margin_top')
-const background = document.getElementById('responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background')
+const buttonLupa = document.getElementById('Main.js-posicionar_la_lupa')
+const barraDeBusqueda = document.getElementById('Mains.js-referencia_para_calcular_la_pocision_de_la_lupa-barra_de_busqueda-div_barra_busqueda')
+const responsiveIconos = document.querySelectorAll('.Mains.js-arrays_de_iconos_para_volverlos_cuadrados')
+const divPerfilUsuario = document.getElementById('Mains.js-div_de_tu_perfil_para_ajustar_barra_de_busqueda')
+const escrituraParaBuscar = document.getElementById('Mains.js-variable_de_posicionamiento')
+const divRecomiendaciones = document.getElementById('Mains.js cuentas.js-posicionamiento_y_actualizacion_de_peticiones_de_recomendados')
+const iconoPagina = document.getElementById('Mains.js cuentas.js-calcular_distancia_y_esperar_click')
+const cabecera = document.getElementById('Mains.js-calcular_y_asignar_width_a_la_cabecera_y_detectar_click')
+
+const containerCamara = document.getElementById('Main-cuentas.js-para_posicionar_la_camara_del_background')
+const divBorderCamara = document.getElementById('Main-cuentas.js-comparador_de_tamaño_para_posicionarlo')
+const imageIcono = document.getElementById('Main-cuentas.js-operador_para_posicionar_la_camara-icono')
+const divBorderCamaraIcono = document.getElementById('Main-cuentas.js-dezplegar-form-cambiar-icono')
+
+const backgroundHeight = document.getElementById('Mains.js-para_hacer_margin_top')
+const background = document.getElementById('Mains.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background')
 
 window.addEventListener('load', e => {
   for (let index = 0; index < responsiveIconos.length; index++) {
@@ -257,7 +257,7 @@ changeIcon.addEventListener('submit', async e => {
   const formdata = new FormData(changeIcon)
   const imagen = formdata.get('image')
   const particiones = imagen.name.split('.')
-  if (particiones[particiones.length - 1] == 'jpg' || particiones[particiones.length - 1] == 'png' || particiones[particiones.length - 1] == 'jpeg') {
+  if (particiones[particiones.length - 1] === 'jpg' || particiones[particiones.length - 1] === 'png' || particiones[particiones.length - 1] === 'jpeg') {
     const respuesta = await axios.post('/perfilIcon' + location.pathname, formdata)
     if (respuesta.statusText === 'OK') {
       window.location.reload()

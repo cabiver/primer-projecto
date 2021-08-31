@@ -1,4 +1,4 @@
-#responsive_usercuentas.js-operador_para_posicionar_la_camara-icono:hover {
+.icono-press:hover {
   filter: sepia(30%);
 }
 
@@ -14,13 +14,13 @@
   background-image: linear-gradient(to bottom right, var(--black-trancition), var(--black));
 }
 
-#renderIcono {
+.renderIcono {
   max-width: 120px;
   max-height: 250px;
   object-fit: cover;
 }
 
-.divBorderCamaraIcono {
+.divrCamaraIcono {
   position: absolute;
   z-index: 10;
   height: fit-content;

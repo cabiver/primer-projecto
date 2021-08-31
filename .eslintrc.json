@@ -4,6 +4,9 @@
         "es2021": true,
         "node": true
     },
+    "globals":{
+        "axios":true
+    },
     "extends": [
         "standard"
     ],

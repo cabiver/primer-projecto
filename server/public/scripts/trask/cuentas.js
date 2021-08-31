@@ -3,11 +3,11 @@ let indiceDeBusqueda = -1
 
 let navegacion = false
 
-const perfil = document.getElementById('cuentas.js-agregar_eventos_que_desplegue_opciones_de_usuarios')
-const cerrarSesion = document.getElementById('cerrarSesion')
-const barraDeNavegacion = document.getElementById('barra-de-navegacion')
-const miSitio = document.getElementById('ir-a-mi-sitio')
-const fromBarraDeBusqueda = document.getElementById('responsive_cuentas.js-variable_para_el_posicionamiento_de_la_lupa-form_busqueda')
+const perfil = document.getElementById('Mains.js-agregar_eventos_que_desplegue_opciones_de_usuarios')
+const cerrarSesion = document.getElementById('Mains.js-detectar-click-eliminar-cookies')
+const barraDeNavegacion = document.getElementById('Mains.js-pesplegar-opciones-de-sesion')
+const miSitio = document.getElementById('Mains.js-detectar-click-ir-a-tu-sitio-web')
+const fromBarraDeBusqueda = document.getElementById('Mains.js-variable_para_el_posicionamiento_de_la_lupa-form_busqueda')
 
 const redirecionarClick = () => {
   const arrayRediret = document.querySelectorAll('.redirectClick')

@@ -3,29 +3,29 @@ let indiceDeBusqueda = -1
 let navegacion = false
 let contador = 0
 
-const perfil = document.getElementById('cuentas.js-agregar_eventos_que_desplegue_opciones_de_usuarios')
-const cerrarSesion = document.getElementById('cerrarSesion')
-const barraDeNavegacion = document.getElementById('barra-de-navegacion')
-const miSitio = document.getElementById('ir-a-mi-sitio')
-const fromBarraDeBusqueda = document.getElementById('responsive_cuentas.js-variable_para_el_posicionamiento_de_la_lupa-form_busqueda')
+const perfil = document.getElementById('Mains.js-agregar_eventos_que_desplegue_opciones_de_usuarios')
+const cerrarSesion = document.getElementById('Mains.js-detectar-click-eliminar-cookies')
+const barraDeNavegacion = document.getElementById('Mains.js-pesplegar-opciones-de-sesion')
+const miSitio = document.getElementById('Mains.js-detectar-click-ir-a-tu-sitio-web')
+const fromBarraDeBusqueda = document.getElementById('Mains.js-variable_para_el_posicionamiento_de_la_lupa-form_busqueda')
 
 let canload = true
 let limit = false
 
-const load = document.getElementById('cuentas.js-detectar_cuando_es_observado')
-const marco = document.getElementById('marco')
+const load = document.getElementById('Mains.js-detectar-cuando-es-observado')
+const marco = document.getElementById('Mains.js-div-donde-colocaras-los-post')
 
-const buttonLupa = document.getElementById('responsive_cuentas.js-posicionar_la_lupa')
-const barraDeBusqueda = document.getElementById('responsive_cuentas.js-referencia_para_calcular_la_pocision_de_la_lupa-barra_de_busqueda-div_barra_busqueda')
-const responsiveIconos = document.querySelectorAll('.responsive_cuentas.js-arrays_de_iconos_para_volverlos_cuadrados')
-const divPerfilUsuario = document.getElementById('responsive_cuentas.js-div_de_tu_perfil_para_ajustar_barra_de_busqueda')
-const escrituraParaBuscar = document.getElementById('responsive_cuentas.js-variable_de_posicionamiento')
-const divRecomiendaciones = document.getElementById('responsive_cuentas.js cuentas.js-posicionamiento_y_actualizacion_de_peticiones_de_recomendados')
-const iconoPagina = document.getElementById('responsive_cuentas.js cuentas.js-calcular_distancia_y_esperar_click')
-const cabecera = document.getElementById('responsive_cuentas.js-calcular_y_asignar_width_a_la_cabecera_y_detectar_click')
+const buttonLupa = document.getElementById('Main.js-posicionar_la_lupa')
+const barraDeBusqueda = document.getElementById('Mains.js-referencia_para_calcular_la_pocision_de_la_lupa-barra_de_busqueda-div_barra_busqueda')
+const responsiveIconos = document.querySelectorAll('.Mains.js-arrays_de_iconos_para_volverlos_cuadrados')
+const divPerfilUsuario = document.getElementById('Mains.js-div_de_tu_perfil_para_ajustar_barra_de_busqueda')
+const escrituraParaBuscar = document.getElementById('Mains.js-variable_de_posicionamiento')
+const divRecomiendaciones = document.getElementById('Mains.js cuentas.js-posicionamiento_y_actualizacion_de_peticiones_de_recomendados')
+const iconoPagina = document.getElementById('Mains.js cuentas.js-calcular_distancia_y_esperar_click')
+const cabecera = document.getElementById('Mains.js-calcular_y_asignar_width_a_la_cabecera_y_detectar_click')
 
-const backgroundHeight = document.getElementById('responsive_cuentas.js-para_hacer_margin_top')
-const background = document.getElementById('responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background')
+const backgroundHeight = document.getElementById('Mains.js-para_hacer_margin_top')
+const background = document.getElementById('Mains.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background')
 const botonDeAmistad = document.getElementById('cuentas.js-agregar_persona_amigo')
 
 window.addEventListener('load', e => {

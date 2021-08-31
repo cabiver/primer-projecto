@@ -4,7 +4,7 @@ body {
   min-width: 280px;
 }
 
-#gridChangeBackground {
+.gridChangeBackground {
   display: grid;
   background-color: rgba(var(--black-rgb), 0.8);
   position: fixed;
@@ -13,7 +13,7 @@ body {
   grid-template-rows: repeat(6, minmax(60px, auto));
 }
 
-#closeChangeBackground {
+.div-cerrar {
   grid-column: 6/span 1;
   grid-row: 1/span 1;
   object-fit: cover;
@@ -22,7 +22,7 @@ body {
   align-items: center;
 }
 
-#closeChangeBackground img {
+.div-cerrar__x {
   border-radius: 50%;
   min-width: 12px;
   min-height: 12px;
@@ -30,11 +30,11 @@ body {
   height: 30%;
 }
 
-#closeChangeBackground img:hover {
+.div-cerrar__x:hover {
   background-color: var(--dark);
 }
 
-.divChangeBackground {
+.div-change-center-background {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,7 +42,7 @@ body {
   grid-row: 2/span 4;
 }
 
-#fromChangeBackground {
+.div-change-center-background__form {
   color: #fff;
   display: flex;
   border-radius: 12px;
@@ -54,7 +54,7 @@ body {
   background-color: var(--dark);
 }
 
-#renderBackground {
+.div-change-center-background__render-background {
   object-fit: cover;
   max-width: 100%;
   margin-bottom: 3px;

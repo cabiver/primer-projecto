@@ -72,8 +72,8 @@ Router.get('/:id', async (req, res) => {
     let extencion = arrayBackground[arrayBackground.length - 1]
 
     extencion === 'mp4' || extencion === 'avi'
-      ? extencion = `<video id="responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background" class="background-content-responsive-video" src="${user.background}" controls></video>`
-      : extencion = `<img id="responsive_cuentas.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background" class="background-content-responsive-imagen" src="${user.background}" alt="">`
+      ? extencion = `<video id="Mains.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background" class="background-content-responsive-video" src="${user.background}" controls></video>`
+      : extencion = `<img id="Mains.js-la_entidad_de_la_imagen_para_poder_comparar_su_tamaño-background" class="background-content-responsive-imagen" src="${user.background}" alt="">`
 
     const difbackground = `<img class="imageDifumida" src="${user.backgroundDifumidado}" alt="">`
 

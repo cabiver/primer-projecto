@@ -4,18 +4,18 @@ let canChangeBackground = true
 let imagenDeBackground = false
 let file
 
-const changeIcon = document.getElementById('usuario_controller.js-formulario_para_cambiar_icono')
-const form = document.getElementById('usuario_controller.js-formulario_subir_post')
-const loadImg = document.getElementById('usuario_controller.js-div_renderisa_pre_prost')
-const img = document.getElementById('imag')
-const divBorderCamaraIcono = document.getElementById('divBorderCamaraIcono')
-const closeChangeBackground = document.getElementById('closeChangeBackground')
-const gridChangeBackground = document.getElementById('gridChangeBackground')
-const fromChangeBackground = document.getElementById('fromChangeBackground')
-const inputPost = document.getElementById('imgFile')
-const respuestaBackground = document.getElementById('respuestaBackground')
-const renderIcono = document.getElementById('renderIcono')
-const renderBackground = document.getElementById('renderBackground')
+const changeIcon = document.getElementById('main-cuentas.js-formulario_para_cambiar_icono')
+const form = document.getElementById('main-cuentas.js-formulario_subir_post')
+const loadImg = document.getElementById('main-cuentas.js-div_renderisa_pre_prost')
+const img = document.getElementById('main-cuentas.js-imagen_para_renderiar')
+const divBorderCamaraIcono = document.getElementById('Main-cuentas.js-dezplegar-form-cambiar-icono')
+const closeChangeBackground = document.getElementById('main-cuentas.js-detectar-click')
+const gridChangeBackground = document.getElementById('main-cuentas.js-detectar-click-para-cambiar-background')
+const fromChangeBackground = document.getElementById('main-cuentas.js-form-del-background')
+const inputPost = document.getElementById('main-cuentas.js-detectar-cambio-de-imagen')
+const respuestaBackground = document.getElementById('main-cuentas.js-respuesta-de-la-peticion')
+const renderIcono = document.getElementById('main-cuentas-js-renderizar-icono')
+const renderBackground = document.getElementById('main-cuentas.js-renderizar-background')
 
 function ocultarMostrar () {
   if (!varchangeIcon) {

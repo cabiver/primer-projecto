@@ -1,7 +1,5 @@
 'use strict'
 const form = document.getElementById('js_register.js-tener elemento form')
-const usuario = document.getElementById('js_register.js-validar_el_nombre_de_usuario')
-const contraseña = document.getElementById('see.js code.js responsive_index.js-cambiar_a_visible')
 const register = document.getElementById('js_register.js-boton_event_submit')
 
 const check = (error) => {

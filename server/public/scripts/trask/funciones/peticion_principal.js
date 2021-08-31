@@ -1,17 +1,25 @@
 let canload = true
 let limit = false
-let contador = 0
+let amigosVisitados = []
+const infoVisitados = {}
+let intentos = 0
+const load = document.getElementById('Mains.js-detectar-cuando-es-observado')
+const marco = document.getElementById('Mains.js-div-donde-colocaras-los-post')
 
-const load = document.getElementById('cuentas.js-detectar_cuando_es_observado')
-const marco = document.getElementById('marco')
-function createImgVideo (element, complement, ast, indice) {
-  const descrip = complement.split('█')
+function createImgVideo (element, ast) {
+  const descrip = element.post.desc.split('█')
   const nars = document.createElement('div')
   const content = document.createElement('div')
-  ast.setAttribute('src', element)
+  ast.setAttribute('src', element.post.postImg)
   ast.setAttribute('class', ' precentacion')
   const descr = document.createElement('p')
   descr.setAttribute('class', ' fuente')
+
+  const conteinerUser = document.createElement('div')
+  conteinerUser.setAttribute('class', ' nombre-usuario')
+  conteinerUser.innerHTML = element.nombre
+  const conteinerFechaUser = document.createElement('div')
+  conteinerFechaUser.setAttribute('class', ' users-flex')
 
   const fechaDePosteo = document.createElement('p')
   const fecha = descrip[0].split(' ')
@@ -28,8 +36,15 @@ function createImgVideo (element, complement, ast, indice) {
   const complemento = document.createElement('div')
   complemento.setAttribute('class', 'flexGrow')
   const divDelete = createX(element)
-  contentenFlex.appendChild(fechaDePosteo)
-  contentenFlex.appendChild(complemento)
+
+  const iconoImagen = document.createElement('img')
+  iconoImagen.setAttribute('src', element.icon)
+  iconoImagen.setAttribute('class', ' icono-post')
+  conteinerUser.appendChild(iconoImagen)
+  conteinerFechaUser.appendChild(conteinerUser)
+  conteinerFechaUser.appendChild(fechaDePosteo)
+
+  contentenFlex.appendChild(conteinerFechaUser)
   contentenFlex.appendChild(divDelete)
   content.appendChild(contentenFlex)
   descr.innerHTML = descrip[1]
@@ -45,50 +60,58 @@ function createMorePhoto () {
   limit = true
   document.getElementById('ventana-acabo-las-fotos').style.display = ''
 }
+
 function elementos (p) {
-  const op = p.data.content
+  const op = p.data.amigos
   if (p !== undefined) {
-    op.forEach(element => {
-      const extencion = element.postImg.split('.')
+    op.forEach((element) => {
+      if (!element.post) {
+        return
+      }
+      const extencion = element.post.postImg.split('.')
       if (extencion[(extencion.length - 1)] === 'mp4' || extencion[(extencion.length - 1)] === 'avi') {
         const ast = document.createElement('video')
         ast.setAttribute('controls', '')
-        createImgVideo(element.postImg, element.desc, ast)
+        createImgVideo(element, ast)
       } else {
         if (extencion[(extencion.length - 1)] === 'mp3' || extencion[(extencion.length - 1)] === 'ogg' || extencion[(extencion.length - 1)] === 'wav') {
           const ast = document.createElement('audio')
           ast.setAttribute('controls', '')
-          createImgVideo(element.postImg, element, element.desc, ast)
+          createImgVideo(element, ast)
         } else {
           const ast = document.createElement('img')
-          createImgVideo(element.postImg, element.desc, ast)
+          createImgVideo(element, ast)
         }
       }
     })
-    if (op.length < 3) {
-      createMorePhoto()
-    }
     actualizarDelete()
-    contador += 3
     setTimeout(() => {
       canload = true
-    }, 2000)
+    }, 1500)
   }
 }
 
 const cal = async () => {
-  if (!canload || limit) {
+  if (limit) {
+    return
+  }
+  if (!canload) {
     return
   }
   canload = false
-  const respuesta = await axios.post('/cuentas' + location.pathname, {
-    cont: contador
+  const respuesta = await axios.post('/UltimosPost', {
+    amigosVisitados,
+    infoVisitados
   })
-  console.log(respuesta)
+  amigosVisitados = respuesta.data.arrayAmigos
+
   if (respuesta.statusText === 'OK') {
-    if (respuesta.data.length === 0) {
-      createMorePhoto()
-      return
+    if (respuesta.data.amigos.length === 0) {
+      intentos++
+      if (intentos > 10) {
+        createMorePhoto()
+        return
+      }
     }
     elementos(respuesta)
   } else {
