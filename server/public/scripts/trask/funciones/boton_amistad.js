@@ -1,5 +1,5 @@
 'use strict'
-const botonDeAmistad = document.getElementById('cuentas.js-agregar_persona_amigo')
+const botonDeAmistad = document.getElementById('main-another-cuenta.js-agregar_persona_amigo')
 botonDeAmistad.addEventListener('click', async () => {
   const res = await axios.post(window.location.pathname)
   if (res.statusText === 'OK') {
