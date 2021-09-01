@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
@@ -43,7 +43,7 @@
     "build": "npx babel server -d build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["social network","red social"],
+  "author": "carlos vergel",
   "license": "ISC"
 }

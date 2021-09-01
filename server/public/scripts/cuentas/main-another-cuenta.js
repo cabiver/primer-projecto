@@ -2,15 +2,14 @@
 let indiceDeBusqueda = -1
 let navegacion = false
 let contador = 0
+let canload = true
+let limit = false
 
 const perfil = document.getElementById('Mains.js-agregar_eventos_que_desplegue_opciones_de_usuarios')
 const cerrarSesion = document.getElementById('Mains.js-detectar-click-eliminar-cookies')
 const barraDeNavegacion = document.getElementById('Mains.js-pesplegar-opciones-de-sesion')
 const miSitio = document.getElementById('Mains.js-detectar-click-ir-a-tu-sitio-web')
 const fromBarraDeBusqueda = document.getElementById('Mains.js-variable_para_el_posicionamiento_de_la_lupa-form_busqueda')
-
-let canload = true
-let limit = false
 
 const load = document.getElementById('Mains.js-detectar-cuando-es-observado')
 const marco = document.getElementById('Mains.js-div-donde-colocaras-los-post')
@@ -104,7 +103,7 @@ botonDeAmistad.addEventListener('click', async () => {
 })
 function createMorePhoto () {
   limit = true
-  document.getElementById('ventana-acabo-las-fotos').style.display = ''
+  document.getElementById('mains.js-limite-fotos').style.display = ''
 }
 
 function elementos (p) {

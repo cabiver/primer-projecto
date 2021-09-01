@@ -43,7 +43,7 @@ function createImgVideo (element, complement, ast, indice) {
 
 function createMorePhoto () {
   limit = true
-  document.getElementById('ventana-acabo-las-fotos').style.display = ''
+  document.getElementById('mains.js-limite-fotos').style.display = ''
 }
 function elementos (p) {
   const op = p.data.content

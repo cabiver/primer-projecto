@@ -43,6 +43,7 @@ window.addEventListener('load', e => {
   buttonLupa.style.left = `${((iconoPagina.clientWidth + escrituraParaBuscar.clientWidth +
           ((barraDeBusqueda.clientWidth - escrituraParaBuscar.clientWidth) / 2)) - buttonLupa.clientWidth - 6)}px`
 })
+
 window.addEventListener('resize', e => {
   responsiveIconos = document.querySelectorAll('.MainsJS-arrays_de_iconos_para_volverlos_cuadrados')
   cabecera.style.width = `${document.body.offsetWidth}px`
@@ -107,7 +108,14 @@ function createImgVideo (element, ast) {
 
 function createMorePhoto () {
   limit = true
-  document.getElementById('ventana-acabo-las-fotos').style.display = ''
+  document.getElementById('mains.js-limite-fotos').style.display = ''
+}
+
+function resizeIcons () {
+  responsiveIconos = document.querySelectorAll('.MainsJS-arrays_de_iconos_para_volverlos_cuadrados')
+  for (let index = 0; index < responsiveIconos.length; index++) {
+    responsiveIconos[index].style.width = `${responsiveIconos[index].clientHeight}px`
+  }
 }
 
 function elementos (p) {
@@ -133,6 +141,7 @@ function elementos (p) {
         }
       }
     })
+    resizeIcons()
     setTimeout(() => {
       canload = true
     }, 1500)

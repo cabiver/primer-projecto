@@ -68,7 +68,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: var(--colorPrincipal-claro);
+  background-image: linear-gradient(to bottom, var(--colorPrincipal-claro), var(--colorSegundario-oscuro));
   text-align: center;
 }
 
