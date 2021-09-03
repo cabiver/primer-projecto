@@ -54,7 +54,7 @@ body {
   border-bottom: 3px solid #05a;
 }
 
-.send {
+.border__send {
   background-color: #0af;
   border: 0;
   border: 1px solid #0aff;
@@ -81,7 +81,7 @@ body {
   background-color: #fff9;
 }
 
-.send:hover {
+.border__send:hover {
   background-color: #0afa;
   border-color: #08df;
 }

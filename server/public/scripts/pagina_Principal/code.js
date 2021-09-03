@@ -49,20 +49,15 @@ send.addEventListener('click', async (e) => {
     resultado.innerHTML = 'contraseña o usuario incorrecto'
   }
 })
-
-const all = document.getElementById('responsive_index.js-contenedor_de_todo_y_comparador_para_operaciones')
-const cabecerra = document.getElementById('responsive_index.js-la_cabecera_para_ajustarla')
-const background = document.getElementById('responsive-index.js-detectar_cuando_carge_y_posicionar_objetos')
-const divSesion = document.getElementById('responsive_index.js-ajustar_width_de_la_cabecera')
+const background = document.getElementById('code.js-detectar_cuando_carge_y_posicionar_objetos')
+const divSesion = document.getElementById('code.js-ajustar_width_de_la_cabecera')
 
 window.addEventListener('load', e => {
-  cabecerra.style.width = `${all.clientWidth}px`
   botonSesion.style.marginRight = `${((document.body.offsetWidth - background.clientWidth) / 2) + 3}px`
   divSesion.style.right = `${((document.body.offsetWidth - background.clientWidth) / 2)}px`
   sesion.style.right = `${((document.body.offsetWidth - background.clientWidth) / 2)}px`
 })
 window.addEventListener('resize', e => {
-  cabecerra.style.width = `${all.clientWidth}px`
   botonSesion.style.marginRight = `${((document.body.offsetWidth - background.clientWidth) / 2) + 3}px`
   divSesion.style.right = `${((document.body.offsetWidth - background.clientWidth) / 2)}px`
   sesion.style.right = `${((document.body.offsetWidth - background.clientWidth) / 2)}px`
