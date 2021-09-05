@@ -37,7 +37,7 @@ ul {
 .cabecerra {
   position: fixed;
   z-index: 150;
-  width:100%;
+  width: 100%;
 }
 
 .cabecerra__margenFixeada {
@@ -207,6 +207,7 @@ h2 {
   color: rgb(48, 182, 182);
   margin: 0;
 }
+
 .area-texto {
   display: flex;
   flex-direction: column;
@@ -244,10 +245,18 @@ h2 {
 }
 
 .banner {
+  display: flex;
+  justify-content: center;
   width: 100%;
   padding: 4px 0;
   background-color: var(--dark);
   min-width: 311px;
+}
+
+.banner_a {
+  display: flex;
+  justify-content: center;
+  margin: 0 4px 0 4px;
 }
 
 .feedback:hover {

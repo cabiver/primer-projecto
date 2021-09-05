@@ -50,15 +50,13 @@ send.addEventListener('click', async (e) => {
   }
 })
 const background = document.getElementById('code.js-detectar_cuando_carge_y_posicionar_objetos')
-const divSesion = document.getElementById('code.js-ajustar_width_de_la_cabecera')
+// const divSesion = document.getElementById('code.js-ajustar_width_de_la_cabecera')
 
 window.addEventListener('load', e => {
-  botonSesion.style.marginRight = `${((document.body.offsetWidth - background.clientWidth) / 2) + 3}px`
-  divSesion.style.right = `${((document.body.offsetWidth - background.clientWidth) / 2)}px`
+  botonSesion.style.marginRight = `${(document.body.offsetWidth - background.clientWidth)}px`
   sesion.style.right = `${((document.body.offsetWidth - background.clientWidth) / 2)}px`
 })
 window.addEventListener('resize', e => {
-  botonSesion.style.marginRight = `${((document.body.offsetWidth - background.clientWidth) / 2) + 3}px`
-  divSesion.style.right = `${((document.body.offsetWidth - background.clientWidth) / 2)}px`
+  botonSesion.style.marginRight = `${(document.body.offsetWidth - background.clientWidth)}px`
   sesion.style.right = `${((document.body.offsetWidth - background.clientWidth) / 2)}px`
 })
